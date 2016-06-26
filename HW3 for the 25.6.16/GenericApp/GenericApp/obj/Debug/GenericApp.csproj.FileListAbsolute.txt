@@ -1,0 +1,13 @@
+c:\users\d\documents\visual studio 2015\Projects\GenericApp\GenericApp\bin\Debug\GenericApp.exe.config
+D:\Emanuel\Documents\Coding\Projects\HW3 for the 23.6.16\GenericApp\GenericApp\bin\Debug\GenericApp.exe.config
+D:\Emanuel\Documents\Coding\Projects\HW3 for the 23.6.16\GenericApp\GenericApp\bin\Debug\GenericApp.exe
+D:\Emanuel\Documents\Coding\Projects\HW3 for the 23.6.16\GenericApp\GenericApp\bin\Debug\GenericApp.pdb
+D:\Emanuel\Documents\Coding\Projects\HW3 for the 23.6.16\GenericApp\GenericApp\obj\Debug\GenericApp.csprojResolveAssemblyReference.cache
+D:\Emanuel\Documents\Coding\Projects\HW3 for the 23.6.16\GenericApp\GenericApp\obj\Debug\GenericApp.exe
+D:\Emanuel\Documents\Coding\Projects\HW3 for the 23.6.16\GenericApp\GenericApp\obj\Debug\GenericApp.pdb
+D:\Emanuel\Documents\Coding\Projects\HW3 for the 25.6.16\GenericApp\GenericApp\bin\Debug\GenericApp.exe.config
+D:\Emanuel\Documents\Coding\Projects\HW3 for the 25.6.16\GenericApp\GenericApp\obj\Debug\GenericApp.exe
+D:\Emanuel\Documents\Coding\Projects\HW3 for the 25.6.16\GenericApp\GenericApp\obj\Debug\GenericApp.pdb
+D:\Emanuel\Documents\Coding\Projects\HW3 for the 25.6.16\GenericApp\GenericApp\bin\Debug\GenericApp.exe
+D:\Emanuel\Documents\Coding\Projects\HW3 for the 25.6.16\GenericApp\GenericApp\bin\Debug\GenericApp.pdb
+D:\Emanuel\Documents\Coding\Projects\HW3 for the 25.6.16\GenericApp\GenericApp\obj\Debug\GenericApp.csprojResolveAssemblyReference.cache

@@ -1,0 +1,11 @@
+c:\users\d\documents\visual studio 2015\Projects\Shapes\ShapesApp\bin\Debug\ShapesApp.exe.config
+c:\users\d\documents\visual studio 2015\Projects\Shapes\ShapesApp\bin\Debug\ShapesApp.exe
+c:\users\d\documents\visual studio 2015\Projects\Shapes\ShapesApp\bin\Debug\ShapesApp.pdb
+c:\users\d\documents\visual studio 2015\Projects\Shapes\ShapesApp\bin\Debug\ShapeLib.dll
+c:\users\d\documents\visual studio 2015\Projects\Shapes\ShapesApp\bin\Debug\ShapeLib.pdb
+c:\users\d\documents\visual studio 2015\Projects\Shapes\ShapesApp\obj\Debug\ShapesApp.csprojResolveAssemblyReference.cache
+c:\users\d\documents\visual studio 2015\Projects\Shapes\ShapesApp\obj\Debug\ShapesApp.exe
+c:\users\d\documents\visual studio 2015\Projects\Shapes\ShapesApp\obj\Debug\ShapesApp.pdb
+C:\Users\decke\Desktop\Coding\Projects\Shapes\ShapesApp\bin\Debug\ShapesApp.exe.config
+C:\Users\decke\Desktop\Coding\Projects\Shapes\ShapesApp\obj\Debug\ShapesApp.exe
+C:\Users\decke\Desktop\Coding\Projects\Shapes\ShapesApp\obj\Debug\ShapesApp.pdb

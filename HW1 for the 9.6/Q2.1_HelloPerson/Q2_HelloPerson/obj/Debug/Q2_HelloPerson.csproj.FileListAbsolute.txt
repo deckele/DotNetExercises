@@ -1,0 +1,5 @@
+c:\users\d\documents\visual studio 2015\Projects\Q2_HelloPerson\Q2_HelloPerson\bin\Debug\Q2_HelloPerson.exe.config
+c:\users\d\documents\visual studio 2015\Projects\Q2_HelloPerson\Q2_HelloPerson\bin\Debug\Q2_HelloPerson.exe
+c:\users\d\documents\visual studio 2015\Projects\Q2_HelloPerson\Q2_HelloPerson\bin\Debug\Q2_HelloPerson.pdb
+c:\users\d\documents\visual studio 2015\Projects\Q2_HelloPerson\Q2_HelloPerson\obj\Debug\Q2_HelloPerson.exe
+c:\users\d\documents\visual studio 2015\Projects\Q2_HelloPerson\Q2_HelloPerson\obj\Debug\Q2_HelloPerson.pdb

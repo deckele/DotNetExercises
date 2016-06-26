@@ -1,0 +1,16 @@
+C:\Users\D\Documents\Visual Studio 2015\Projects\Accounts\MainAccounts\bin\Debug\MainAccounts.exe.config
+C:\Users\D\Documents\Visual Studio 2015\Projects\Accounts\MainAccounts\bin\Debug\MainAccounts.exe
+C:\Users\D\Documents\Visual Studio 2015\Projects\Accounts\MainAccounts\bin\Debug\MainAccounts.pdb
+C:\Users\D\Documents\Visual Studio 2015\Projects\Accounts\MainAccounts\bin\Debug\AccountsLib.dll
+C:\Users\D\Documents\Visual Studio 2015\Projects\Accounts\MainAccounts\bin\Debug\AccountsLib.pdb
+C:\Users\D\Documents\Visual Studio 2015\Projects\Accounts\MainAccounts\obj\Debug\MainAccounts.csprojResolveAssemblyReference.cache
+C:\Users\D\Documents\Visual Studio 2015\Projects\Accounts\MainAccounts\obj\Debug\MainAccounts.exe
+C:\Users\D\Documents\Visual Studio 2015\Projects\Accounts\MainAccounts\obj\Debug\MainAccounts.pdb
+C:\Users\decke\Desktop\Coding\Projects\Accounts\MainAccounts\bin\Debug\MainAccounts.exe.config
+C:\Users\decke\Desktop\Coding\Projects\Accounts\MainAccounts\obj\Debug\MainAccounts.exe
+C:\Users\decke\Desktop\Coding\Projects\Accounts\MainAccounts\obj\Debug\MainAccounts.pdb
+C:\Users\decke\Desktop\Coding\Projects\Accounts\MainAccounts\bin\Debug\MainAccounts.exe
+C:\Users\decke\Desktop\Coding\Projects\Accounts\MainAccounts\bin\Debug\MainAccounts.pdb
+C:\Users\decke\Desktop\Coding\Projects\Accounts\MainAccounts\bin\Debug\AccountsLib.dll
+C:\Users\decke\Desktop\Coding\Projects\Accounts\MainAccounts\bin\Debug\AccountsLib.pdb
+C:\Users\decke\Desktop\Coding\Projects\Accounts\MainAccounts\obj\Debug\MainAccounts.csprojResolveAssemblyReference.cache

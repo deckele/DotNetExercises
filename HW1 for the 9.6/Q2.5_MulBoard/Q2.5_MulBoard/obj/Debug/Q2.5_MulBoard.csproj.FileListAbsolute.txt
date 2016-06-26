@@ -1,0 +1,6 @@
+c:\users\d\documents\visual studio 2015\Projects\Q2.5_MulBoard\Q2.5_MulBoard\bin\Debug\Q2.5_MulBoard.exe.config
+c:\users\d\documents\visual studio 2015\Projects\Q2.5_MulBoard\Q2.5_MulBoard\bin\Debug\Q2.5_MulBoard.exe
+c:\users\d\documents\visual studio 2015\Projects\Q2.5_MulBoard\Q2.5_MulBoard\bin\Debug\Q2.5_MulBoard.pdb
+c:\users\d\documents\visual studio 2015\Projects\Q2.5_MulBoard\Q2.5_MulBoard\obj\Debug\Q2.5_MulBoard.csprojResolveAssemblyReference.cache
+c:\users\d\documents\visual studio 2015\Projects\Q2.5_MulBoard\Q2.5_MulBoard\obj\Debug\Q2.5_MulBoard.exe
+c:\users\d\documents\visual studio 2015\Projects\Q2.5_MulBoard\Q2.5_MulBoard\obj\Debug\Q2.5_MulBoard.pdb

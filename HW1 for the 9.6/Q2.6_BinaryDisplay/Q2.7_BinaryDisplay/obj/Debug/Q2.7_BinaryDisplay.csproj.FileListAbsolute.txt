@@ -1,0 +1,6 @@
+c:\users\d\documents\visual studio 2015\Projects\Q2.7_BinaryDisplay\Q2.7_BinaryDisplay\bin\Debug\Q2.7_BinaryDisplay.exe.config
+c:\users\d\documents\visual studio 2015\Projects\Q2.7_BinaryDisplay\Q2.7_BinaryDisplay\bin\Debug\Q2.7_BinaryDisplay.exe
+c:\users\d\documents\visual studio 2015\Projects\Q2.7_BinaryDisplay\Q2.7_BinaryDisplay\bin\Debug\Q2.7_BinaryDisplay.pdb
+c:\users\d\documents\visual studio 2015\Projects\Q2.7_BinaryDisplay\Q2.7_BinaryDisplay\obj\Debug\Q2.7_BinaryDisplay.csprojResolveAssemblyReference.cache
+c:\users\d\documents\visual studio 2015\Projects\Q2.7_BinaryDisplay\Q2.7_BinaryDisplay\obj\Debug\Q2.7_BinaryDisplay.exe
+c:\users\d\documents\visual studio 2015\Projects\Q2.7_BinaryDisplay\Q2.7_BinaryDisplay\obj\Debug\Q2.7_BinaryDisplay.pdb
