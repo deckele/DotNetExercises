@@ -8,16 +8,16 @@ namespace CustomersApp
 {
     public class Customer : IComparable<Customer>, IEquatable<Customer>
     {
-        public Customer(string _name, string _adress, int _id)
+        public Customer(string name, string adress, int id)
         {
-            Name = _name;
-            Adress = _adress;
-            ID = _id;
+            Name = name;
+            Adress = adress;
+            ID = id;
         }
         
-        public string Name { get;  set; }
-        public string Adress { get; set; }
-        public int ID { get; set; }
+        public string Name { get;  private set; }
+        public string Adress { get; private set; }
+        public int ID { get; private set; }
 
         //Implementing IComparable according to Name.
         public int CompareTo(Customer other)
@@ -43,6 +43,10 @@ namespace CustomersApp
             {
                 return this.Name.Equals(other.Name);
             }
+        }
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode()^ID.GetHashCode();
         }
 
         //For testing- overriding ToString() method
