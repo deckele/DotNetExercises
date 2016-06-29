@@ -7,3 +7,6 @@ c:\users\emanuel\Documents\Visual Studio 2015\Projects\MailSystem\MailSystem\obj
 D:\Emanuel\Documents\Coding\GitHub\Repository\DotNetExercises\HW4 for the 2.7.16\MailSystem\MailSystem\bin\Debug\MailSystem.exe.config
 D:\Emanuel\Documents\Coding\GitHub\Repository\DotNetExercises\HW4 for the 2.7.16\MailSystem\MailSystem\obj\Debug\MailSystem.exe
 D:\Emanuel\Documents\Coding\GitHub\Repository\DotNetExercises\HW4 for the 2.7.16\MailSystem\MailSystem\obj\Debug\MailSystem.pdb
+D:\Emanuel\Documents\Coding\GitHub\Repository\DotNetExercises\HW4 for the 2.7.16\MailSystem\MailSystem\bin\Debug\MailSystem.exe
+D:\Emanuel\Documents\Coding\GitHub\Repository\DotNetExercises\HW4 for the 2.7.16\MailSystem\MailSystem\bin\Debug\MailSystem.pdb
+D:\Emanuel\Documents\Coding\GitHub\Repository\DotNetExercises\HW4 for the 2.7.16\MailSystem\MailSystem\obj\Debug\MailSystem.csprojResolveAssemblyReference.cache

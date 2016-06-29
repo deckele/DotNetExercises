@@ -18,8 +18,11 @@ namespace MailSystem
 
             mailManager.MailArrived += printMail.OnMailArrived;
 
-            Timer T = new Timer(new TimerCallback(mailManager.SimulateMailArrived(new MailArrivedEventArgs(title, body))));
-            mailManager.SimulateMailArrived(new MailArrivedEventArgs(title, body));
+            var timer = new Timer((Object obj) => {
+                mailManager.SimulateMailArrived(new MailArrivedEventArgs(title, body));
+            }, null, 0, 1000);
+
+            Console.ReadLine();
         }
     }
 }
