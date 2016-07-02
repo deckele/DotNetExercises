@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,11 +17,13 @@ namespace FileFinder
                 Console.WriteLine("Error: Invalid arguments.");
                 return;
             }
-            if (!Directory.Exists(args[0]))
+            else if (!Directory.Exists(args[0]))
             {
                 Console.WriteLine("Error: Directory doesn't exist.");
                 return;
             }
+
+            var fileFinder = new FileFinder(args[0], args[1]);
         }
     }
 }
