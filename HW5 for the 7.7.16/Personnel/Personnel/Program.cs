@@ -13,23 +13,15 @@ namespace Personnel
     {
         static void Main(string[] args)
         {
-            List<string> nameList = ReadNames("NamesForExercise.txt");
+            var nameReader = new NameReader("NamesForExercise.txt");
+            List<string> nameList = nameReader.ReadNames();
+
+            Console.WriteLine("List of names:");
+            Console.WriteLine();
             foreach (var name in nameList)
             {
                 Console.WriteLine(name);
             }
-        }
-
-        public static List<string> ReadNames(string path)
-        {
-            var nameList = new List<string>();
-            var reader = new StreamReader(path);
-            while (!reader.EndOfStream)
-            {
-                nameList.Add(reader.ReadLine());
-            }
-            reader.Close();
-            return nameList;
         }
     }
 }

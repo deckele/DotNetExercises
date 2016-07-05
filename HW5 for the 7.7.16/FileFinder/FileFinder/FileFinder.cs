@@ -6,19 +6,23 @@ namespace FileFinder
 {
     public class FileFinder
     {
-        public FileFinder(string searchPath, string searchQuarry)
+        public List<string> SearchFiles(string searchPath, string searchQuarry)
         {
-            SearchPath = searchPath;
-            SearchQuarry = searchQuarry;
+            List<string> fileList = new List<string>();
+
+            fileList.AddRange(Directory.GetFiles(searchPath,searchQuarry));
+
+            var subDirectories = Directory.GetDirectories(searchPath);
+            foreach (var path in subDirectories)
+            {
+                SearchFiles(path, searchQuarry);
+            }
+            return fileList;
         }
 
-        public string SearchPath { get; private set; }
-        public string SearchQuarry { get; private set; }
-
-        public List<string> Search()
+        public override string ToString()
         {
-            
-            throw new Exception();
+            return base.ToString();
         }
     }
 }

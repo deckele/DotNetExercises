@@ -23,7 +23,15 @@ namespace FileFinder
                 return;
             }
 
-            var fileFinder = new FileFinder(args[0], args[1]);
+            var fileFinder = new FileFinder();
+            var fileList = fileFinder.SearchFiles(args[0], args[1]);
+
+            Console.WriteLine("File Names that match:");
+            Console.WriteLine();
+            foreach (var fileName in fileList)
+            {
+                Console.WriteLine(fileName);
+            }
         }
     }
 }
