@@ -5,3 +5,6 @@ C:\Users\D\Documents\Visual Studio 2015\Projects\3.2_Rationals\3.2_Rationals\bin
 C:\Users\D\Documents\Visual Studio 2015\Projects\3.2_Rationals\3.2_Rationals\obj\Debug\3.2_Rationals.csprojResolveAssemblyReference.cache
 C:\Users\D\Documents\Visual Studio 2015\Projects\3.2_Rationals\3.2_Rationals\obj\Debug\3.2_Rationals.exe
 C:\Users\D\Documents\Visual Studio 2015\Projects\3.2_Rationals\3.2_Rationals\obj\Debug\3.2_Rationals.pdb
+D:\Emanuel\Documents\Coding\GitHub\Repository\DotNetExercises\HW1 for the 9.6\Q3.2_Rationals\3.2_Rationals\bin\Debug\3.2_Rationals.exe.config
+D:\Emanuel\Documents\Coding\GitHub\Repository\DotNetExercises\HW1 for the 9.6\Q3.2_Rationals\3.2_Rationals\obj\Debug\3.2_Rationals.exe
+D:\Emanuel\Documents\Coding\GitHub\Repository\DotNetExercises\HW1 for the 9.6\Q3.2_Rationals\3.2_Rationals\obj\Debug\3.2_Rationals.pdb
