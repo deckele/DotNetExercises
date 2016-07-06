@@ -12,6 +12,7 @@ namespace FileFinder
     {
         static void Main(string[] args)
         {
+            //preventing possible exceptions
             if (args.Length< 2)
             {
                 Console.WriteLine("Error: Invalid arguments.");
@@ -32,7 +33,7 @@ namespace FileFinder
             var fileFinder = new FileFinder();
             var fileList = fileFinder.SearchFiles(args[0], args[1]);
 
-            Console.WriteLine($"File names that match {args[1]}:");
+            Console.WriteLine($"File names that match- \"{args[1]}\":");
             Console.WriteLine();
             foreach (var fileName in fileList)
             {
