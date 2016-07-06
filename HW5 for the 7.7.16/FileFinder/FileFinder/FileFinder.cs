@@ -8,21 +8,17 @@ namespace FileFinder
     {
         public List<string> SearchFiles(string searchPath, string searchQuarry)
         {
+            searchQuarry = "*" + searchQuarry + "*";
             List<string> fileList = new List<string>();
 
             fileList.AddRange(Directory.GetFiles(searchPath,searchQuarry));
-
+            
             var subDirectories = Directory.GetDirectories(searchPath);
             foreach (var path in subDirectories)
             {
-                SearchFiles(path, searchQuarry);
+                fileList.AddRange(SearchFiles(path, searchQuarry));
             }
             return fileList;
-        }
-
-        public override string ToString()
-        {
-            return base.ToString();
         }
     }
 }
