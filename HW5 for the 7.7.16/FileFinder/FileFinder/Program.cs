@@ -12,7 +12,7 @@ namespace FileFinder
     {
         static void Main(string[] args)
         {
-            //preventing possible exceptions
+            //Accounting for possible exceptions
             if (args.Length< 2)
             {
                 Console.WriteLine("Error: Invalid arguments.");
