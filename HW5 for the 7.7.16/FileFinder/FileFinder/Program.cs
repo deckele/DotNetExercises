@@ -35,14 +35,10 @@ namespace FileFinder
 
             Console.WriteLine($"File names that match- \"{args[1]}\":");
             Console.WriteLine();
-            foreach (var fileName in fileList)
+            foreach (var shortFileName in fileList)
             {
-                if (fileName != null)
-                {
-                    var shortFileName = Path.GetFileName(fileName);
-                    var fileNameCharCount = shortFileName.Length;
-                    Console.WriteLine($"file: {shortFileName}. Length: {fileNameCharCount}.");
-                }
+                var fileNameCharCount = shortFileName.Length;
+                Console.WriteLine($"file: {shortFileName}. Length: {fileNameCharCount}.");
             }
         }
     }

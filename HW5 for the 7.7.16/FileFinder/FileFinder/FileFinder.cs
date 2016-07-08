@@ -12,9 +12,10 @@ namespace FileFinder
             var files = Directory.GetFiles(searchPath);
             foreach (var fileName in files)
             {
-                if (fileName.Contains(searchQuarry))
+                var shortFileName = Path.GetFileName(fileName);
+                if (shortFileName.Contains(searchQuarry))
                 {
-                    fileList.Add(fileName);
+                    fileList.Add(shortFileName);
                 }
             }
 
