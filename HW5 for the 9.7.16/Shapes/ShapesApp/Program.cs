@@ -29,6 +29,8 @@ namespace ShapesApp
             manager1.ShapeCompare((IComparable)manager1[3], (IComparable)manager1[4]);
 
             manager1.WriteSortedShapeList();
+
+            Console.ReadLine();
         }
     }
 }
