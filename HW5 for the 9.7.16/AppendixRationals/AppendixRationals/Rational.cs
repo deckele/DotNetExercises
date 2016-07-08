@@ -6,6 +6,31 @@ namespace AppendixRationals
     {
         private int _denominator;
 
+        public static implicit operator int(Rational value)
+        {
+            return value.Numerator/value.Denominator;
+        }
+        public static implicit operator double(Rational value)
+        {
+            return value.Value;
+        }
+
+        internal Rational(int numerator, int denominator)
+        {
+            Numerator = numerator;
+            if (denominator != 0)
+            {
+                _denominator = denominator;
+            }
+            else
+            {
+                Console.WriteLine("Error: Can't devide by zero!");
+                _denominator = 1;
+            }
+
+        }
+        internal Rational(int numerator) : this(numerator, 1) { }
+
         public int Numerator { get; private set; }
         public int Denominator
         {
@@ -27,29 +52,13 @@ namespace AppendixRationals
             }
         }
 
-        internal Rational(int numerator, int denom)
-        {
-            Numerator = numerator;
-            if (denom != 0)
-            {
-                _denominator = denom;
-            }
-            else
-            {
-                Console.WriteLine("Error: Can't devide by zero!");
-                _denominator = 1;
-            }
-
-        }
-        internal Rational(int numerator) : this(numerator, 1) { }
-
         public double Value
         {
             get
             {
                 if (Denominator != 0)
                 {
-                    return Numerator / Denominator;
+                    return (double)Numerator / Denominator;
                 }
                 else
                 {
@@ -59,47 +68,49 @@ namespace AppendixRationals
             }
         }
 
-        public static Rational operator +(Rational rat1, Rational rat2)
+        public static Rational operator +(Rational rational1, Rational rational2)
         {
-            int numer = (rat1.Numerator * rat2.Denominator) + (rat1.Denominator * rat2.Numerator);
-            int denom = rat1.Denominator * rat2.Denominator;
-            return new Rational(numer, denom);
+            int numerator = (rational1.Numerator * rational2.Denominator) + (rational1.Denominator * rational2.Numerator);
+            int denominator = rational1.Denominator * rational2.Denominator;
+            return new Rational(numerator, denominator);
         }
-        public static Rational operator -(Rational rat1, Rational rat2)
+        public static Rational operator -(Rational rational1, Rational rational2)
         {
-            int numer = (rat1.Numerator * rat2.Denominator) - (rat1.Denominator * rat2.Numerator);
-            int denom = rat1.Denominator * rat2.Denominator;
-            return new Rational(numer, denom);
+            int numerator = (rational1.Numerator * rational2.Denominator) - (rational1.Denominator * rational2.Numerator);
+            int denominator = rational1.Denominator * rational2.Denominator;
+            return new Rational(numerator, denominator);
         }
-        public static Rational operator *(Rational rat1, Rational rat2)
+        public static Rational operator *(Rational rational1, Rational rational2)
         {
-            if ((rat1.Numerator == 0) || (rat2.Numerator == 0))
+            if ((rational1.Numerator == 0) || (rational2.Numerator == 0))
             {
                 return new Rational(0, 1);
             }
-            else if ((rat1.Denominator == 0) || (rat2.Denominator == 0))
+            else if ((rational1.Denominator == 0) || (rational2.Denominator == 0))
             {
-                throw new DivideByZeroException("Error: invalid operation. Can't devide by zero.");
+                Console.WriteLine("Error: Can't devide by zero!");
+                return new Rational(0, 1);
             }
 
-            int numer = rat1.Numerator * rat2.Numerator;
-            int denom = rat1.Denominator * rat2.Denominator;
-            return new Rational(numer, denom);
+            int numerator = rational1.Numerator * rational2.Numerator;
+            int denominator = rational1.Denominator * rational2.Denominator;
+            return new Rational(numerator, denominator);
         }
-        public static Rational operator /(Rational rat1, Rational rat2)
+        public static Rational operator /(Rational rational1, Rational rational2)
         {
-            if ((rat1.Numerator == 0) || (rat2.Denominator == 0))
+            if ((rational1.Numerator == 0) || (rational2.Denominator == 0))
             {
                 return new Rational(0, 1);
             }
-            else if ((rat1.Denominator == 0) || (rat2.Numerator == 0))
+            else if ((rational1.Denominator == 0) || (rational2.Numerator == 0))
             {
-                throw new DivideByZeroException("Error: invalid operation. Can't devide by zero.");
+                Console.WriteLine("Error: Can't devide by zero!");
+                return new Rational(0, 1);
             }
 
-            int numer = rat1.Numerator * rat2.Denominator;
-            int denom = rat1.Denominator * rat2.Numerator;
-            return new Rational(numer, denom);
+            int numerator = rational1.Numerator * rational2.Denominator;
+            int denominator = rational1.Denominator * rational2.Numerator;
+            return new Rational(numerator, denominator);
         }
 
         public void Reduce()
@@ -134,7 +145,7 @@ namespace AppendixRationals
 
         public override string ToString()
         {
-            return string.Format("{0} / {1}", this.Numerator, this.Denominator);
+            return string.Format($"{Numerator}/{Denominator}");
         }
         public override bool Equals(Object obj)
         {
