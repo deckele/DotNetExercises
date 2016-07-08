@@ -13,9 +13,12 @@ namespace AppendixRationals
             Rational rat1 = new Rational(1, 2);
             Rational rat2 = new Rational(20, 60);
             Rational rat3 = new Rational(50, 100);
+            Rational rat4 = new Rational(200, 45);
 
             Console.WriteLine($"int conversion value of {rat2.ToString()} is: {(int)rat2}");
+            Console.WriteLine($"int conversion value of {rat4.ToString()} is: {(int)rat4}");
             Console.WriteLine($"double conversion value of {rat2.ToString()} is: {(double)rat2}");
+            Console.WriteLine($"double conversion value of {rat4.ToString()} is: {(double)rat4}");
             Console.WriteLine();
 
             Console.WriteLine($"{rat1.ToString()}+{rat2.ToString()}={(rat1 + rat2).ToString()}");
@@ -33,6 +36,10 @@ namespace AppendixRationals
             Console.WriteLine((rat3).ToString());
             Console.WriteLine($"Reducing {(rat1).ToString()}:");
             rat1.Reduce();
+            Console.WriteLine((rat1).ToString());
+            Console.WriteLine($"Reducing {(rat4).ToString()}:");
+            rat4.Reduce();
+            Console.WriteLine((rat4).ToString());
         }
     }
 }

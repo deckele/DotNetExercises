@@ -132,14 +132,6 @@ namespace AppendixRationals
                         i++;
                     }
                 }
-                if (((this.Numerator % this.Denominator) != 0) && (counter <= 1))
-                {
-                    Console.WriteLine("No need to reduce.");
-                }
-            }
-            else
-            {
-                Console.WriteLine("No need to reduce.");
             }
         }
 
@@ -147,18 +139,18 @@ namespace AppendixRationals
         {
             return string.Format($"{Numerator}/{Denominator}");
         }
+
         public override bool Equals(Object obj)
         {
             Rational rat = (Rational)obj;
-            if ((Object)rat == null)
-            {
-                return false;
-            }
             return (rat.Numerator * this.Denominator == rat.Denominator * this.Numerator);
         }
+
         public override int GetHashCode()
         {
-            return this.Numerator^this.Denominator;
+            var rational = this;
+            rational.Reduce();
+            return rational.Numerator^rational.Denominator;
         }
     }
 }
