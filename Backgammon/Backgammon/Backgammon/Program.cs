@@ -10,7 +10,7 @@ namespace Backgammon
     {
         static void Main(string[] args)
         {
-            Board board = new Board();
+            BoardGraphic board = new BoardGraphic();
             DiceGraphic dice = new DiceGraphic();
         }
     }
