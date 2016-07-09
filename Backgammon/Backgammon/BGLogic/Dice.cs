@@ -26,10 +26,10 @@ namespace Backgammon
         private Random RandomDieGen { get;}
         public DiceColor CurrentDiceColor { get; private set; }
 
-        public int Die1Number { get; private set; }
-        public int Die2Number { get; private set; }
+        public static int Die1Number { get; private set; }
+        public static int Die2Number { get; private set; }
 
-        public bool IsDouble
+        public static bool IsDouble
         {
             get
             {

@@ -11,7 +11,8 @@ namespace Backgammon
         static void Main(string[] args)
         {
             BoardGraphic board = new BoardGraphic();
-            DiceGraphic dice = new DiceGraphic();
+            Dice dice = new Dice();
+            DiceGraphic diceGraphic = new DiceGraphic();
         }
     }
 }

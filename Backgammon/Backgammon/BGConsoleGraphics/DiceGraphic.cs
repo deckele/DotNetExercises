@@ -9,21 +9,18 @@ namespace BGConsoleGraphics
 {
     public class DiceGraphic
     {
-        private readonly Dice dice = new Dice();
-
         public DiceGraphic()
         {
-            dice.Roll();
             Display();
         }
 
         public void Display()
         {
-            Console.SetCursorPosition(0, 17);
-            DisplayDie(dice.Die1Number);
-            Console.MoveBufferArea(0,17,7,5,10,17);
-            Console.SetCursorPosition(0, 17);
-            DisplayDie(dice.Die2Number);
+            Console.SetCursorPosition(0, 16);
+            DisplayDie(Dice.Die1Number);
+            Console.MoveBufferArea(0,16,9,5,12,16);
+            Console.SetCursorPosition(0, 16);
+            DisplayDie(Dice.Die2Number);
         }
 
         private void DisplayDie(int dieNumber)
@@ -38,48 +35,48 @@ namespace BGConsoleGraphics
                 Console.BackgroundColor = ConsoleColor.DarkBlue;
                 Console.ForegroundColor = ConsoleColor.White;
             }
-            Console.WriteLine("+-----+");
+            Console.WriteLine("+-------+");
             switch (dieNumber)
             {
                 case 1:
-                    Console.WriteLine("|     |");
-                    Console.WriteLine("|  *  |");
-                    Console.WriteLine("|     |");
+                    Console.WriteLine("|       |");
+                    Console.WriteLine("|   *   |");
+                    Console.WriteLine("|       |");
                     break;
                 case 2:
-                    Console.WriteLine("| *   |");
-                    Console.WriteLine("|     |");
-                    Console.WriteLine("|   * |");
+                    Console.WriteLine("| *     |");
+                    Console.WriteLine("|       |");
+                    Console.WriteLine("|     * |");
                     break;
                 case 3:
-                    Console.WriteLine("| *   |");
-                    Console.WriteLine("|  *  |");
-                    Console.WriteLine("|   * |");
+                    Console.WriteLine("| *     |");
+                    Console.WriteLine("|   *   |");
+                    Console.WriteLine("|     * |");
                     break;
                 case 4:
-                    Console.WriteLine("| * * |");
-                    Console.WriteLine("|     |");
-                    Console.WriteLine("| * * |");
+                    Console.WriteLine("| *   * |");
+                    Console.WriteLine("|       |");
+                    Console.WriteLine("| *   * |");
                     break;
                 case 5:
-                    Console.WriteLine("| * * |");
-                    Console.WriteLine("|  *  |");
-                    Console.WriteLine("| * * |");
+                    Console.WriteLine("| *   * |");
+                    Console.WriteLine("|   *   |");
+                    Console.WriteLine("| *   * |");
                     break;
                 case 6:
-                    Console.WriteLine("| * * |");
-                    Console.WriteLine("| * * |");
-                    Console.WriteLine("| * * |");
+                    Console.WriteLine("| *   * |");
+                    Console.WriteLine("| *   * |");
+                    Console.WriteLine("| *   * |");
                     break;
                 default:
                     Console.WriteLine("Error: invalid number for die");
                     break;
             }
-            Console.WriteLine("+-----+");
+            Console.WriteLine("+-------+");
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Gray;
 
-            if (dice.IsDouble)
+            if (Dice.IsDouble)
             {
                 Console.WriteLine("   Snake Eyes!");
             }
