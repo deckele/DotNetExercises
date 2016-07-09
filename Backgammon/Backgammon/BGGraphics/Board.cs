@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Backgammon;
 
-namespace Backgammon
+namespace BGConsoleGraphics
 {
     public class Board
     {

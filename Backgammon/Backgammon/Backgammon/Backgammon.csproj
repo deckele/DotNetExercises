@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BGGraphics\BGGraphics.csproj">
+    <ProjectReference Include="..\BGGraphics\BGConsoleGraphics.csproj">
       <Project>{b0094344-99c0-47f4-ba3e-12bb45e6593f}</Project>
-      <Name>BGGraphics</Name>
+      <Name>BGConsoleGraphics</Name>
     </ProjectReference>
     <ProjectReference Include="..\BGLogic\BGLogic.csproj">
       <Project>{07908532-8ea5-4c15-9145-a1b13efa8539}</Project>

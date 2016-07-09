@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Backgammon;
 
-namespace BGLogic
+namespace Backgammon
 {
-    class BGRuls
+    public class BGRuls
     {
-        public Checker.CheckerColor Turn { get; private set; }
+        public BGRuls()
+        {
+            Turn = Checker.CheckerColor.Red;
+        }
+
+        public static Checker.CheckerColor Turn { get; private set; }
     }
 }
