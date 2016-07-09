@@ -15,10 +15,16 @@ namespace AppendixRationals
             Rational rat3 = new Rational(50, 100);
             Rational rat4 = new Rational(200, 45);
 
-            Console.WriteLine($"int conversion value of {rat2.ToString()} is: {(int)rat2}");
-            Console.WriteLine($"int conversion value of {rat4.ToString()} is: {(int)rat4}");
-            Console.WriteLine($"double conversion value of {rat2.ToString()} is: {(double)rat2}");
-            Console.WriteLine($"double conversion value of {rat4.ToString()} is: {(double)rat4}");
+            Console.WriteLine($"int explicit conversion value of {rat2.ToString()} is: {(int)rat2}");
+            Console.WriteLine($"int explicit conversion value of {rat4.ToString()} is: {(int)rat4}");
+            Console.WriteLine($"double explicit conversion value of {rat2.ToString()} is: {(double)rat2}");
+            Console.WriteLine($"double explicit conversion value of {rat4.ToString()} is: {(double)rat4}");
+            Console.WriteLine();
+
+            int intValue = rat4;
+            double doubleValue = rat4;
+            Console.WriteLine($"int implicit conversion value of {rat4.ToString()} is: {intValue}");
+            Console.WriteLine($"double implicit conversion value of {rat4.ToString()} is: {doubleValue}");
             Console.WriteLine();
 
             Console.WriteLine($"{rat1.ToString()}+{rat2.ToString()}={(rat1 + rat2).ToString()}");
