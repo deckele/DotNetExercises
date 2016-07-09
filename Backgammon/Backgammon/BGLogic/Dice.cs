@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using BGLogic;
 
 namespace Backgammon
 {
     public class Dice
     {
+        private BGRuls ruleInfo = new BGRuls();
+
         public enum DiceColor
         {
             Black,
@@ -17,7 +20,7 @@ namespace Backgammon
 
         public Dice()
         {
-            CurrentDiceColor = Logic.Turn;
+            CurrentDiceColor = (DiceColor)ruleInfo.Turn;
             Die1Number = new Random();
             Die1Number.Next(1, 7);
             Die2Number = new Random();
@@ -30,13 +33,8 @@ namespace Backgammon
 
         public Dice Roll()
         {
-            for (int i = 0; i < 4; i++)
-            {
-                Die1Number.Next(1, 7);
-                Die2Number.Next(1, 7);
-                Board.DisplayDice();
-                Thread.Sleep(300);
-            }
+            Die1Number.Next(1, 7);
+            Die2Number.Next(1, 7);
             return this;
         }
     }
