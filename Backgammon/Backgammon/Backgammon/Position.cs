@@ -6,6 +6,10 @@ namespace Backgammon
     {
         public Position()
         {
+            //Game pieces are arranged in a list of stacks.
+            //Stack number 0 and 25 are the goal zones for black and red respectively.
+            //stack numbers 1-24 correspond with the 1-24 board positions.
+            //stack numbers 26 and 27 represent the "out" position when piece is taken for black and red respectively;
             CurrentPosition = new List<Stack<Checker>>(28);
             for (int i = 0; i < 28; i++)
             {
