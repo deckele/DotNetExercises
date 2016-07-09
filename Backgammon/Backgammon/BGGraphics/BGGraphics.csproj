@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{342E095E-3844-4833-81F2-42014A00112A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{B0094344-99C0-47F4-BA3E-12BB45E6593F}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Backgammon</RootNamespace>
-    <AssemblyName>Backgammon</AssemblyName>
+    <RootNamespace>BGGraphics</RootNamespace>
+    <AssemblyName>BGGraphics</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -44,20 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
-    <Compile Include="Checker.cs" />
-    <Compile Include="Dice.cs" />
-    <Compile Include="Position.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BGGraphics\BGGraphics.csproj">
-      <Project>{b0094344-99c0-47f4-ba3e-12bb45e6593f}</Project>
-      <Name>BGGraphics</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BGLogic\BGLogic.csproj">
       <Project>{07908532-8ea5-4c15-9145-a1b13efa8539}</Project>
       <Name>BGLogic</Name>

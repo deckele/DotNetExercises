@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backgammon", "Backgammon\Backgammon.csproj", "{342E095E-3844-4833-81F2-42014A00112A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGGraphics", "BGGraphics\BGGraphics.csproj", "{B0094344-99C0-47F4-BA3E-12BB45E6593F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGLogic", "BGLogic\BGLogic.csproj", "{07908532-8EA5-4C15-9145-A1B13EFA8539}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{342E095E-3844-4833-81F2-42014A00112A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{342E095E-3844-4833-81F2-42014A00112A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{342E095E-3844-4833-81F2-42014A00112A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0094344-99C0-47F4-BA3E-12BB45E6593F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0094344-99C0-47F4-BA3E-12BB45E6593F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0094344-99C0-47F4-BA3E-12BB45E6593F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0094344-99C0-47F4-BA3E-12BB45E6593F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07908532-8EA5-4C15-9145-A1B13EFA8539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07908532-8EA5-4C15-9145-A1B13EFA8539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07908532-8EA5-4C15-9145-A1B13EFA8539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07908532-8EA5-4C15-9145-A1B13EFA8539}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
