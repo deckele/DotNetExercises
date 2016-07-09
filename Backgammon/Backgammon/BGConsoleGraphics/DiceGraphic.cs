@@ -9,23 +9,23 @@ namespace BGConsoleGraphics
 {
     public class DiceGraphic
     {
-        public DiceGraphic()
+        public DiceGraphic(Dice dice, BGRuls rulsInfo)
         {
-            Display();
+            Display(dice, rulsInfo);
         }
 
-        public void Display()
+        public void Display(Dice dice, BGRuls rulsInfo)
         {
             Console.SetCursorPosition(0, 16);
-            DisplayDie(Dice.Die1Number);
+            DisplayDie(dice.Die1Number, dice, rulsInfo);
             Console.MoveBufferArea(0,16,9,5,12,16);
             Console.SetCursorPosition(0, 16);
-            DisplayDie(Dice.Die2Number);
+            DisplayDie(dice.Die2Number, dice, rulsInfo);
         }
 
-        private void DisplayDie(int dieNumber)
+        private void DisplayDie(int dieNumber, Dice dice, BGRuls rulsInfo)
         {
-            if (BGRuls.Turn == Checker.CheckerColor.Red)
+            if (rulsInfo.Turn == Checker.CheckerColor.Red)
             {
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.Black;
@@ -76,7 +76,7 @@ namespace BGConsoleGraphics
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Gray;
 
-            if (Dice.IsDouble)
+            if (dice.IsDouble)
             {
                 Console.WriteLine("   Snake Eyes!");
             }

@@ -9,12 +9,12 @@ namespace Backgammon
 {
     public class Game
     {
-
         public void Run()
         {
             BoardGraphic board = new BoardGraphic();
-            Dice dice = new Dice();
-            DiceGraphic diceGraphic = new DiceGraphic();
+            BGRuls rulsInfo = new BGRuls();
+            Dice dice = new Dice(rulsInfo);
+            DiceGraphic diceGraphic = new DiceGraphic(dice, rulsInfo);
         }
     }
 }

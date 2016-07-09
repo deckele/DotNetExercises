@@ -13,6 +13,6 @@ namespace Backgammon
             Turn = Checker.CheckerColor.Red;
         }
 
-        public static Checker.CheckerColor Turn { get; private set; }
+        public Checker.CheckerColor Turn { get; private set; }
     }
 }

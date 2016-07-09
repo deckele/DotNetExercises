@@ -15,9 +15,9 @@ namespace Backgammon
             Red
         }
 
-        public Dice()
+        public Dice(BGRuls rulsInfo)
         {
-            CurrentDiceColor = (DiceColor)BGRuls.Turn;
+            CurrentDiceColor = (DiceColor)rulsInfo.Turn;
             RandomDieGen = new Random();
             Die1Number = RandomDieGen.Next(1, 7);
             Die2Number = RandomDieGen.Next(1, 7);
@@ -26,10 +26,10 @@ namespace Backgammon
         private Random RandomDieGen { get;}
         public DiceColor CurrentDiceColor { get; private set; }
 
-        public static int Die1Number { get; private set; }
-        public static int Die2Number { get; private set; }
+        public int Die1Number { get; private set; }
+        public int Die2Number { get; private set; }
 
-        public static bool IsDouble
+        public bool IsDouble
         {
             get
             {
