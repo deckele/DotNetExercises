@@ -10,9 +10,8 @@ namespace Backgammon
     {
         static void Main(string[] args)
         {
-            BoardGraphic board = new BoardGraphic();
-            Dice dice = new Dice();
-            DiceGraphic diceGraphic = new DiceGraphic();
+            Game backgammon = new Game();
+            backgammon.Run();
         }
     }
 }
