@@ -6,8 +6,8 @@ namespace Backgammon
     {
         public Position()
         {
-            CurrentPosition = new List<Stack<Checker>>(27);
-            for (int i = 0; i < 27; i++)
+            CurrentPosition = new List<Stack<Checker>>(28);
+            for (int i = 0; i < 28; i++)
             {
                 CurrentPosition.Add(new Stack<Checker>(15));
             }
