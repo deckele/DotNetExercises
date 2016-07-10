@@ -19,41 +19,47 @@ namespace Backgammon
             //Red checkers initial positions
             for (var i = 0; i < 2; i++)
             {
-                CurrentPosition[1].Push(new Checker(Checker.CheckerColor.Red));
+                PushChecker(Checker.CheckerColor.Red, 1);
             }
             for (var i = 0; i < 5; i++)
             {
-                CurrentPosition[12].Push(new Checker(Checker.CheckerColor.Red));
+                PushChecker(Checker.CheckerColor.Red, 12);
             }
             for (var i = 0; i < 3; i++)
             {
-                CurrentPosition[17].Push(new Checker(Checker.CheckerColor.Red));
+                PushChecker(Checker.CheckerColor.Red, 17);
             }
             for (var i = 0; i < 5; i++)
             {
-                CurrentPosition[19].Push(new Checker(Checker.CheckerColor.Red));
+                PushChecker(Checker.CheckerColor.Red, 19);
             }
             //Black checkers initial positions
             for (var i = 0; i < 2; i++)
             {
-                CurrentPosition[24].Push(new Checker(Checker.CheckerColor.Black));
+                PushChecker(Checker.CheckerColor.Black, 24);
             }
             for (var i = 0; i < 5; i++)
             {
-                CurrentPosition[13].Push(new Checker(Checker.CheckerColor.Black));
+                PushChecker(Checker.CheckerColor.Black, 13);
             }
             for (var i = 0; i < 3; i++)
             {
-                CurrentPosition[8].Push(new Checker(Checker.CheckerColor.Black));
+                PushChecker(Checker.CheckerColor.Black, 8);
             }
             for (var i = 0; i < 5; i++)
             {
-                CurrentPosition[6].Push(new Checker(Checker.CheckerColor.Black));
+                PushChecker(Checker.CheckerColor.Black, 6);
             }
 
         }
 
         public List<Stack<Checker>> CurrentPosition {get; private set; }
+
+        //Method creates new checker in new position using the Stack.Push method.
+        public void PushChecker(Checker.CheckerColor color, int positionIndex)
+        {
+            CurrentPosition[positionIndex].Push(new Checker(color, positionIndex));
+        }
 
         public bool RedIsOut()
         {
@@ -101,6 +107,11 @@ namespace Backgammon
         public bool BlackIsWin()
         {
             return CurrentPosition[0].Count == 15;
+        }
+
+        public bool DestinationIsEmpty(int positionIndex)
+        {
+            return CurrentPosition[positionIndex] == null;
         }
 
     }
