@@ -25,8 +25,12 @@ namespace Backgammon
             {
                 if ((PositionIndex + diceNumber) < 25)
                 {
-                    if (position.DestinationIsEmpty(PositionIndex + diceNumber) ||
-                            Color == position.CurrentPosition[PositionIndex + diceNumber].Peek().Color)
+                    if (position.DestinationIsEmpty(PositionIndex + diceNumber))
+                    {
+                        position.CurrentPosition[PositionIndex].Pop();
+                        position.PushChecker(Color, PositionIndex + diceNumber);
+                    }
+                    else if (Color == position.CurrentPosition[PositionIndex + diceNumber].Peek().Color)
                     {
                         position.CurrentPosition[PositionIndex].Pop();
                         position.PushChecker(Color, PositionIndex + diceNumber);
@@ -58,8 +62,12 @@ namespace Backgammon
             {
                 if ((PositionIndex - diceNumber) > 0)
                 {
-                    if (position.DestinationIsEmpty(PositionIndex - diceNumber) || 
-                            Color == position.CurrentPosition[PositionIndex - diceNumber].Peek().Color)
+                    if (position.DestinationIsEmpty(PositionIndex - diceNumber))
+                    {
+                        position.CurrentPosition[PositionIndex].Pop();
+                        position.PushChecker(Color, PositionIndex - diceNumber);
+                    }
+                    else if (Color == position.CurrentPosition[PositionIndex - diceNumber].Peek().Color)
                     {
                         position.CurrentPosition[PositionIndex].Pop();
                         position.PushChecker(Color, PositionIndex - diceNumber);

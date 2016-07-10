@@ -9,14 +9,12 @@ namespace BGConsoleGraphics
 {
     public class BoardGraphic
     {
-        private Position position = new Position();
-
-        public BoardGraphic()
+        public BoardGraphic(Position position)
         {
-            Display();
+            Display(position);
         }
 
-        public void Display()
+        public void Display(Position position)
         {
             Console.SetCursorPosition(0,0);
             Console.BackgroundColor = ConsoleColor.DarkYellow;
@@ -34,6 +32,10 @@ namespace BGConsoleGraphics
                 if (position.BlackIsOut())
                 {
                     CheckerStackDisplay(position.CurrentPosition[26], i);
+                }
+                else
+                {
+                    Console.Write("   ");
                 }
                 Console.Write("|");
                 for (int j = 19; j <= 24; j++)
@@ -58,6 +60,10 @@ namespace BGConsoleGraphics
                 if (position.RedIsOut())
                 {
                     CheckerStackDisplay(position.CurrentPosition[27], i);
+                }
+                else
+                {
+                    Console.Write("   ");
                 }
                 Console.Write("|");
                 for (int j = 6; j >= 1; j--)

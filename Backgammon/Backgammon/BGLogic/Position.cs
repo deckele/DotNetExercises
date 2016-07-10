@@ -63,14 +63,14 @@ namespace Backgammon
 
         public bool RedIsOut()
         {
-            return CurrentPosition[27] != null;
+            return CurrentPosition[27].Count != 0;
         }
         public bool RedIsInGoal()
         {
             int redCounter = 0;
             for (int i = 19; i < 26; i++)
             {
-                if (CurrentPosition[i] != null)
+                if (CurrentPosition[i].Count != 0)
                 {
                     if (CurrentPosition[i].Peek().Color==Checker.CheckerColor.Red)
                     {
@@ -87,14 +87,14 @@ namespace Backgammon
 
         public bool BlackIsOut()
         {
-            return CurrentPosition[26] != null;
+            return CurrentPosition[26].Count != 0;
         }
         public bool BlackIsInGoal()
         {
             int blackCounter = 0;
             for (int i = 0; i < 7; i++)
             {
-                if (CurrentPosition[i] != null)
+                if (CurrentPosition[i].Count != 0)
                 {
                     if (CurrentPosition[i].Peek().Color == Checker.CheckerColor.Black)
                     {
@@ -111,7 +111,7 @@ namespace Backgammon
 
         public bool DestinationIsEmpty(int positionIndex)
         {
-            return CurrentPosition[positionIndex] == null;
+            return CurrentPosition[positionIndex].Count == 0;
         }
 
     }
