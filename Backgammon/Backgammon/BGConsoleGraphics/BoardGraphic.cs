@@ -7,14 +7,9 @@ using Backgammon;
 
 namespace BGConsoleGraphics
 {
-    public class BoardGraphic
+    public class BoardGraphic : IBoardDrawable
     {
-        public BoardGraphic(Position position)
-        {
-            Display(position);
-        }
-
-        public void Display(Position position)
+        public void Display(BoardPosition boardPosition)
         {
             Console.SetCursorPosition(0,0);
             Console.BackgroundColor = ConsoleColor.DarkYellow;
@@ -25,13 +20,13 @@ namespace BGConsoleGraphics
                 Console.Write("|");
                 for (int j = 13; j <= 18; j++)
                 {
-                    CheckerStackDisplay(position.CurrentPosition[j], i);
+                    CheckerStackDisplay(boardPosition.CurrentPosition[j], i);
                 }
                 //Drawing center bar with Black's taken pieces if any are out
                 Console.Write("|");
-                if (position.BlackIsOut())
+                if (boardPosition.BlackIsOut())
                 {
-                    CheckerStackDisplay(position.CurrentPosition[26], i);
+                    CheckerStackDisplay(boardPosition.CurrentPosition[26], i);
                 }
                 else
                 {
@@ -40,11 +35,11 @@ namespace BGConsoleGraphics
                 Console.Write("|");
                 for (int j = 19; j <= 24; j++)
                 {
-                    CheckerStackDisplay(position.CurrentPosition[j], i);
+                    CheckerStackDisplay(boardPosition.CurrentPosition[j], i);
                 }
                 Console.Write("|");
                 //Drawing red pieces that are out of the game (in goal)
-                CheckerStackDisplay(position.CurrentPosition[25], i);
+                CheckerStackDisplay(boardPosition.CurrentPosition[25], i);
                 Console.WriteLine();
             }
             Console.WriteLine("|                  |BAR|                  |");
@@ -53,13 +48,13 @@ namespace BGConsoleGraphics
                 Console.Write("|");
                 for (int j = 12; j >= 7; j--)
                 {
-                    CheckerStackDisplay(position.CurrentPosition[j], i);
+                    CheckerStackDisplay(boardPosition.CurrentPosition[j], i);
                 }
                 //Drawing center bar with red's taken pieces if any are out
                 Console.Write("|");
-                if (position.RedIsOut())
+                if (boardPosition.RedIsOut())
                 {
-                    CheckerStackDisplay(position.CurrentPosition[27], i);
+                    CheckerStackDisplay(boardPosition.CurrentPosition[27], i);
                 }
                 else
                 {
@@ -68,11 +63,11 @@ namespace BGConsoleGraphics
                 Console.Write("|");
                 for (int j = 6; j >= 1; j--)
                 {
-                    CheckerStackDisplay(position.CurrentPosition[j], i);
+                    CheckerStackDisplay(boardPosition.CurrentPosition[j], i);
                 }
                 Console.Write("|");
                 //Drawing black pieces that are out of the game (in goal)
-                CheckerStackDisplay(position.CurrentPosition[0], i);
+                CheckerStackDisplay(boardPosition.CurrentPosition[0], i);
                 Console.WriteLine();
             }
             Console.WriteLine("+12-11-10--9--8--7-------6--5--4--3--2--1-+");

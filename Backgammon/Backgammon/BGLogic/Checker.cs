@@ -7,7 +7,8 @@ namespace Backgammon
         public enum CheckerColor
         {
             Black,
-            Red
+            Red,
+            Empty
         }
 
         public Checker(CheckerColor checkerColor, int positionIndex)
@@ -19,39 +20,39 @@ namespace Backgammon
         public CheckerColor Color { get; }
         public int PositionIndex { get; private set; }
 
-        public void Move(Position position, BGRuls rulsInfo, int diceNumber)
+        public void Move(BoardPosition boardPosition, int diceNumber)
         {
             if (Color == CheckerColor.Red)
             {
                 if ((PositionIndex + diceNumber) < 25)
                 {
-                    if (position.DestinationIsEmpty(PositionIndex + diceNumber))
+                    if (boardPosition.CountAtPosition(PositionIndex + diceNumber)==0)
                     {
-                        position.CurrentPosition[PositionIndex].Pop();
-                        position.PushChecker(Color, PositionIndex + diceNumber);
+                        boardPosition.CurrentPosition[PositionIndex].Pop();
+                        boardPosition.PushChecker(Color, PositionIndex + diceNumber);
                     }
-                    else if (Color == position.CurrentPosition[PositionIndex + diceNumber].Peek().Color)
+                    else if (Color == boardPosition.CurrentPosition[PositionIndex + diceNumber].Peek().Color)
                     {
-                        position.CurrentPosition[PositionIndex].Pop();
-                        position.PushChecker(Color, PositionIndex + diceNumber);
+                        boardPosition.CurrentPosition[PositionIndex].Pop();
+                        boardPosition.PushChecker(Color, PositionIndex + diceNumber);
                     }
-                    else if ((Color != position.CurrentPosition[PositionIndex + diceNumber].Peek().Color) &&
-                             position.CurrentPosition[PositionIndex + diceNumber].Count == 1)
+                    else if ((Color != boardPosition.CurrentPosition[PositionIndex + diceNumber].Peek().Color) &&
+                             boardPosition.CurrentPosition[PositionIndex + diceNumber].Count == 1)
                     {
-                        position.CurrentPosition[PositionIndex].Pop();
-                        position.CurrentPosition[PositionIndex + diceNumber].Pop();
-                        position.PushChecker(Color, PositionIndex + diceNumber);
-                        position.PushChecker(CheckerColor.Black, 26);
+                        boardPosition.CurrentPosition[PositionIndex].Pop();
+                        boardPosition.CurrentPosition[PositionIndex + diceNumber].Pop();
+                        boardPosition.PushChecker(Color, PositionIndex + diceNumber);
+                        boardPosition.PushChecker(CheckerColor.Black, 26);
                     }
                     else
                     {
                         Console.WriteLine("Error: position taken!");
                     }
                 }
-                else if (((PositionIndex + diceNumber) >= 25) && position.RedIsInGoal())
+                else if (((PositionIndex + diceNumber) >= 25) && boardPosition.RedIsInGoal())
                 {
-                    position.CurrentPosition[PositionIndex].Pop();
-                    position.PushChecker(Color, 25);
+                    boardPosition.CurrentPosition[PositionIndex].Pop();
+                    boardPosition.PushChecker(Color, 25);
                 }
                 else
                 {
@@ -62,33 +63,33 @@ namespace Backgammon
             {
                 if ((PositionIndex - diceNumber) > 0)
                 {
-                    if (position.DestinationIsEmpty(PositionIndex - diceNumber))
+                    if (boardPosition.CountAtPosition(PositionIndex - diceNumber)==0)
                     {
-                        position.CurrentPosition[PositionIndex].Pop();
-                        position.PushChecker(Color, PositionIndex - diceNumber);
+                        boardPosition.CurrentPosition[PositionIndex].Pop();
+                        boardPosition.PushChecker(Color, PositionIndex - diceNumber);
                     }
-                    else if (Color == position.CurrentPosition[PositionIndex - diceNumber].Peek().Color)
+                    else if (Color == boardPosition.CurrentPosition[PositionIndex - diceNumber].Peek().Color)
                     {
-                        position.CurrentPosition[PositionIndex].Pop();
-                        position.PushChecker(Color, PositionIndex - diceNumber);
+                        boardPosition.CurrentPosition[PositionIndex].Pop();
+                        boardPosition.PushChecker(Color, PositionIndex - diceNumber);
                     }
-                    else if ((Color != position.CurrentPosition[PositionIndex - diceNumber].Peek().Color) &&
-                             position.CurrentPosition[PositionIndex - diceNumber].Count == 1)
+                    else if ((Color != boardPosition.CurrentPosition[PositionIndex - diceNumber].Peek().Color) &&
+                             boardPosition.CurrentPosition[PositionIndex - diceNumber].Count == 1)
                     {
-                        position.CurrentPosition[PositionIndex].Pop();
-                        position.CurrentPosition[PositionIndex - diceNumber].Pop();
-                        position.PushChecker(Color, PositionIndex - diceNumber);
-                        position.PushChecker(CheckerColor.Red, 27);
+                        boardPosition.CurrentPosition[PositionIndex].Pop();
+                        boardPosition.CurrentPosition[PositionIndex - diceNumber].Pop();
+                        boardPosition.PushChecker(Color, PositionIndex - diceNumber);
+                        boardPosition.PushChecker(CheckerColor.Red, 27);
                     }
                     else
                     {
                         Console.WriteLine("Error: position taken!");
                     }
                 }
-                else if (((PositionIndex - diceNumber) <= 0) && position.BlackIsInGoal())
+                else if (((PositionIndex - diceNumber) <= 0) && boardPosition.BlackIsInGoal())
                 {
-                    position.CurrentPosition[PositionIndex].Pop();
-                    position.PushChecker(Color, 0);
+                    boardPosition.CurrentPosition[PositionIndex].Pop();
+                    boardPosition.PushChecker(Color, 0);
                 }
                 else
                 {

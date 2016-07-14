@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace Backgammon
 {
-    public class Position
+    public class BoardPosition
     {
-        public Position()
+        public BoardPosition()
         {
             //Game pieces ("Checkers") are arranged in a list of stacks.
             //Stack number 0 and 25 are the goal zones for black and red respectively.
@@ -13,7 +13,9 @@ namespace Backgammon
             CurrentPosition = new List<Stack<Checker>>(28);
             for (int i = 0; i < 28; i++)
             {
-                CurrentPosition.Add(new Stack<Checker>(15));
+                Stack<Checker> nextStack = new Stack<Checker>(16);
+                nextStack.Push(null);
+                CurrentPosition.Add(nextStack);
             }
 
             //Red checkers initial positions
@@ -55,6 +57,23 @@ namespace Backgammon
 
         public List<Stack<Checker>> CurrentPosition {get; private set; }
 
+        public Checker.CheckerColor ColorAtPosition(int i)
+        {
+            Checker topChecker = CurrentPosition[i].Peek();
+            if (topChecker == null)
+            {
+                return Checker.CheckerColor.Empty;
+            }
+
+            return topChecker.Color;
+        }
+
+        public int CountAtPosition(int i)
+        {
+            // Subtract 1 for the null placeholder:
+            return CurrentPosition[i].Count - 1;
+        }
+
         //Method creates new checker in new position using the Stack.Push method.
         public void PushChecker(Checker.CheckerColor color, int positionIndex)
         {
@@ -63,56 +82,44 @@ namespace Backgammon
 
         public bool RedIsOut()
         {
-            return CurrentPosition[27].Count != 0;
+            return CountAtPosition(27) != 0;
         }
         public bool RedIsInGoal()
         {
             int redCounter = 0;
             for (int i = 19; i < 26; i++)
             {
-                if (CurrentPosition[i].Count != 0)
+                if (ColorAtPosition(i)==Checker.CheckerColor.Red)
                 {
-                    if (CurrentPosition[i].Peek().Color==Checker.CheckerColor.Red)
-                    {
-                        redCounter += CurrentPosition[i].Count;
-                    }
+                    redCounter += CountAtPosition(i);
                 }
             }
             return redCounter == 15;
         }
         public bool RedIsWin()
         {
-            return CurrentPosition[25].Count == 15;
+            return CountAtPosition(25) == 15;
         }
 
         public bool BlackIsOut()
         {
-            return CurrentPosition[26].Count != 0;
+            return CountAtPosition(27) != 0;
         }
         public bool BlackIsInGoal()
         {
             int blackCounter = 0;
             for (int i = 0; i < 7; i++)
             {
-                if (CurrentPosition[i].Count != 0)
+                if (ColorAtPosition(i) == Checker.CheckerColor.Black)
                 {
-                    if (CurrentPosition[i].Peek().Color == Checker.CheckerColor.Black)
-                    {
-                        blackCounter += CurrentPosition[i].Count;
-                    }
+                    blackCounter += CountAtPosition(i);
                 }
             }
             return blackCounter == 15;
         }
         public bool BlackIsWin()
         {
-            return CurrentPosition[0].Count == 15;
+            return CountAtPosition(0) == 15;
         }
-
-        public bool DestinationIsEmpty(int positionIndex)
-        {
-            return CurrentPosition[positionIndex].Count == 0;
-        }
-
     }
 }

@@ -7,25 +7,24 @@ using Backgammon;
 
 namespace BGConsoleGraphics
 {
-    public class DiceGraphic
+    public class DiceGraphic : IDiceDrawable
     {
-        public DiceGraphic(Dice dice, BGRuls rulsInfo)
+        public DiceGraphic()
         {
-            Display(dice, rulsInfo);
         }
 
-        public void Display(Dice dice, BGRuls rulsInfo)
+        public void Display(Dice dice, Checker.CheckerColor color)
         {
             Console.SetCursorPosition(0, 16);
-            DisplayDie(dice.Die1Number, dice, rulsInfo);
+            DisplayDie(dice.Die1Number, dice, color);
             Console.MoveBufferArea(0,16,9,5,12,16);
             Console.SetCursorPosition(0, 16);
-            DisplayDie(dice.Die2Number, dice, rulsInfo);
+            DisplayDie(dice.Die2Number, dice, color);
         }
 
-        private void DisplayDie(int dieNumber, Dice dice, BGRuls rulsInfo)
+        private void DisplayDie(int dieNumber, Dice dice, Checker.CheckerColor color)
         {
-            if (rulsInfo.Turn == Checker.CheckerColor.Red)
+            if (color == Checker.CheckerColor.Red)
             {
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.Black;

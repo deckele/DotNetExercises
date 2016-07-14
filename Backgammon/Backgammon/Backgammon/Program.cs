@@ -10,7 +10,13 @@ namespace Backgammon
     {
         static void Main(string[] args)
         {
-            Game backgammon = new Game();
+            IBoardDrawable guiBoard = new BoardGraphic();
+            IDiceDrawable guiDice = new DiceGraphic();
+            IUIDrawable humanPlayerInput = new UIGraphic();
+            IPlayer redPlayer = new HumanPlayer(humanPlayerInput);
+            IPlayer blackPlayer = new RandomCompPlayer();
+
+            Game backgammon = new Game(guiBoard, guiDice, redPlayer, blackPlayer);
             backgammon.Run();
         }
     }
