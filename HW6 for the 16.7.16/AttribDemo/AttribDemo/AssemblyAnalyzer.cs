@@ -34,6 +34,7 @@ namespace AttribDemo
                         {
                             allTypesApproved = false;
                         }
+                        Console.WriteLine(type.FullName);
                         Console.WriteLine(attribute);
                     }
                 }
