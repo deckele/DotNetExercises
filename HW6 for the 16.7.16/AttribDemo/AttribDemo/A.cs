@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AttribDemo
 {
+    [CodeReview("Lachman", "1.1.2016", true)]
     class A
     {
-        [CodeReview("Lachman", DateTime.Now, true, true, "Ruth")]
     }
 }

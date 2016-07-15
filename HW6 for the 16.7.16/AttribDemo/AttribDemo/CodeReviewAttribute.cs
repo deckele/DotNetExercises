@@ -6,22 +6,24 @@ using System.Threading.Tasks;
 
 namespace AttribDemo
 {
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true, Inherited = false)]
     public sealed class CodeReviewAttribute : System.Attribute
     {
-        public CodeReviewAttribute(string reviewerName, DateTime reviewDate, bool codeIsApproved)
+        public CodeReviewAttribute(string reviewerName, string reviewDate, bool codeIsApproved)
         {
             ReviewerName = reviewerName;
-            ReviewDate = reviewDate.Date;
+            ReviewDate = reviewDate;
             CodeIsApproved = codeIsApproved;
         }
 
         public string ReviewerName { get; private set; }
-        public DateTime ReviewDate { get; private set; }
+        public string ReviewDate { get; private set; }
         public bool CodeIsApproved { get; private set; }
 
         public override string ToString()
         {
-            return string.Format($"Reviewer name: {ReviewerName}.\nReview Date: {ReviewDate.Date}.\nCode approval state: {CodeIsApproved}.");
+            return string.Format($"Reviewer name: {ReviewerName}.\nReview Date: {ReviewDate}.\nCode approval state: {CodeIsApproved}.");
         }
-    }
+        
+    }   
 }

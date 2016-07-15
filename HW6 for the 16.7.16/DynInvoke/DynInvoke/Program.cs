@@ -24,11 +24,25 @@ namespace DynInvoke
                 new C()
             };
 
-            foreach (var greetableObj in greetingsList)
+            try
             {
-                Console.WriteLine(InvokeHello(greetableObj, "nurse!"));
+                foreach (var greetableObj in greetingsList)
+                {
+                    Console.WriteLine(InvokeHello(greetableObj, "nurse!"));
+                }
             }
-
+            catch (MissingMethodException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (TargetException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (TargetInvocationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
