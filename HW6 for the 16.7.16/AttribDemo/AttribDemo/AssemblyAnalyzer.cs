@@ -9,6 +9,9 @@ namespace AttribDemo
 {
     public class AssemblyAnalyzer
     {
+        public AssemblyAnalyzer()
+        {
+        }
         public AssemblyAnalyzer(Assembly assembly)
         {
             AnalayzeAssembly(assembly);
@@ -16,8 +19,23 @@ namespace AttribDemo
 
         public bool AnalayzeAssembly(Assembly assembly)
         {
+            var allTypesApproved = true;
+            var filteredTypeArray = assembly.GetTypes().Where(type => type.IsDefined(typeof(CodeReviewAttribute)));
 
-            return true;
+            foreach (var type in filteredTypeArray)
+            {
+                var attributeArray = type.GetCustomAttributes(typeof(CodeReviewAttribute));
+
+                foreach (var attribute in attributeArray)
+                {
+                    if (!((CodeReviewAttribute) attribute).CodeIsApproved)
+                    {
+                        allTypesApproved = false;
+                    }
+                        Console.WriteLine(attribute);
+                }
+            }
+            return allTypesApproved;
         }
     }
 }

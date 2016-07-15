@@ -11,7 +11,8 @@ namespace AttribDemo
     {
         static void Main(string[] args)
         {
-            var assemblyAnalyzer = new AssemblyAnalyzer(Assembly.GetExecutingAssembly());
+            var assemblyAnalyzer = new AssemblyAnalyzer();
+            Console.WriteLine("Status all types in assembly were approved: {0}.", assemblyAnalyzer.AnalayzeAssembly(Assembly.GetExecutingAssembly()));
         }
     }
 }

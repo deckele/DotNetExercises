@@ -22,8 +22,7 @@ namespace AttribDemo
 
         public override string ToString()
         {
-            return string.Format($"Reviewer name: {ReviewerName}.\nReview Date: {ReviewDate}.\nCode approval state: {CodeIsApproved}.");
+            return string.Format($"Reviewer name: {ReviewerName}.\nReview Date: {ReviewDate}.\nCode approval state: {CodeIsApproved}.\n");
         }
-        
     }   
 }
