@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AttribDemo
 {
     [CodeReview("Menachem", "1.5.1914", true)]
-    class B
+    internal class B
     {
     }
 }

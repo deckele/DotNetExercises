@@ -12,7 +12,11 @@ namespace AttribDemo
         static void Main(string[] args)
         {
             var assemblyAnalyzer = new AssemblyAnalyzer();
-            Console.WriteLine("Status all types in assembly were approved: {0}.", assemblyAnalyzer.AnalayzeAssembly(Assembly.GetExecutingAssembly()));
+            Console.WriteLine("Status all types in this assembly were approved: {0}.", 
+                assemblyAnalyzer.AnalayzeAssembly(Assembly.GetExecutingAssembly()));
+            Console.WriteLine();
+            Console.WriteLine("Status all types in mscorlib assembly were approved: {0}.",
+                assemblyAnalyzer.AnalayzeAssembly(typeof(string).Assembly));
         }
     }
 }

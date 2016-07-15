@@ -9,6 +9,9 @@ namespace AttribDemo
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = true, Inherited = false)]
     public sealed class CodeReviewAttribute : System.Attribute
     {
+        public CodeReviewAttribute()
+        {
+        }
         public CodeReviewAttribute(string reviewerName, string reviewDate, bool codeIsApproved)
         {
             ReviewerName = reviewerName;
