@@ -11,7 +11,7 @@ namespace DynInvoke
     {
         private static string InvokeHello(Object obj, string inputString)
         {
-            var type = typeof(IGreetable);
+            var type = obj.GetType();
             return type.InvokeMember("Hello",BindingFlags.InvokeMethod , null, obj, new object[] {inputString}).ToString();
         }
 
