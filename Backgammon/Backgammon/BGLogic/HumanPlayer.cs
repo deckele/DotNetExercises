@@ -9,6 +9,10 @@ namespace Backgammon
 {
     public class HumanPlayer : IPlayer
     {
+        public HumanPlayer()
+        {
+            
+        }
         public void Roll(Dice dice)
         {
             throw new NotImplementedException();

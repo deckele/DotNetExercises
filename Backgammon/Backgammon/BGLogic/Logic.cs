@@ -9,7 +9,14 @@ namespace BGLogic
 {
     class Logic
     {
-        public List<Move> ListPossibleMoves(BoardPosition boardPosition, Dice dice, Checker.CheckerColor currentPlayer);
-        public void ApplyMove(BoardPosition boardPosition, Move move);
+        public List<Move> ListPossibleMoves(BoardPosition boardPosition, Dice dice, Checker.CheckerColor currentPlayer)
+        {
+            return null;
+        }
+
+        public void ApplyMove(BoardPosition boardPosition, Move move)
+        {
+            
+        }
     }
 }

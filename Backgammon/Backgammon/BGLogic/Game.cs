@@ -8,11 +8,14 @@ namespace Backgammon
 {
     public class Game
     {
-        public Game(IBoardDrawable guiBoard, IDiceDrawable guiDice)
+        public Game(IBoardDrawable guiBoard, IDiceDrawable guiDice, IMessageDrawable guiMessageArea, 
+            IPlayer redPlayer, IPlayer blackPlayer)
         {
-
             GUIBoard = guiBoard;
             GUIDice = guiDice;
+            GUIMessageArea = guiMessageArea;
+            RedPlayer = redPlayer;
+            BlackPlayer = blackPlayer;
 
             Turn = Checker.CheckerColor.Red;
             RandomNumberGen = new Random();
@@ -23,6 +26,9 @@ namespace Backgammon
 
         private IBoardDrawable GUIBoard { get; }
         private IDiceDrawable GUIDice { get; }
+        private IMessageDrawable GUIMessageArea { get; }
+        private IPlayer RedPlayer { get; }
+        private IPlayer BlackPlayer { get; }
 
 
         public void Run()

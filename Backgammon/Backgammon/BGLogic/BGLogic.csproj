@@ -46,6 +46,7 @@
     <Compile Include="HumanPlayer.cs" />
     <Compile Include="IBoardDrawable.cs" />
     <Compile Include="IDiceDrawable.cs" />
+    <Compile Include="IMessageDrawable.cs" />
     <Compile Include="IPlayer.cs" />
     <Compile Include="Logic.cs" />
     <Compile Include="Move.cs" />

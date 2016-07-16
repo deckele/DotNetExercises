@@ -10,13 +10,14 @@ namespace Backgammon
     {
         static void Main(string[] args)
         {
+            //Creating all objects with upcasting so Game class will have limited access (better encapsulation).
             IBoardDrawable guiBoard = new BoardGraphic();
             IDiceDrawable guiDice = new DiceGraphic();
-            IUIDrawable humanPlayerInput = new UIGraphic();
-            IPlayer redPlayer = new HumanPlayer(humanPlayerInput);
+            IMessageDrawable guiMessageArea = new MessageAreaGraphic();
+            IPlayer redPlayer = new HumanPlayer();
             IPlayer blackPlayer = new RandomCompPlayer();
 
-            Game backgammon = new Game(guiBoard, guiDice, redPlayer, blackPlayer);
+            Game backgammon = new Game(guiBoard, guiDice, guiMessageArea, redPlayer, blackPlayer);
             backgammon.Run();
         }
     }

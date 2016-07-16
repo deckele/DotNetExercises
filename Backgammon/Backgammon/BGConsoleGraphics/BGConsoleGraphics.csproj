@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="BoardGraphic.cs" />
     <Compile Include="DiceGraphic.cs" />
+    <Compile Include="MessageAreaGraphic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
