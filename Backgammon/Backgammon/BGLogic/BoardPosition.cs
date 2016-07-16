@@ -13,9 +13,7 @@ namespace Backgammon
             CurrentPosition = new List<Stack<Checker>>(28);
             for (int i = 0; i < 28; i++)
             {
-                Stack<Checker> nextStack = new Stack<Checker>(16);
-                nextStack.Push(null);
-                CurrentPosition.Add(nextStack);
+                CurrentPosition.Add(new Stack<Checker>(15));
             }
 
             //Red checkers initial positions
@@ -59,19 +57,19 @@ namespace Backgammon
 
         public Checker.CheckerColor ColorAtPosition(int i)
         {
-            Checker topChecker = CurrentPosition[i].Peek();
-            if (topChecker == null)
+            if (CountAtPosition(i) == 0)
             {
-                return Checker.CheckerColor.Empty;
+                return Checker.CheckerColor.None;
             }
-
-            return topChecker.Color;
+            else
+            {
+                return CurrentPosition[i].Peek().Color;
+            }
         }
 
         public int CountAtPosition(int i)
         {
-            // Subtract 1 for the null placeholder:
-            return CurrentPosition[i].Count - 1;
+            return CurrentPosition[i].Count;
         }
 
         //Method creates new checker in new position using the Stack.Push method.

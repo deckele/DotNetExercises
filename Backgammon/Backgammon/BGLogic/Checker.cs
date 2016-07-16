@@ -8,7 +8,7 @@ namespace Backgammon
         {
             Black,
             Red,
-            Empty
+            None
         }
 
         public Checker(CheckerColor checkerColor, int positionIndex)
