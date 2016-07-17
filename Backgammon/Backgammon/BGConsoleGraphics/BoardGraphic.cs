@@ -26,7 +26,7 @@ namespace BGConsoleGraphics
                 Console.Write("|");
                 if (boardPosition.BlackIsInJail())
                 {
-                    CheckerStackDisplay(boardPosition.CurrentPosition[26], i);
+                    CheckerStackDisplay(boardPosition.CurrentPosition[25], i);
                 }
                 else
                 {
@@ -39,7 +39,7 @@ namespace BGConsoleGraphics
                 }
                 Console.Write("|");
                 //Drawing red pieces that are out of the game (in goal)
-                CheckerStackDisplay(boardPosition.CurrentPosition[25], i);
+                CheckerStackDisplay(boardPosition.CurrentPosition[26], i);
                 Console.WriteLine();
             }
             Console.WriteLine("|                  |BAR|                  |");
@@ -54,7 +54,7 @@ namespace BGConsoleGraphics
                 Console.Write("|");
                 if (boardPosition.RedIsInJail())
                 {
-                    CheckerStackDisplay(boardPosition.CurrentPosition[27], i);
+                    CheckerStackDisplay(boardPosition.CurrentPosition[0], i);
                 }
                 else
                 {
@@ -67,7 +67,7 @@ namespace BGConsoleGraphics
                 }
                 Console.Write("|");
                 //Drawing black pieces that are out of the game (in goal)
-                CheckerStackDisplay(boardPosition.CurrentPosition[0], i);
+                CheckerStackDisplay(boardPosition.CurrentPosition[27], i);
                 Console.WriteLine();
             }
             Console.WriteLine("+12-11-10--9--8--7-------6--5--4--3--2--1-+");

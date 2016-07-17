@@ -8,6 +8,6 @@ namespace Backgammon
 {
     public interface IMessageDrawable
     {
-        void Display();
+        void Display(Logic logic, BoardPosition boardPosition, Dice dice, Checker.CheckerColor currentPlayer);
     }
 }

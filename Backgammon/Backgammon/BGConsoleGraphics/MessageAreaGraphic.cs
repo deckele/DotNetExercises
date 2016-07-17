@@ -9,9 +9,20 @@ namespace BGConsoleGraphics
 {
     public class MessageAreaGraphic : IMessageDrawable
     {
-        public void Display()
+        public void Display(Logic logic, BoardPosition boardPosition, Dice dice, Checker.CheckerColor currentPlayer)
         {
-            
+            var listPossibleMoves = logic.ListPossibleMoves(boardPosition, dice, currentPlayer);
+            int moveCounter = 1;
+
+            Console.SetCursorPosition(0, 23);
+            Console.WriteLine($"Current player: {currentPlayer.ToString()}");
+            Console.WriteLine("Choose your move:");
+            Console.WriteLine();
+            foreach (var move in listPossibleMoves)
+            {
+                Console.Write($"({moveCounter++})");
+                Console.WriteLine(move);
+            }
         }
     }
 }

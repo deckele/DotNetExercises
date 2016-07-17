@@ -9,10 +9,6 @@ namespace BGConsoleGraphics
 {
     public class DiceGraphic : IDiceDrawable
     {
-        public DiceGraphic()
-        {
-        }
-
         public void Display(Dice dice, Checker.CheckerColor color)
         {
             Console.SetCursorPosition(0, 16);

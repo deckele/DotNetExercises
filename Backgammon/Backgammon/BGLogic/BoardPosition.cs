@@ -7,9 +7,9 @@ namespace Backgammon
         public BoardPosition()
         {
             //Game pieces ("Checkers") are arranged in a list of stacks.
-            //Stack number 0 and 25 are the goal zones for black and red respectively.
+            //Stack number 26 and 27 are the goal zones for red and black respectively.
             //stack numbers 1-24 correspond with the 1-24 board positions.
-            //stack numbers 26 and 27 represent the "out" position when piece is taken for black and red respectively;
+            //stack numbers 0 and 25 represent the "out" position when piece is taken for red and black respectively;
             CurrentPosition = new List<Stack<Checker>>(28);
             for (int i = 0; i < 28; i++)
             {
@@ -75,22 +75,25 @@ namespace Backgammon
         //Method creates new checker in new position using the Stack.Push method.
         public void PushChecker(Checker.CheckerColor color, int positionIndex)
         {
-            CurrentPosition[positionIndex].Push(new Checker(color, positionIndex));
+            CurrentPosition[positionIndex].Push(new Checker(color));
         }
 
         public bool RedIsInJail()
         {
-            return CountAtPosition(27) != 0;
+            return CountAtPosition(0) != 0;
         }
 
         public bool RedIsInGoal()
         {
-            int redCounter = 0;
-            for (int i = 19; i < 26; i++)
+            int redCounter = CountAtPosition(26);
+            for (int i = 19; i <= 24; i++)
             {
-                if (ColorAtPosition(i)==Checker.CheckerColor.Red)
+                if (CountAtPosition(i) != 0)
                 {
-                    redCounter += CountAtPosition(i);
+                    if (ColorAtPosition(i) == Checker.CheckerColor.Red)
+                    {
+                        redCounter += CountAtPosition(i);
+                    }
                 }
             }
             return redCounter == 15;
@@ -98,22 +101,25 @@ namespace Backgammon
 
         public bool RedIsWin()
         {
-            return CountAtPosition(25) == 15;
+            return CountAtPosition(26) == 15;
         }
 
         public bool BlackIsInJail()
         {
-            return CountAtPosition(26) != 0;
+            return CountAtPosition(25) != 0;
         }
 
         public bool BlackIsInGoal()
         {
-            int blackCounter = 0;
-            for (int i = 0; i < 7; i++)
+            int blackCounter = CountAtPosition(27);
+            for (int i = 1; i <= 6; i++)
             {
-                if (ColorAtPosition(i) == Checker.CheckerColor.Black)
+                if (CountAtPosition(i) != 0)
                 {
-                    blackCounter += CountAtPosition(i);
+                    if (ColorAtPosition(i) == Checker.CheckerColor.Black)
+                    {
+                        blackCounter += CountAtPosition(i);
+                    }
                 }
             }
             return blackCounter == 15;
@@ -121,7 +127,7 @@ namespace Backgammon
 
         public bool BlackIsWin()
         {
-            return CountAtPosition(0) == 15;
+            return CountAtPosition(27) == 15;
         }
 
         public bool CurrentPlayerIsInJail(Checker.CheckerColor currentPlayer)

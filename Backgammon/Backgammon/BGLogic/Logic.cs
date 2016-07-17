@@ -12,57 +12,68 @@ namespace Backgammon
         {
             var legalMovesList = new List<Move>();
 
-            //Gets legal moves if player is in Jail.
-            if (boardPosition.CurrentPlayerIsInJail(currentPlayer))
+            //Creating a working dice number list that contains negative numbers if it's black's turn and ignores doubles. 
+            var adjustedDiceNumbers = new List<int>();
+            if (dice.IsDouble)
             {
-                foreach (var dieNumber in dice.CurrentDiceNumbers)
+                adjustedDiceNumbers.Add(dice.CurrentDiceNumbers[0]);
+            }
+            else
+            {
+                foreach (var diceNumber in dice.CurrentDiceNumbers)
                 {
-                    if (currentPlayer == Checker.CheckerColor.Red)
-                    {
-                        if (CheckMoveInteraction(boardPosition, currentPlayer, dieNumber) !=
-                            MoveInteraction.Illegal)
-                        {
-                            legalMovesList.Add(new Move(27, dieNumber,
-                                CheckMoveInteraction(boardPosition, currentPlayer, dieNumber)));
-                        }
-                    }
-                    if (currentPlayer == Checker.CheckerColor.Black)
-                    {
-                        if (CheckMoveInteraction(boardPosition, currentPlayer, 25- dieNumber) !=
-                            MoveInteraction.Illegal)
-                        {
-                            legalMovesList.Add(new Move(26, dieNumber,
-                                CheckMoveInteraction(boardPosition, currentPlayer, 25- dieNumber)));
-                        }
-                    }
+                    adjustedDiceNumbers.Add(diceNumber);
+                }
+            }
+            if (currentPlayer == Checker.CheckerColor.Black)
+            {
+                foreach (var diceNumber in adjustedDiceNumbers)
+                {
+                    int i = 0;
+                    adjustedDiceNumbers[i] = (0 - diceNumber);
+                    i++;
                 }
             }
 
+            //Gets legal moves if player is in Jail.
+            if (boardPosition.CurrentPlayerIsInJail(currentPlayer))
+            {
+                foreach (var dieNumber in adjustedDiceNumbers)
+                {
+
+                    if (currentPlayer == Checker.CheckerColor.Red)
+                    {
+                        if (CheckMoveInteraction(boardPosition, currentPlayer, dieNumber) != MoveInteraction.Illegal)
+                        {
+                            legalMovesList.Add(new Move(0, dieNumber,
+                            CheckMoveInteraction(boardPosition, currentPlayer, dieNumber)));
+                        }
+                    }
+                    else if (currentPlayer == Checker.CheckerColor.Black)
+                    {
+                        if (CheckMoveInteraction(boardPosition, currentPlayer, 25 + dieNumber) != MoveInteraction.Illegal)
+                        {
+                            legalMovesList.Add(new Move(25, dieNumber,
+                            CheckMoveInteraction(boardPosition, currentPlayer, 25 + dieNumber)));
+                        }
+                    }
+
+                }
+            }
+
+            //Gets legal moves if player is not in jail.
             for (int i = 1; i <= 24; i++)
             {
                 if (boardPosition.CountAtPosition(i) > 0)
                 {
                     if (boardPosition.ColorAtPosition(i) == currentPlayer)
                     {
-                        foreach (var dieNumber in dice.CurrentDiceNumbers)
+                        foreach (var dieNumber in adjustedDiceNumbers)
                         {
-                            if (currentPlayer == Checker.CheckerColor.Red)
+                            if (CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber) != MoveInteraction.Illegal)
                             {
-                                if (CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber) !=
-                                    MoveInteraction.Illegal)
-                                {
-                                    legalMovesList.Add(new Move(i, dieNumber,
-                                        CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber)));
-                                }
-                            }
-                            if (currentPlayer == Checker.CheckerColor.Black)
-                            {
-                                if (CheckMoveInteraction(boardPosition, currentPlayer, i - dieNumber) !=
-                                    MoveInteraction.Illegal)
-                                {
-                                    legalMovesList.Add(new Move(i, dieNumber,
-                                        CheckMoveInteraction(boardPosition, currentPlayer, i - dieNumber)));
-                                }
+                                legalMovesList.Add(new Move(i, dieNumber,
+                                    CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber)));
                             }
                         }
                     }
@@ -75,81 +86,39 @@ namespace Backgammon
         {
             switch (move.MoveInteraction)
             {
+                case MoveInteraction.JailMove:
                 case MoveInteraction.Move:
                 {
+                    boardPosition.CurrentPosition[move.PositionIndex].Pop();
+                    boardPosition.PushChecker(currentPlayer, move.PositionIndex + move.Distance);                    
+                    break;
+                }
+                case MoveInteraction.JailEat:
+                case MoveInteraction.Eat:
+                {
+                    boardPosition.CurrentPosition[move.PositionIndex].Pop();
+                    boardPosition.CurrentPosition[move.PositionIndex + move.Distance].Pop();
+                    boardPosition.PushChecker(currentPlayer, move.PositionIndex + move.Distance);
                     if (currentPlayer == Checker.CheckerColor.Red)
                     {
-                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                        boardPosition.PushChecker(currentPlayer, move.PositionIndex + move.Distance);
+                        boardPosition.PushChecker(Checker.CheckerColor.Black, 25);
                     }
-                    if (currentPlayer == Checker.CheckerColor.Black)
+                    else if (currentPlayer == Checker.CheckerColor.Black)
                     {
-                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                        boardPosition.PushChecker(currentPlayer, move.PositionIndex - move.Distance);
+                        boardPosition.PushChecker(Checker.CheckerColor.Red, 0);
                     }
                     break;
                 }
                 case MoveInteraction.Out:
                 {
+                    boardPosition.CurrentPosition[move.PositionIndex].Pop();
                     if (currentPlayer == Checker.CheckerColor.Red)
                     {
-                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                        boardPosition.PushChecker(currentPlayer, 25);
+                        boardPosition.PushChecker(Checker.CheckerColor.Red, 26);
                     }
-                    if (currentPlayer == Checker.CheckerColor.Black)
+                    else if (currentPlayer == Checker.CheckerColor.Black)
                     {
-                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                        boardPosition.PushChecker(currentPlayer, 0);
-                    }
-                    break;
-                }
-                case MoveInteraction.Eat:
-                {
-                    if (currentPlayer == Checker.CheckerColor.Red)
-                    {
-                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                        boardPosition.CurrentPosition[move.PositionIndex + move.Distance].Pop();
-                        boardPosition.PushChecker(currentPlayer, move.PositionIndex + move.Distance);
-                        boardPosition.PushChecker(Checker.CheckerColor.Black, 26);
-                    }
-                    if (currentPlayer == Checker.CheckerColor.Black)
-                    {
-                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                        boardPosition.CurrentPosition[move.PositionIndex - move.Distance].Pop();
-                        boardPosition.PushChecker(currentPlayer, move.PositionIndex - move.Distance);
-                        boardPosition.PushChecker(Checker.CheckerColor.Red, 27);
-                    }
-                    break;
-                }
-                case MoveInteraction.JailMove:
-                {
-                    if (currentPlayer == Checker.CheckerColor.Red)
-                    {
-                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                        boardPosition.PushChecker(currentPlayer, move.Distance);
-                    }
-                    if (currentPlayer == Checker.CheckerColor.Black)
-                    {
-                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                        boardPosition.PushChecker(currentPlayer, 25 - move.Distance);
-                    }
-                    break;
-                }
-                case MoveInteraction.JailEat:
-                {
-                    if (currentPlayer == Checker.CheckerColor.Red)
-                    {
-                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                        boardPosition.CurrentPosition[move.Distance].Pop();
-                        boardPosition.PushChecker(currentPlayer, move.Distance);
-                        boardPosition.PushChecker(Checker.CheckerColor.Black, 26);
-                    }
-                    if (currentPlayer == Checker.CheckerColor.Black)
-                    {
-                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                        boardPosition.CurrentPosition[25 - move.Distance].Pop();
-                        boardPosition.PushChecker(currentPlayer, 25 - move.Distance);
-                        boardPosition.PushChecker(Checker.CheckerColor.Red, 27);
+                        boardPosition.PushChecker(Checker.CheckerColor.Black, 27);
                     }
                     break;
                 }
