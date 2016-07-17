@@ -78,10 +78,11 @@ namespace Backgammon
             CurrentPosition[positionIndex].Push(new Checker(color, positionIndex));
         }
 
-        public bool RedIsOut()
+        public bool RedIsInJail()
         {
             return CountAtPosition(27) != 0;
         }
+
         public bool RedIsInGoal()
         {
             int redCounter = 0;
@@ -94,15 +95,17 @@ namespace Backgammon
             }
             return redCounter == 15;
         }
+
         public bool RedIsWin()
         {
             return CountAtPosition(25) == 15;
         }
 
-        public bool BlackIsOut()
+        public bool BlackIsInJail()
         {
-            return CountAtPosition(27) != 0;
+            return CountAtPosition(26) != 0;
         }
+
         public bool BlackIsInGoal()
         {
             int blackCounter = 0;
@@ -115,9 +118,34 @@ namespace Backgammon
             }
             return blackCounter == 15;
         }
+
         public bool BlackIsWin()
         {
             return CountAtPosition(0) == 15;
+        }
+
+        public bool CurrentPlayerIsInJail(Checker.CheckerColor currentPlayer)
+        {
+            if (currentPlayer == Checker.CheckerColor.Red)
+            {
+                return RedIsInJail();
+            }
+            else
+            {
+                return BlackIsInJail();
+            }
+        }
+
+        public bool CurrentPlayerIsInGoal(Checker.CheckerColor currentPlayer)
+        {
+            if (currentPlayer == Checker.CheckerColor.Red)
+            {
+                return RedIsInGoal();
+            }
+            else
+            {
+                return BlackIsInGoal();
+            }
         }
     }
 }

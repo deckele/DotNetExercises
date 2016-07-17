@@ -3,15 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Backgammon;
 
-namespace BGLogic
+namespace Backgammon
 {
-    class Logic
+    public class Logic
     {
         public List<Move> ListPossibleMoves(BoardPosition boardPosition, Dice dice, Checker.CheckerColor currentPlayer)
         {
-            return null;
+            var legalMovesList = new List<Move>();
+
+            if (boardPosition.CurrentPlayerIsInJail(currentPlayer))
+            {
+
+            }
+
+            for (int i = 1; i <= 24; i++)
+            {
+                if (boardPosition.CountAtPosition(i) > 0)
+                {
+                    if (boardPosition.ColorAtPosition(i) == currentPlayer)
+                    {
+
+                    }
+                }
+            }
+            return legalMovesList;
         }
 
         public void ApplyMove(BoardPosition boardPosition, Move move, Checker.CheckerColor currentPlayer)
@@ -95,6 +111,59 @@ namespace BGLogic
                     Console.WriteLine("Error: move out of bounds!");
                 }
             }
+        }
+
+        private enum MoveInteraction
+        {
+            Move,
+            Eat,
+            Out,
+            Illegal
+        }
+
+        private MoveInteraction CheckMoveInteraction(BoardPosition boardPosition, Checker.CheckerColor currentPlayer, int targetIndex)
+        {
+            //If target input is inside board limits (1-24)
+            if ((targetIndex >= 1) && (targetIndex <= 24))
+            {
+                if (boardPosition.CountAtPosition(targetIndex) != 0)
+                {
+                    //Unmatching colors:
+                    if (currentPlayer != boardPosition.ColorAtPosition(targetIndex))
+                    {
+                        //If target stack has only one enemy piece - eat it!
+                        if (boardPosition.CountAtPosition(targetIndex) == 1)
+                        {
+                            return MoveInteraction.Eat;
+                        }
+                        //Can't move to position where there is more than 1 enemy piece.
+                        else if (boardPosition.CountAtPosition(targetIndex) > 1)
+                        {
+                            return MoveInteraction.Illegal;
+                        }
+                    }
+                    //Matching colors:
+                    //If target stack is friendly (same color) - move on top of stack.
+                    else
+                    {
+                        return MoveInteraction.Move;
+                    }
+                }
+                //If target stack is empty - just move there.
+                else
+                {
+                    return MoveInteraction.Move;
+                }
+            }
+            //if Target index is out of board limits
+            else
+            {
+                if (boardPosition.CurrentPlayerIsInGoal(currentPlayer))
+                {
+                    return MoveInteraction.Out;
+                }
+            }
+            return MoveInteraction.Illegal;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace BGConsoleGraphics
                 }
                 //Drawing center bar with Black's taken pieces if any are out
                 Console.Write("|");
-                if (boardPosition.BlackIsOut())
+                if (boardPosition.BlackIsInJail())
                 {
                     CheckerStackDisplay(boardPosition.CurrentPosition[26], i);
                 }
@@ -52,7 +52,7 @@ namespace BGConsoleGraphics
                 }
                 //Drawing center bar with red's taken pieces if any are out
                 Console.Write("|");
-                if (boardPosition.RedIsOut())
+                if (boardPosition.RedIsInJail())
                 {
                     CheckerStackDisplay(boardPosition.CurrentPosition[27], i);
                 }
