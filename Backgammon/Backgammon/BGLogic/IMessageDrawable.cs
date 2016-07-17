@@ -9,5 +9,6 @@ namespace Backgammon
     public interface IMessageDrawable
     {
         void Display(Logic logic, BoardPosition boardPosition, Dice dice, Checker.CheckerColor currentPlayer);
+        void DisplayWinner(Checker.CheckerColor currentPlayer);
     }
 }

@@ -19,11 +19,13 @@ namespace Backgammon
 
             RandomNumberGen = randomNumberGen;
 
-            Turn = Checker.CheckerColor.Red;
+            Turn = Checker.CheckerColor.Black;
         }
 
-        public Checker.CheckerColor Turn { get; private set; }
         private Random RandomNumberGen { get; }
+
+        public Checker.CheckerColor Turn { get; private set; }
+        public Dice Dice { get; private set; }
 
         private IBoardDrawable GUIBoard { get; }
         private IDiceDrawable GUIDice { get; }
@@ -31,6 +33,17 @@ namespace Backgammon
         private IPlayer RedPlayer { get; }
         private IPlayer BlackPlayer { get; }
 
+        private void PassTurn()
+        {
+            if (Turn == Checker.CheckerColor.Red)
+            {
+                Turn = Checker.CheckerColor.Black;
+            }
+            else if (Turn == Checker.CheckerColor.Black)
+            {
+                Turn = Checker.CheckerColor.Red;
+            }
+        }
 
         public void Run()
         {
@@ -38,28 +51,45 @@ namespace Backgammon
             Logic logic = new Logic();
             Console.SetWindowSize(100, 45);
 
-            while (!(boardPosition.RedIsWin() || boardPosition.BlackIsWin()))
+            //Main game Loop.
+            while (!boardPosition.CheckWin())
             {
-                Dice dice = new Dice(Turn, RandomNumberGen);
-                GUIBoard.Display(boardPosition);
-                GUIDice.Display(dice, Turn);
-                GUIMessageArea.Display(logic, boardPosition, dice, Turn);
-
+                //Current player rolls dice
                 if (Turn == Checker.CheckerColor.Red)
                 {
-                    Move userInput = RedPlayer.ChooseMove(dice.CurrentDiceNumbers,
-                        logic.ListPossibleMoves(boardPosition, dice, Turn));
-                    logic.ApplyMove(boardPosition, userInput, Turn);
-                    Turn = Checker.CheckerColor.Black;
+                    Dice = RedPlayer.Roll(Turn, RandomNumberGen);
                 }
                 else if (Turn == Checker.CheckerColor.Black)
                 {
-                    Move userInput = BlackPlayer.ChooseMove(dice.CurrentDiceNumbers,
-                        logic.ListPossibleMoves(boardPosition, dice, Turn));
-                    logic.ApplyMove(boardPosition, userInput, Turn);
-                    Turn = Checker.CheckerColor.Red;
+                    Dice = BlackPlayer.Roll(Turn, RandomNumberGen);
+                }
+
+                while (Dice.CurrentDiceNumbers.Count > 0)
+                {
+                    GUIBoard.Display(boardPosition);
+                    GUIDice.Display(Dice, Turn);
+                    GUIMessageArea.Display(logic, boardPosition, Dice, Turn);
+
+                    if (Turn == Checker.CheckerColor.Red)
+                    {
+                        Move userInput = RedPlayer.ChooseMove(Dice.CurrentDiceNumbers,
+                            logic.ListPossibleMoves(boardPosition, Dice, Turn), Turn);
+                        logic.ApplyMove(boardPosition, userInput, Turn);
+                    }
+                    else if (Turn == Checker.CheckerColor.Black)
+                    {
+                        Move userInput = BlackPlayer.ChooseMove(Dice.CurrentDiceNumbers,
+                            logic.ListPossibleMoves(boardPosition, Dice, Turn), Turn);
+                        logic.ApplyMove(boardPosition, userInput, Turn);
+                    }
+                }
+
+                if (!boardPosition.CheckWin())
+                {
+                    PassTurn();
                 }
             }
+            GUIMessageArea.DisplayWinner(Turn);
         }
     }
 }

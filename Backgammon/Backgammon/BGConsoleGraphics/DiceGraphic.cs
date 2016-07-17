@@ -12,10 +12,22 @@ namespace BGConsoleGraphics
         public void Display(Dice dice, Checker.CheckerColor color)
         {
             Console.SetCursorPosition(0, 16);
-            DisplayDie(dice.CurrentDiceNumbers[0], dice, color);
-            Console.MoveBufferArea(0,16,9,5,12,16);
-            Console.SetCursorPosition(0, 16);
-            DisplayDie(dice.CurrentDiceNumbers[1], dice, color);
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("                                                  ");
+            }
+
+            for (int i = dice.CurrentDiceNumbers.Count; i > 0; i--)
+            {
+                Console.SetCursorPosition(0, 16);
+                DisplayDie(dice.CurrentDiceNumbers[i - 1], dice, color);
+                Console.MoveBufferArea(0, 16, 9, 5, (i - 1) * 12, 16);
+            }
+            //Console.SetCursorPosition(0, 16);
+            //DisplayDie(dice.CurrentDiceNumbers[0], dice, color);
+            //Console.MoveBufferArea(0,16,9,5,12,16);
+            //Console.SetCursorPosition(0, 16);
+            //DisplayDie(dice.CurrentDiceNumbers[1], dice, color);
         }
 
         private void DisplayDie(int dieNumber, Dice dice, Checker.CheckerColor color)

@@ -27,9 +27,14 @@ namespace BGConsoleGraphics
             Console.WriteLine();
             foreach (var move in listPossibleMoves)
             {
-                Console.Write($"({moveCounter++}) ");
+                Console.Write($"{moveCounter++, 2}) ");
                 Console.WriteLine(move);
             }
+        }
+
+        public void DisplayWinner(Checker.CheckerColor currentPlayer)
+        {
+            Console.WriteLine($"{currentPlayer} Wins!!! :)");
         }
     }
 }

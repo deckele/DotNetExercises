@@ -153,5 +153,10 @@ namespace Backgammon
                 return BlackIsInGoal();
             }
         }
+
+        public bool CheckWin()
+        {
+            return (RedIsWin() || BlackIsWin());
+        }
     }
 }

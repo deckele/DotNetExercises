@@ -13,7 +13,7 @@ namespace Backgammon
             return new Dice(currentPlayer, randomDieGen);
         }
 
-        public Move ChooseMove(List<int> diceNumbers, List<Move> legalMoves)
+        public Move ChooseMove(List<int> diceNumbers, List<Move> legalMoves, Checker.CheckerColor currentPlayer)
         {
             Console.SetCursorPosition(0, 22);
             int userInput = 0;
@@ -25,7 +25,15 @@ namespace Backgammon
                 if (checkUserInput && (userInput > 0) && (userInput <= legalMoves.Count))
                 {
                     //removing used die number from list
-                    diceNumbers.Remove(legalMoves[userInput - 1].Distance);
+                    if (currentPlayer == Checker.CheckerColor.Red)
+                    {
+                        diceNumbers.Remove(legalMoves[userInput - 1].Distance);
+                    }
+                    else if (currentPlayer == Checker.CheckerColor.Black)
+                    {
+                        diceNumbers.Remove((-1) * legalMoves[userInput -1 ].Distance);
+                    }
+
                     return legalMoves[userInput - 1];
                 }
                 else
