@@ -17,7 +17,7 @@ namespace Backgammon
             RedPlayer = redPlayer;
             BlackPlayer = blackPlayer;
 
-            Turn = Checker.CheckerColor.Red;
+            Turn = Checker.CheckerColor.Black;
             RandomNumberGen = new Random();
         }
 
@@ -36,7 +36,7 @@ namespace Backgammon
             BoardPosition boardPosition = new BoardPosition();          
             Dice dice = new Dice(Turn, RandomNumberGen);
             Logic logic = new Logic();
-            Console.SetWindowSize(100, 40);
+            Console.SetWindowSize(100, 45);
             GUIBoard.Display(boardPosition);
             GUIDice.Display(dice, Turn);
             GUIMessageArea.Display(logic, boardPosition, dice, Turn);     

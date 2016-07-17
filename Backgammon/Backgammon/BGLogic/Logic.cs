@@ -27,11 +27,17 @@ namespace Backgammon
             }
             if (currentPlayer == Checker.CheckerColor.Black)
             {
-                foreach (var diceNumber in adjustedDiceNumbers)
+                if (dice.IsDouble)
                 {
-                    int i = 0;
-                    adjustedDiceNumbers[i] = (0 - diceNumber);
-                    i++;
+                    adjustedDiceNumbers[0] = (0 - adjustedDiceNumbers[0]);
+                }
+                else
+                {
+                    int counter = 0;
+                    foreach (var diceNumber in dice.CurrentDiceNumbers)
+                    {
+                        adjustedDiceNumbers[counter++] = (0 - diceNumber);
+                    }
                 }
             }
 

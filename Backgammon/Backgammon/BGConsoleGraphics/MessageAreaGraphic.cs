@@ -11,6 +11,13 @@ namespace BGConsoleGraphics
     {
         public void Display(Logic logic, BoardPosition boardPosition, Dice dice, Checker.CheckerColor currentPlayer)
         {
+            //Clear previouse moves or messages.
+            Console.SetCursorPosition(0, 23);
+            for (int i = 0; i < 18; i++)
+            {
+                Console.WriteLine("                      ");
+            }
+
             var listPossibleMoves = logic.ListPossibleMoves(boardPosition, dice, currentPlayer);
             int moveCounter = 1;
 

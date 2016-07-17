@@ -71,9 +71,18 @@ namespace BGConsoleGraphics
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Gray;
 
-            if (dice.IsDouble)
+            if (dice.IsDouble && dice.CurrentDiceNumbers[0] == 1)
             {
                 Console.WriteLine("   Snake Eyes!");
+            }
+            else if (dice.IsDouble)
+            {
+                Console.WriteLine("   Lucky Double!");
+            }
+            else if ((dice.CurrentDiceNumbers[0] == 5 && dice.CurrentDiceNumbers[1] == 6) || 
+                (dice.CurrentDiceNumbers[0] == 6 && dice.CurrentDiceNumbers[1] == 5))
+            {
+                Console.WriteLine("   Shesh Besh!");
             }
         }
     }
