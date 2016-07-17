@@ -12,7 +12,7 @@ namespace BGConsoleGraphics
         public void Display(Dice dice, Checker.CheckerColor color)
         {
             Console.SetCursorPosition(0, 16);
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
                 Console.WriteLine("                                                  ");
             }
@@ -83,7 +83,7 @@ namespace BGConsoleGraphics
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.Gray;
 
-            if (dice.IsDouble && dice.CurrentDiceNumbers[0] == 1)
+            if (dice.IsDouble && dice.CurrentDice[0].DieNumber == 1)
             {
                 Console.WriteLine("   Snake Eyes!");
             }
@@ -91,8 +91,8 @@ namespace BGConsoleGraphics
             {
                 Console.WriteLine("   Lucky Double!");
             }
-            else if ((dice.CurrentDiceNumbers[0] == 5 && dice.CurrentDiceNumbers[1] == 6) || 
-                (dice.CurrentDiceNumbers[0] == 6 && dice.CurrentDiceNumbers[1] == 5))
+            else if ((dice.CurrentDice[0].DieNumber == 5 && dice.CurrentDice[1].DieNumber == 6) || 
+                (dice.CurrentDice[0].DieNumber == 6 && dice.CurrentDice[1].DieNumber == 5))
             {
                 Console.WriteLine("   Shesh Besh!");
             }
