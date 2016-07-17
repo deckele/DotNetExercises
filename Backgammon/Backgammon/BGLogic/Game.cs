@@ -33,13 +33,32 @@ namespace Backgammon
 
         public void Run()
         {
-            BoardPosition boardPosition = new BoardPosition();          
-            Dice dice = new Dice(Turn, RandomNumberGen);
+            BoardPosition boardPosition = new BoardPosition();
             Logic logic = new Logic();
             Console.SetWindowSize(100, 45);
-            GUIBoard.Display(boardPosition);
-            GUIDice.Display(dice, Turn);
-            GUIMessageArea.Display(logic, boardPosition, dice, Turn);     
+
+            while (!(boardPosition.RedIsWin() || boardPosition.BlackIsWin()))
+            {
+                Dice dice = new Dice(Turn, RandomNumberGen);
+                GUIBoard.Display(boardPosition);
+                GUIDice.Display(dice, Turn);
+                GUIMessageArea.Display(logic, boardPosition, dice, Turn);
+
+                if (Turn == Checker.CheckerColor.Red)
+                {
+                    Move userInput = RedPlayer.ChooseMove(dice.CurrentDiceNumbers,
+                        logic.ListPossibleMoves(boardPosition, dice, Turn));
+                    logic.ApplyMove(boardPosition, userInput, Turn);
+                    Turn = Checker.CheckerColor.Black;
+                }
+                else if (Turn == Checker.CheckerColor.Black)
+                {
+                    Move userInput = BlackPlayer.ChooseMove(dice.CurrentDiceNumbers,
+                        logic.ListPossibleMoves(boardPosition, dice, Turn));
+                    logic.ApplyMove(boardPosition, userInput, Turn);
+                    Turn = Checker.CheckerColor.Red;
+                }
+            }
         }
     }
 }

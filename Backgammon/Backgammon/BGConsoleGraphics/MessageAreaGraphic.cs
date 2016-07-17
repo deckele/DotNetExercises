@@ -12,10 +12,10 @@ namespace BGConsoleGraphics
         public void Display(Logic logic, BoardPosition boardPosition, Dice dice, Checker.CheckerColor currentPlayer)
         {
             //Clear previouse moves or messages.
-            Console.SetCursorPosition(0, 23);
-            for (int i = 0; i < 18; i++)
+            Console.SetCursorPosition(0, 22);
+            for (int i = 0; i < 19; i++)
             {
-                Console.WriteLine("                      ");
+                Console.WriteLine("                                   ");
             }
 
             var listPossibleMoves = logic.ListPossibleMoves(boardPosition, dice, currentPlayer);

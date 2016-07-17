@@ -13,7 +13,7 @@ namespace Backgammon
             throw new NotImplementedException();
         }
 
-        public Move ChooseMove(BoardPosition boardPosition, List<Move> legalMoves)
+        public Move ChooseMove(List<int> diceNumbers, List<Move> legalMoves)
         {
             throw new NotImplementedException();
         }

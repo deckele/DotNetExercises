@@ -10,6 +10,6 @@ namespace Backgammon
     public interface IPlayer
     {
         void Roll(Dice dice);
-        Move ChooseMove(BoardPosition boardPosition, List<Move> legalMoves);
+        Move ChooseMove(List<int> diceNumbersList, List<Move> legalMoves);
     }
 }

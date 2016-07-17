@@ -15,7 +15,7 @@ namespace Backgammon
             IDiceDrawable guiDice = new DiceGraphic();
             IMessageDrawable guiMessageArea = new MessageAreaGraphic();
             IPlayer redPlayer = new HumanPlayer();
-            IPlayer blackPlayer = new RandomCompPlayer();
+            IPlayer blackPlayer = new HumanPlayer();
 
             Game backgammon = new Game(guiBoard, guiDice, guiMessageArea, redPlayer, blackPlayer);
             backgammon.Run();

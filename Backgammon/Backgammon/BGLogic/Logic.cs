@@ -63,23 +63,25 @@ namespace Backgammon
                             CheckMoveInteraction(boardPosition, currentPlayer, 25 + dieNumber)));
                         }
                     }
-
                 }
             }
-
             //Gets legal moves if player is not in jail.
-            for (int i = 1; i <= 24; i++)
+            else if (!boardPosition.CurrentPlayerIsInJail(currentPlayer))
             {
-                if (boardPosition.CountAtPosition(i) > 0)
+                for (int i = 1; i <= 24; i++)
                 {
-                    if (boardPosition.ColorAtPosition(i) == currentPlayer)
+                    if (boardPosition.CountAtPosition(i) > 0)
                     {
-                        foreach (var dieNumber in adjustedDiceNumbers)
+                        if (boardPosition.ColorAtPosition(i) == currentPlayer)
                         {
-                            if (CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber) != MoveInteraction.Illegal)
+                            foreach (var dieNumber in adjustedDiceNumbers)
                             {
-                                legalMovesList.Add(new Move(i, dieNumber,
-                                    CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber)));
+                                if (CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber) !=
+                                    MoveInteraction.Illegal)
+                                {
+                                    legalMovesList.Add(new Move(i, dieNumber,
+                                        CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber)));
+                                }
                             }
                         }
                     }
