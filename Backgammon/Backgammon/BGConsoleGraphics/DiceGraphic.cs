@@ -16,10 +16,10 @@ namespace BGConsoleGraphics
         public void Display(Dice dice, Checker.CheckerColor color)
         {
             Console.SetCursorPosition(0, 16);
-            DisplayDie(dice.Die1Number, dice, color);
+            DisplayDie(dice.CurrentDiceNumbers[0], dice, color);
             Console.MoveBufferArea(0,16,9,5,12,16);
             Console.SetCursorPosition(0, 16);
-            DisplayDie(dice.Die2Number, dice, color);
+            DisplayDie(dice.CurrentDiceNumbers[1], dice, color);
         }
 
         private void DisplayDie(int dieNumber, Dice dice, Checker.CheckerColor color)

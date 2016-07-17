@@ -12,9 +12,30 @@ namespace Backgammon
         {
             var legalMovesList = new List<Move>();
 
+            //Gets legal moves if player is in Jail.
             if (boardPosition.CurrentPlayerIsInJail(currentPlayer))
             {
-
+                foreach (var dieNumber in dice.CurrentDiceNumbers)
+                {
+                    if (currentPlayer == Checker.CheckerColor.Red)
+                    {
+                        if (CheckMoveInteraction(boardPosition, currentPlayer, dieNumber) !=
+                            MoveInteraction.Illegal)
+                        {
+                            legalMovesList.Add(new Move(27, dieNumber,
+                                CheckMoveInteraction(boardPosition, currentPlayer, dieNumber)));
+                        }
+                    }
+                    if (currentPlayer == Checker.CheckerColor.Black)
+                    {
+                        if (CheckMoveInteraction(boardPosition, currentPlayer, 25- dieNumber) !=
+                            MoveInteraction.Illegal)
+                        {
+                            legalMovesList.Add(new Move(26, dieNumber,
+                                CheckMoveInteraction(boardPosition, currentPlayer, 25- dieNumber)));
+                        }
+                    }
+                }
             }
 
             for (int i = 1; i <= 24; i++)
@@ -23,7 +44,27 @@ namespace Backgammon
                 {
                     if (boardPosition.ColorAtPosition(i) == currentPlayer)
                     {
-
+                        foreach (var dieNumber in dice.CurrentDiceNumbers)
+                        {
+                            if (currentPlayer == Checker.CheckerColor.Red)
+                            {
+                                if (CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber) !=
+                                    MoveInteraction.Illegal)
+                                {
+                                    legalMovesList.Add(new Move(i, dieNumber,
+                                        CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber)));
+                                }
+                            }
+                            if (currentPlayer == Checker.CheckerColor.Black)
+                            {
+                                if (CheckMoveInteraction(boardPosition, currentPlayer, i - dieNumber) !=
+                                    MoveInteraction.Illegal)
+                                {
+                                    legalMovesList.Add(new Move(i, dieNumber,
+                                        CheckMoveInteraction(boardPosition, currentPlayer, i - dieNumber)));
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -32,97 +73,134 @@ namespace Backgammon
 
         public void ApplyMove(BoardPosition boardPosition, Move move, Checker.CheckerColor currentPlayer)
         {
-            if (currentPlayer == Checker.CheckerColor.Red)
+            switch (move.MoveInteraction)
             {
-                if ((move.PositionIndex + move.Distance) < 25)
+                case MoveInteraction.Move:
                 {
-                    //If target stack is empty - just move there.
-                    if (boardPosition.CountAtPosition(move.PositionIndex + move.Distance) == 0)
+                    if (currentPlayer == Checker.CheckerColor.Red)
                     {
                         boardPosition.CurrentPosition[move.PositionIndex].Pop();
                         boardPosition.PushChecker(currentPlayer, move.PositionIndex + move.Distance);
                     }
-                    //If target stack is friendly (same color) - move on top of stack.
-                    else if (currentPlayer == boardPosition.CurrentPosition[move.PositionIndex + move.Distance].Peek().Color)
+                    if (currentPlayer == Checker.CheckerColor.Black)
                     {
                         boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                        boardPosition.PushChecker(currentPlayer, move.PositionIndex + move.Distance);
+                        boardPosition.PushChecker(currentPlayer, move.PositionIndex - move.Distance);
                     }
-                    //If target stack has only one enemy piece - eat it!
-                    else if ((currentPlayer != boardPosition.CurrentPosition[move.PositionIndex + move.Distance].Peek().Color) &&
-                             boardPosition.CurrentPosition[move.PositionIndex + move.Distance].Count == 1)
+                    break;
+                }
+                case MoveInteraction.Out:
+                {
+                    if (currentPlayer == Checker.CheckerColor.Red)
+                    {
+                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
+                        boardPosition.PushChecker(currentPlayer, 25);
+                    }
+                    if (currentPlayer == Checker.CheckerColor.Black)
+                    {
+                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
+                        boardPosition.PushChecker(currentPlayer, 0);
+                    }
+                    break;
+                }
+                case MoveInteraction.Eat:
+                {
+                    if (currentPlayer == Checker.CheckerColor.Red)
                     {
                         boardPosition.CurrentPosition[move.PositionIndex].Pop();
                         boardPosition.CurrentPosition[move.PositionIndex + move.Distance].Pop();
                         boardPosition.PushChecker(currentPlayer, move.PositionIndex + move.Distance);
                         boardPosition.PushChecker(Checker.CheckerColor.Black, 26);
                     }
-                    //Can't move to position where there is more than 1 enemy pieces.
-                    else
-                    {
-                        Console.WriteLine("Error: position taken!");
-                    }
-                }
-                else if (((move.PositionIndex + move.Distance) >= 25) && boardPosition.RedIsInGoal())
-                {
-                    boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                    boardPosition.PushChecker(currentPlayer, 25);
-                }
-                else
-                {
-                    Console.WriteLine("Error: move out of bounds!");
-                }
-            }
-            //Same with the black pieces, only reversed moving directions...
-            else if (currentPlayer == Checker.CheckerColor.Black)
-            {
-                if ((move.PositionIndex - move.Distance) > 0)
-                {
-                    if (boardPosition.CountAtPosition(move.PositionIndex - move.Distance) == 0)
-                    {
-                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                        boardPosition.PushChecker(currentPlayer, move.PositionIndex - move.Distance);
-                    }
-                    else if (currentPlayer == boardPosition.CurrentPosition[move.PositionIndex - move.Distance].Peek().Color)
-                    {
-                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                        boardPosition.PushChecker(currentPlayer, move.PositionIndex - move.Distance);
-                    }
-                    else if ((currentPlayer != boardPosition.CurrentPosition[move.PositionIndex - move.Distance].Peek().Color) &&
-                             boardPosition.CurrentPosition[move.PositionIndex - move.Distance].Count == 1)
+                    if (currentPlayer == Checker.CheckerColor.Black)
                     {
                         boardPosition.CurrentPosition[move.PositionIndex].Pop();
                         boardPosition.CurrentPosition[move.PositionIndex - move.Distance].Pop();
                         boardPosition.PushChecker(currentPlayer, move.PositionIndex - move.Distance);
                         boardPosition.PushChecker(Checker.CheckerColor.Red, 27);
                     }
-                    else
+                    break;
+                }
+                case MoveInteraction.JailMove:
+                {
+                    if (currentPlayer == Checker.CheckerColor.Red)
                     {
-                        Console.WriteLine("Error: position taken!");
+                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
+                        boardPosition.PushChecker(currentPlayer, move.Distance);
                     }
+                    if (currentPlayer == Checker.CheckerColor.Black)
+                    {
+                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
+                        boardPosition.PushChecker(currentPlayer, 25 - move.Distance);
+                    }
+                    break;
                 }
-                else if (((move.PositionIndex - move.Distance) <= 0) && boardPosition.BlackIsInGoal())
+                case MoveInteraction.JailEat:
                 {
-                    boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                    boardPosition.PushChecker(currentPlayer, 0);
-                }
-                else
-                {
-                    Console.WriteLine("Error: move out of bounds!");
+                    if (currentPlayer == Checker.CheckerColor.Red)
+                    {
+                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
+                        boardPosition.CurrentPosition[move.Distance].Pop();
+                        boardPosition.PushChecker(currentPlayer, move.Distance);
+                        boardPosition.PushChecker(Checker.CheckerColor.Black, 26);
+                    }
+                    if (currentPlayer == Checker.CheckerColor.Black)
+                    {
+                        boardPosition.CurrentPosition[move.PositionIndex].Pop();
+                        boardPosition.CurrentPosition[25 - move.Distance].Pop();
+                        boardPosition.PushChecker(currentPlayer, 25 - move.Distance);
+                        boardPosition.PushChecker(Checker.CheckerColor.Red, 27);
+                    }
+                    break;
                 }
             }
         }
 
-        private enum MoveInteraction
+        public enum MoveInteraction
         {
             Move,
             Eat,
+            JailMove,
+            JailEat,
             Out,
             Illegal
         }
 
-        private MoveInteraction CheckMoveInteraction(BoardPosition boardPosition, Checker.CheckerColor currentPlayer, int targetIndex)
+        public MoveInteraction CheckMoveInteraction(BoardPosition boardPosition, Checker.CheckerColor currentPlayer, int targetIndex)
         {
+            //If player is in jail.
+            if (boardPosition.CurrentPlayerIsInJail(currentPlayer))
+            {
+                if (boardPosition.CountAtPosition(targetIndex) != 0)
+                {
+                    //Unmatching colors:
+                    if (currentPlayer != boardPosition.ColorAtPosition(targetIndex))
+                    {
+                        //If target stack has only one enemy piece - eat it!
+                        if (boardPosition.CountAtPosition(targetIndex) == 1)
+                        {
+                            return MoveInteraction.JailEat;
+                        }
+                        //Can't move to position where there is more than 1 enemy piece.
+                        else if (boardPosition.CountAtPosition(targetIndex) > 1)
+                        {
+                            return MoveInteraction.Illegal;
+                        }
+                    }
+                    //Matching colors:
+                    //If target stack is friendly (same color) - move on top of stack.
+                    else
+                    {
+                        return MoveInteraction.JailMove;
+                    }
+                }
+                //If target stack is empty - just move there.
+                else
+                {
+                    return MoveInteraction.JailMove;
+                }
+            }
+
             //If target input is inside board limits (1-24)
             if ((targetIndex >= 1) && (targetIndex <= 24))
             {
