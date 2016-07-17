@@ -103,13 +103,14 @@ namespace Backgammon
             if (Color == CheckerColor.Red)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
+                return "O";
             }
-            else
+            else if (Color == CheckerColor.Black)
             {
                 Console.ForegroundColor = ConsoleColor.Black;
+                return "O";
             }
-            return "O";
-
+            return " ";
         }
     }
 }
