@@ -10,14 +10,16 @@ namespace Backgammon
     {
         static void Main(string[] args)
         {
+            var randomNumberGen = new Random();
+
             //Creating all objects with upcasting so Game class will have limited access (better encapsulation).
             IBoardDrawable guiBoard = new BoardGraphic();
             IDiceDrawable guiDice = new DiceGraphic();
             IMessageDrawable guiMessageArea = new MessageAreaGraphic();
             IPlayer redPlayer = new HumanPlayer();
-            IPlayer blackPlayer = new HumanPlayer();
-
-            Game backgammon = new Game(guiBoard, guiDice, guiMessageArea, redPlayer, blackPlayer);
+            IPlayer blackPlayer = new RandomCompPlayer(randomNumberGen);
+        
+            Game backgammon = new Game(guiBoard, guiDice, guiMessageArea, redPlayer, blackPlayer, randomNumberGen);
             backgammon.Run();
         }
     }

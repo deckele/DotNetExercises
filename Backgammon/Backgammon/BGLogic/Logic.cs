@@ -90,6 +90,7 @@ namespace Backgammon
             return legalMovesList;
         }
 
+        //Gets a Move and applies it over the board.
         public void ApplyMove(BoardPosition boardPosition, Move move, Checker.CheckerColor currentPlayer)
         {
             switch (move.MoveInteraction)

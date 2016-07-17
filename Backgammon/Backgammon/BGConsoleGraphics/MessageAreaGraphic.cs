@@ -27,7 +27,7 @@ namespace BGConsoleGraphics
             Console.WriteLine();
             foreach (var move in listPossibleMoves)
             {
-                Console.Write($"({moveCounter++})");
+                Console.Write($"({moveCounter++}) ");
                 Console.WriteLine(move);
             }
         }

@@ -19,7 +19,7 @@
                 case Logic.MoveInteraction.Eat:
                     return string.Format($"{PositionIndex, 4}  :  {PositionIndex + Distance, 2}");
                 case Logic.MoveInteraction.JailEat:
-                    return string.Format($"Jail : {PositionIndex + Distance, 2}");
+                    return string.Format($"Jail  :  {PositionIndex + Distance, 2}");
                 case Logic.MoveInteraction.JailMove:
                     return string.Format($"Jail --> {PositionIndex + Distance, 2}");
                 case Logic.MoveInteraction.Out:

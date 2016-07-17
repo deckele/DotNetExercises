@@ -8,9 +8,9 @@ namespace Backgammon
 {
     public class HumanPlayer : IPlayer
     {
-        public void Roll(Dice dice)
+        public Dice Roll(Checker.CheckerColor currentPlayer, Random randomDieGen)
         {
-            throw new NotImplementedException();
+            return new Dice(currentPlayer, randomDieGen);
         }
 
         public Move ChooseMove(List<int> diceNumbers, List<Move> legalMoves)
