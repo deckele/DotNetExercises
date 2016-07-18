@@ -158,5 +158,33 @@ namespace Backgammon
         {
             return (RedIsWin() || BlackIsWin());
         }
+
+        public bool IsBiggestInGoal(Checker.CheckerColor currentPlayer, BoardPosition boardPosition, int checkerindex)
+        {
+            if (CurrentPlayerIsInGoal(currentPlayer))
+            {
+                if (currentPlayer == Checker.CheckerColor.Red)
+                {
+                    for (int i = checkerindex + 1; i <= 6; i++)
+                    {
+                        if ((i > checkerindex) && (boardPosition.CountAtPosition(i) != 0))
+                        {
+                            return false;
+                        }
+                    }
+                }
+                if (currentPlayer == Checker.CheckerColor.Black)
+                {
+                    for (int i = checkerindex - 1; i >= 19; i--)
+                    {
+                        if ((i < checkerindex) && (boardPosition.CountAtPosition(i) != 0))
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
     }
 }

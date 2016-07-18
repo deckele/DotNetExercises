@@ -76,7 +76,19 @@ namespace Backgammon
                         {
                             foreach (var dieNumber in adjustedDiceNumbers)
                             {
-                                if (CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber) !=
+                                //Gets legal moves if player is at goal and is hedding out of board bounds (going out).
+                                if (CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber) ==
+                                    MoveInteraction.Out)
+                                {
+                                    if (boardPosition.IsBiggestInGoal(currentPlayer,boardPosition, i) ||
+                                            (i + dieNumber == 0) || (i + dieNumber == 25))
+                                    {
+                                        legalMovesList.Add(new Move(i, dieNumber,
+                                        CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber)));
+                                    }
+                                }
+                                //All other legal moves (not jail and not going out).
+                                else if (CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber) !=
                                     MoveInteraction.Illegal)
                                 {
                                     legalMovesList.Add(new Move(i, dieNumber,

@@ -19,7 +19,7 @@ namespace Backgammon
 
             RandomNumberGen = randomNumberGen;
 
-            Turn = Checker.CheckerColor.Black;
+            Turn = Checker.CheckerColor.Red;
         }
 
         private Random RandomNumberGen { get; }
