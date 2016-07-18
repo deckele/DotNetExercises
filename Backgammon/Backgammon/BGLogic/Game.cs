@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Backgammon
@@ -70,17 +71,25 @@ namespace Backgammon
                     GUIDice.Display(Dice, Turn);
                     GUIMessageArea.Display(logic, boardPosition, Dice, Turn);
 
-                    if (Turn == Checker.CheckerColor.Red)
+                    if (logic.ListPossibleMoves(boardPosition, Dice, Turn).Count > 0)
                     {
-                        Move userInput = RedPlayer.ChooseMove(Dice.CurrentDiceNumbers,
-                            logic.ListPossibleMoves(boardPosition, Dice, Turn), Turn);
-                        logic.ApplyMove(boardPosition, userInput, Turn);
+                        if (Turn == Checker.CheckerColor.Red)
+                        {
+                            Move userInput = RedPlayer.ChooseMove(Dice.CurrentDiceNumbers,
+                                logic.ListPossibleMoves(boardPosition, Dice, Turn), Turn);
+                            logic.ApplyMove(boardPosition, userInput, Turn);
+                        }
+                        else if (Turn == Checker.CheckerColor.Black)
+                        {
+                            Move userInput = BlackPlayer.ChooseMove(Dice.CurrentDiceNumbers,
+                                logic.ListPossibleMoves(boardPosition, Dice, Turn), Turn);
+                            logic.ApplyMove(boardPosition, userInput, Turn);
+                        }
                     }
-                    else if (Turn == Checker.CheckerColor.Black)
+                    //In case there are no legal moves
+                    else
                     {
-                        Move userInput = BlackPlayer.ChooseMove(Dice.CurrentDiceNumbers,
-                            logic.ListPossibleMoves(boardPosition, Dice, Turn), Turn);
-                        logic.ApplyMove(boardPosition, userInput, Turn);
+                        Dice.CurrentDiceNumbers.Clear();
                     }
                 }
 
@@ -89,7 +98,11 @@ namespace Backgammon
                     PassTurn();
                 }
             }
-            GUIMessageArea.DisplayWinner(Turn);
+        }
+
+        public bool EndGame()
+        {
+            return GUIMessageArea.DisplayWinner(Turn);
         }
     }
 }

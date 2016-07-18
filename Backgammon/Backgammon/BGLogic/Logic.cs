@@ -88,8 +88,8 @@ namespace Backgammon
                                     }
                                 }
                                 //All other legal moves (not jail and not going out).
-                                else if (CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber) !=
-                                    MoveInteraction.Illegal)
+                                else if ((CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber) != MoveInteraction.Illegal)
+                                    && (CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber) != MoveInteraction.Out))
                                 {
                                     legalMovesList.Add(new Move(i, dieNumber,
                                         CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber)));

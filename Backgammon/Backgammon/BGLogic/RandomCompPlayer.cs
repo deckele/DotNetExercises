@@ -23,7 +23,7 @@ namespace Backgammon
 
         public Move ChooseMove(List<int> diceNumbers, List<Move> legalMoves, Checker.CheckerColor currentPlayer)
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(2500);
             int userInput = RandomMoveGen.Next(0, legalMoves.Count);
             //removing used die number from list
             if (currentPlayer == Checker.CheckerColor.Red)

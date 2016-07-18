@@ -15,12 +15,14 @@ namespace Backgammon
 
         public Move ChooseMove(List<int> diceNumbers, List<Move> legalMoves, Checker.CheckerColor currentPlayer)
         {
-            Console.SetCursorPosition(0, 22);
             int userInput = 0;
             bool checkUserInput = false;
 
+            //Checking whether user input is valid.
             while (!(checkUserInput && (userInput > 0) && (userInput <= legalMoves.Count)))
             {
+                Console.SetCursorPosition(0, 22);
+
                 checkUserInput = int.TryParse(Console.ReadLine(), out userInput);
                 if (checkUserInput && (userInput > 0) && (userInput <= legalMoves.Count))
                 {

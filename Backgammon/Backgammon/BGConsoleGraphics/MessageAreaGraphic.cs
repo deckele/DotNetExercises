@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Backgammon;
 
@@ -25,16 +26,56 @@ namespace BGConsoleGraphics
             Console.WriteLine($"Current player: {currentPlayer.ToString()}");
             Console.WriteLine("Choose your move:");
             Console.WriteLine();
-            foreach (var move in listPossibleMoves)
+
+            if (listPossibleMoves.Count != 0)
             {
-                Console.Write($"{moveCounter++, 2}) ");
-                Console.WriteLine(move);
+                foreach (var move in listPossibleMoves)
+                {
+                    Console.Write($"{moveCounter++,2}) ");
+                    Console.WriteLine(move);
+                }
+            }
+            else
+            {
+                Console.Write("No Legal Moves!");
+                Thread.Sleep(4000);
             }
         }
 
-        public void DisplayWinner(Checker.CheckerColor currentPlayer)
+        public bool DisplayWinner(Checker.CheckerColor currentPlayer)
         {
-            Console.WriteLine($"{currentPlayer} Wins!!! :)");
+            Console.SetCursorPosition(0, 22);
+            Console.WriteLine($"{currentPlayer} Wins!!! :)                        ");
+            Console.WriteLine("Play again?                                        ");
+            Console.WriteLine("choose: y/n                                        ");
+
+            bool checkUserInput = false;
+
+            while (!checkUserInput)
+            {
+                Console.SetCursorPosition(0, 24);
+                string userInput = Console.ReadLine();
+
+                switch (userInput)
+                {
+                    case "y":
+                    {
+                        checkUserInput = true;
+                        return true;
+                    }
+                    case "n":
+                    {
+                        checkUserInput = true;
+                        return false;
+                    }
+                    default:
+                    {
+                        Console.WriteLine("Invalid input. Please choose y/n");
+                        break;
+                    }
+                }
+            }
+            return true;
         }
     }
 }
