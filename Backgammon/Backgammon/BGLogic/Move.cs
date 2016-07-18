@@ -8,9 +8,9 @@
             Distance = distance;
             MoveInteraction = moveInteraction;
         }
-        public int PositionIndex { get; private set; }
-        public int Distance { get; private set; }
-        public Logic.MoveInteraction MoveInteraction { get; private set; }
+        public int PositionIndex { get; }
+        public int Distance { get; }
+        public Logic.MoveInteraction MoveInteraction { get; }
 
         public override string ToString()
         {
@@ -29,6 +29,24 @@
                     return string.Format($"{PositionIndex, 4} --> {PositionIndex + Distance, 2}");
             }         
 
+        }
+
+        public override bool Equals(object obj)
+        {
+            Move move = (Move) obj;
+            if (this.PositionIndex.Equals(move.PositionIndex) && this.Distance.Equals(move.Distance))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return this.PositionIndex ^ this.Distance;
         }
     }
 }

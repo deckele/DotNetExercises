@@ -110,6 +110,8 @@ namespace Backgammon
                     }
                 }
             }
+
+            legalMovesList = legalMovesList.Distinct()?.ToList();
             return legalMovesList;
         }
 
