@@ -34,7 +34,15 @@
         public override bool Equals(object obj)
         {
             Move move = (Move) obj;
-            if (this.PositionIndex.Equals(move.PositionIndex) && this.Distance.Equals(move.Distance))
+
+            //A very specific condition whereby a Move is equal to another Move if starting position is the same, 
+            //and resulting position is out (but move distance could be different).
+            if (this.PositionIndex.Equals(move.PositionIndex) && this.MoveInteraction.Equals(move.MoveInteraction) &&
+                this.MoveInteraction == Logic.MoveInteraction.Out)
+            {
+                return true;
+            }
+            else if (this.PositionIndex.Equals(move.PositionIndex) && this.Distance.Equals(move.Distance))
             {
                 return true;
             }
