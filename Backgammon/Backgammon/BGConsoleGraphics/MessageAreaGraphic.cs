@@ -53,7 +53,7 @@ namespace BGConsoleGraphics
 
             while (!checkUserInput)
             {
-                Console.SetCursorPosition(0, 24);
+                Console.SetCursorPosition(0, 21);
                 string userInput = Console.ReadLine();
 
                 switch (userInput)
@@ -70,7 +70,7 @@ namespace BGConsoleGraphics
                     }
                     default:
                     {
-                        Console.WriteLine("Invalid input. Please choose y/n");
+                        Console.WriteLine("Invalid input. Please choose y/n"              );
                         break;
                     }
                 }

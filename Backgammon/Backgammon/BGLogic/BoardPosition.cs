@@ -165,26 +165,33 @@ namespace Backgammon
             {
                 if (currentPlayer == Checker.CheckerColor.Red)
                 {
+                    for (int i = checkerindex - 1; i >= 19; i--)                        
+                    {
+                        if (boardPosition.CountAtPosition(i) != 0)
+                        {
+                            if (boardPosition.ColorAtPosition(i) == Checker.CheckerColor.Red)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+                else if (currentPlayer == Checker.CheckerColor.Black)
+                {
                     for (int i = checkerindex + 1; i <= 6; i++)
                     {
-                        if ((i > checkerindex) && (boardPosition.CountAtPosition(i) != 0))
+                        if (boardPosition.CountAtPosition(i) != 0)
                         {
-                            return false;
+                            if (boardPosition.ColorAtPosition(i) == Checker.CheckerColor.Black)
+                            {
+                                return false;
+                            }
                         }
                     }
                 }
-                if (currentPlayer == Checker.CheckerColor.Black)
-                {
-                    for (int i = checkerindex - 1; i >= 19; i--)
-                    {
-                        if ((i < checkerindex) && (boardPosition.CountAtPosition(i) != 0))
-                        {
-                            return false;
-                        }
-                    }
-                }
+                return true;
             }
-            return true;
+            return false;
         }
     }
 }

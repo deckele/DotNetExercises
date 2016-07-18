@@ -35,7 +35,6 @@ namespace Backgammon
                     {
                         diceNumbers.Remove((-1) * legalMoves[userInput -1 ].Distance);
                     }
-
                     return legalMoves[userInput - 1];
                 }
                 else

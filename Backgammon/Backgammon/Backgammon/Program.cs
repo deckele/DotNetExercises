@@ -8,6 +8,7 @@ namespace Backgammon
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             var randomNumberGen = new Random();

@@ -77,14 +77,25 @@ namespace Backgammon
                             foreach (var dieNumber in adjustedDiceNumbers)
                             {
                                 //Gets legal moves if player is at goal and is hedding out of board bounds (going out).
-                                if (CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber) ==
-                                    MoveInteraction.Out)
+                                if (CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber) == MoveInteraction.Out)
                                 {
-                                    if (boardPosition.IsBiggestInGoal(currentPlayer,boardPosition, i) ||
-                                            (i + dieNumber == 0) || (i + dieNumber == 25))
+                                    if ((i + dieNumber == 0) || (i + dieNumber == 25))
                                     {
                                         legalMovesList.Add(new Move(i, dieNumber,
-                                        CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber)));
+                                            CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber)));
+                                    }
+                                    else if (boardPosition.IsBiggestInGoal(currentPlayer,boardPosition, i))
+                                    {
+                                        if ((currentPlayer == Checker.CheckerColor.Red) && (dieNumber > (25 - i)))
+                                        {
+                                            legalMovesList.Add(new Move(i, dieNumber,
+                                                CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber)));
+                                        }
+                                        else if ((currentPlayer == Checker.CheckerColor.Black) && ((-1) * dieNumber > i))
+                                        {
+                                            legalMovesList.Add(new Move(i, dieNumber,
+                                                CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber)));
+                                        }
                                     }
                                 }
                                 //All other legal moves (not jail and not going out).

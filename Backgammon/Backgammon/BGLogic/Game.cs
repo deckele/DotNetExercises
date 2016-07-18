@@ -50,7 +50,7 @@ namespace Backgammon
         {
             BoardPosition boardPosition = new BoardPosition();
             Logic logic = new Logic();
-            Console.SetWindowSize(100, 45);
+            Console.SetWindowSize(100, 42);
 
             //Main game Loop.
             while (!boardPosition.CheckWin())
@@ -92,10 +92,15 @@ namespace Backgammon
                         Dice.CurrentDiceNumbers.Clear();
                     }
                 }
-
+                //Checking if someone is winning
                 if (!boardPosition.CheckWin())
                 {
                     PassTurn();
+                }
+                //Displaying the board for the last time before ending game loop;
+                else
+                {
+                    GUIBoard.Display(boardPosition);
                 }
             }
         }
