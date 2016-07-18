@@ -12,21 +12,21 @@ namespace Backgammon
         static void Main(string[] args)
         {
             var randomNumberGen = new Random();
-            bool PlayAgain = true;
+            var playAgain = true;
 
             //Creating all objects with upcasting so Game class will have limited access (better encapsulation).
             IBoardDrawable guiBoard = new BoardGraphic();
             IDiceDrawable guiDice = new DiceGraphic();
             IMessageDrawable guiMessageArea = new MessageAreaGraphic();
 
-            while (PlayAgain)
+            while (playAgain)
             {
                 IPlayer redPlayer = new HumanPlayer();
                 IPlayer blackPlayer = new RandomCompPlayer(randomNumberGen);
 
                 Game backgammon = new Game(guiBoard, guiDice, guiMessageArea, redPlayer, blackPlayer, randomNumberGen);
                 backgammon.Run();
-                PlayAgain = backgammon.EndGame();
+                playAgain = backgammon.EndGame();
             }
         }
     }
