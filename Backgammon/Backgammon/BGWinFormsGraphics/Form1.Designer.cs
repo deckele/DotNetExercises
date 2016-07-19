@@ -93,19 +93,19 @@
             // newGameToolStripMenuItem
             // 
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
-            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.newGameToolStripMenuItem.Text = "New Game";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.loadToolStripMenuItem.Text = "Load";
             // 
             // redPlayerToolStripMenuItem
@@ -115,7 +115,7 @@
             this.randomComputerToolStripMenuItem,
             this.advancedComputerPlayerToolStripMenuItem});
             this.redPlayerToolStripMenuItem.Name = "redPlayerToolStripMenuItem";
-            this.redPlayerToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.redPlayerToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
             this.redPlayerToolStripMenuItem.Text = "Red Player";
             // 
             // humanPlayerToolStripMenuItem
@@ -144,7 +144,7 @@
             this.randomComputerPlayerToolStripMenuItem,
             this.advancedComputerPlayerToolStripMenuItem1});
             this.blackPlayerToolStripMenuItem.Name = "blackPlayerToolStripMenuItem";
-            this.blackPlayerToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.blackPlayerToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
             this.blackPlayerToolStripMenuItem.Text = "Black Player";
             // 
             // humanPlayerToolStripMenuItem1
@@ -168,15 +168,16 @@
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(125, 26);
             this.aboutToolStripMenuItem1.Text = "About";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BGWinFormsGraphics.Properties.Resources.BGBoard;
-            this.pictureBox1.Location = new System.Drawing.Point(2, 31);
+            this.pictureBox1.Location = new System.Drawing.Point(2, 32);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(722, 643);
+            this.pictureBox1.Size = new System.Drawing.Size(720, 641);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -185,9 +186,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 673);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip);
+            this.Controls.Add(this.pictureBox1);
             this.MainMenuStrip = this.menuStrip;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormGraphic";
             this.ShowIcon = false;
             this.Text = "Backgammon";
