@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LINQ4._1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var assemblyToQuarry = new AssemblyPublicInterfaceQuarry();
+            assemblyToQuarry.DisplaySortedList(typeof(string).Assembly);
+        }
+    }
+}
