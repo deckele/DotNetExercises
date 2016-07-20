@@ -9,7 +9,7 @@ namespace LINQ4._1
 {
     internal class AssemblyPublicInterfaceQuarry
     {
-        public IOrderedEnumerable<Type> DisplaySortedList(Assembly assemblyToQuarry)
+        public IOrderedEnumerable<Type> GetSortedList(Assembly assemblyToQuarry)
         {
             //Alternative code without LINQ syntax sugar:
             //var typsInAssembly = assemblyToQuarry.GetExportedTypes().Where(type => type.IsInterface);
