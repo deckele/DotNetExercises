@@ -11,7 +11,7 @@ namespace LINQ4._1
     {
         static void Main(string[] args)
         {
-            //LAB 4.1 (a)
+            //LAB 4.1 (1.a)
             var assemblyQuarryTool = new AssemblyPublicInterfaceQuarry();
             var msCoreLibAssembly = typeof(string).Assembly;
             var typsInAssembly = assemblyQuarryTool.GetSortedList(msCoreLibAssembly);
@@ -25,14 +25,13 @@ namespace LINQ4._1
                 Console.WriteLine($"Number of methods in public interface: {type.GetMethods().Count()}.");
             }
 
-            //LAB 4.1 (b)
+            //LAB 4.1 (1.b+C)
             var processDisplayerTool = new ProcessDisplayer();
             const int maxThreads = 4;
             var processesByPriority = processDisplayerTool.GetProcesses(maxThreads);
 
             Console.WriteLine();
             Console.WriteLine($"List of current system processes with less than {maxThreads} sorted by priority:");
-            Console.WriteLine();
 
             foreach (var priorityGroup in processesByPriority)
             {
@@ -44,6 +43,13 @@ namespace LINQ4._1
                     Console.WriteLine($"Process Name: {process.ProcessName}.  Process ID: {process.Id}.  Process Starting time: .  Process number of threads: {process.Threads.Count}.");
                 }
             }
+
+            //LAB 4.1 (1.D)
+            var threadCounterTool = new ThreadCounter();
+            Console.WriteLine();
+            Console.WriteLine($"Total number of threads in system:  {threadCounterTool.Count()}");
+
+            //Lab 4.1 (2)
         }
     }
 }
