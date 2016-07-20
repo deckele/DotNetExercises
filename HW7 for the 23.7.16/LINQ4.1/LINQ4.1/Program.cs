@@ -10,8 +10,20 @@ namespace LINQ4._1
     {
         static void Main(string[] args)
         {
+            //LAB 4.1 (a)
             var assemblyToQuarry = new AssemblyPublicInterfaceQuarry();
-            assemblyToQuarry.DisplaySortedList(typeof(string).Assembly);
+            var msCoreLibAssembly = typeof(string).Assembly;
+            var typsInAssembly = assemblyToQuarry.DisplaySortedList(msCoreLibAssembly);
+
+            Console.WriteLine($"List of public Interfaces and number of methods in each type for assembly- {msCoreLibAssembly}:");
+            Console.WriteLine();
+
+            foreach (var type in typsInAssembly)
+            {
+                Console.WriteLine(type);
+                Console.WriteLine($"Number of methods in public interface: {type.GetMethods().Count()}.");
+            }
+
         }
     }
 }

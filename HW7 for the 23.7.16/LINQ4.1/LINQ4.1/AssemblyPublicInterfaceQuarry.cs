@@ -9,7 +9,7 @@ namespace LINQ4._1
 {
     internal class AssemblyPublicInterfaceQuarry
     {
-        public void DisplaySortedList(Assembly assemblyToQuarry)
+        public IOrderedEnumerable<Type> DisplaySortedList(Assembly assemblyToQuarry)
         {
             //Alternative code without LINQ syntax sugar:
             //var typsInAssembly = assemblyToQuarry.GetExportedTypes().Where(type => type.IsInterface);
@@ -20,12 +20,7 @@ namespace LINQ4._1
                 orderby type.TypeHandle.ToString()
                 select type;
 
-            Console.WriteLine($"List of public Interfaces and number of methods in each type for assembly- {assemblyToQuarry}:");
-            foreach (var type in typsInAssembly)
-            {
-                Console.WriteLine(type);
-                Console.WriteLine($"Number of methods in public interface: {type.GetMethods().Count()}.");
-            }
+            return typsInAssembly;
         }
     }
 }
