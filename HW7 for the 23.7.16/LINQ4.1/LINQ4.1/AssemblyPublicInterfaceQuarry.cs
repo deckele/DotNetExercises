@@ -12,8 +12,8 @@ namespace LINQ4._1
         public IOrderedEnumerable<Type> GetSortedList(Assembly assemblyToQuarry)
         {
             //Alternative code without LINQ syntax sugar:
-            //var typsInAssembly = assemblyToQuarry.GetExportedTypes().Where(type => type.IsInterface);
-            //var typsInAssemblyList = typsInAssembly.OrderBy(type => type.TypeHandle.ToString()).ToList();
+            //var typsInAssembly = assemblyToQuarry.GetExportedTypes().Where(type => type.IsInterface)
+            //    .OrderBy(type => type.TypeHandle.ToString());
 
             var typsInAssembly = from type in assemblyToQuarry.GetExportedTypes()
                 where type.IsInterface

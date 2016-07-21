@@ -11,10 +11,14 @@ namespace LINQ4._1
         //Lab 4.1 (2)
         public static void CopyTo(this Object currentObject, Object otherObject)
         {
-            var x = from property in currentObject.GetType().GetProperties()
+            var otherObjectProperties = from property in otherObject.GetType().GetProperties()
+                where property.CanWrite
                 select property;
 
-
+            var currentObjectProperties = from property in currentObject.GetType().GetProperties()
+                where property.CanRead
+                where otherObjectProperties.Contains(property)
+                select property;
 
         }
     }
