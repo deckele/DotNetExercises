@@ -7,18 +7,31 @@ using System.Threading.Tasks;
 
 namespace LINQ4._1
 {
-    class ProcessDisplayer
+    internal class ProcessDisplayer
     {
         public IEnumerable<IGrouping<int, Process>> GetProcesses(int maxTreads)
         {
-            var processes = from process in Process.GetProcesses()
+            var processesQuery = from process in Process.GetProcesses()
                 where process.Threads.Count <= maxTreads
                 orderby process.Id
                 group process by process.BasePriority into priorityGroups
                 orderby priorityGroups.Key
                 select priorityGroups;
 
-            return processes;
+            return processesQuery;
+        }
+
+        public bool CanAccessTimeStart(Process process)
+        {
+            try
+            {
+                var startTime = process.StartTime;
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

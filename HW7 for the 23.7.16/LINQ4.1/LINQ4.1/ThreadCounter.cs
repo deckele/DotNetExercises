@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LINQ4._1
 {
-    class ThreadCounter
+    internal class ThreadCounter
     {
         private int _threadCount;
 

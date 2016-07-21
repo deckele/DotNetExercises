@@ -44,6 +44,7 @@ namespace Backgammon
             {
                 Turn = Checker.CheckerColor.Red;
             }
+            
         }
 
         public void Run()

@@ -43,11 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyPublicInterfaceQuarry.cs" />
+    <Compile Include="AssemblyPublicInterfaceQuery.cs" />
     <Compile Include="MyExtentionMethods.cs" />
     <Compile Include="ProcessDisplayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestClassForQ2N1.cs" />
+    <Compile Include="TestClassForQ2N2.cs" />
     <Compile Include="ThreadCounter.cs" />
   </ItemGroup>
   <ItemGroup>

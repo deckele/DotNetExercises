@@ -9,17 +9,29 @@ namespace LINQ4._1
     public static class MyExtentionMethods
     {
         //Lab 4.1 (2)
-        public static void CopyTo(this Object currentObject, Object otherObject)
+        public static void CopyTo(this object originalObject, object targetObject)
         {
-            var otherObjectProperties = from property in otherObject.GetType().GetProperties()
-                where property.CanWrite
-                select property;
+            if (targetObject == null)
+            {
+                return;
+            }
 
-            var currentObjectProperties = from property in currentObject.GetType().GetProperties()
-                where property.CanRead
-                where otherObjectProperties.Contains(property)
-                select property;
+            var propertiesQuery = from originalProperty in originalObject.GetType().GetProperties()
+                                  where originalProperty.CanRead
+                                  from targetProperty in targetObject.GetType().GetProperties()
+                                  where targetProperty.CanWrite
+                                  where (targetProperty.Name == originalProperty.Name) &&
+                                  (targetProperty.PropertyType == originalProperty.PropertyType)                                  
+                                  select new
+                                  {
+                                      original = originalProperty,
+                                      target = targetProperty
+                                  };
 
+            foreach (var property in propertiesQuery)
+            {
+                property.target.SetValue(targetObject, property.original.GetValue(originalObject));
+            }
         }
     }
 }
