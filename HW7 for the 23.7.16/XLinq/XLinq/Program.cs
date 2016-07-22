@@ -38,6 +38,8 @@ namespace XLinq
                                         new XAttribute("Name", parameters.Name),
                                         new XAttribute("Type", parameters.ParameterType)))))));
             xml.Save("PublicClassQueryInMsCoreLib.xml");
+
+            var xmlQuery = from a in xml.Descendants("")
         }
     }
 }
