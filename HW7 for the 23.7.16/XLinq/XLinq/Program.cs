@@ -39,7 +39,21 @@ namespace XLinq
                                         new XAttribute("Type", parameters.ParameterType)))))));
             xml.Save("PublicClassQueryInMsCoreLib.xml");
 
-            var xmlQuery = from a in xml.Descendants("")
+            //Lab 4.2 (a)
+            var xmlQuery = from typeWithNoProperty in xml.Descendants("Class")
+                where typeWithNoProperty.Element("Public_instance_properties").IsEmpty
+                orderby (string)typeWithNoProperty.Attribute("Name")
+                select typeWithNoProperty;
+
+            Console.WriteLine("Names of all types with no properties in \"PublicClassQueryInMsCoreLib.xml\":");
+            Console.WriteLine();
+            foreach (var typeWithNoProperty in xmlQuery)
+            {
+                Console.WriteLine(typeWithNoProperty.Attribute("Name"));
+            }
+
+            Console.WriteLine();
+            Console.WriteLine($"Ovrall {xmlQuery.Count()} types with no properties were found.");
         }
     }
 }
