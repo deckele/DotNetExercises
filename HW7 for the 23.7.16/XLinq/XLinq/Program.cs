@@ -21,12 +21,14 @@ namespace XLinq
                     new XElement("Public_instance_properties",
                         from publicInstanceProperty in
                             publicClass.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                        orderby publicInstanceProperty.Name
                         select new XElement("Property",
                             new XAttribute("Name", publicInstanceProperty.Name),
                             new XAttribute("Type", publicInstanceProperty.PropertyType))),
                         new XElement("Public_instance_methods",
                             from publicInstanceMethods in
                                 publicClass.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+                            orderby publicInstanceMethods.Name
                             select new XElement("Method",
                                 new XAttribute("Name", publicInstanceMethods.Name),
                                 new XAttribute("Return_type", publicInstanceMethods.ReturnType),

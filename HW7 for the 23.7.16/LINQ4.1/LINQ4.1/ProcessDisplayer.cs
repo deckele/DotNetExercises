@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,11 @@ namespace LINQ4._1
                 var startTime = process.StartTime;
                 return true;
             }
-            catch (Exception)
+            catch (Win32Exception)
+            {
+                return false;
+            }
+            catch (InvalidOperationException)
             {
                 return false;
             }
