@@ -70,9 +70,11 @@ namespace LINQ4._1
             Console.WriteLine();
             Console.WriteLine("Lab 4.1 (2):");
             Console.WriteLine();
-
+            
+            //Creating two objects from the same type for testing of extention method CopyTo()
             var testOriginalObject = new TestClassForQ2N1("Lachman", new List<int>() { 5000, 8000, 7000 }, 1.70, 86, true, "Sematary");
             var testTargetObject = new TestClassForQ2N1("Miley", new List<int>() { 15000, 18000, 17000 }, 1.50, 27, false, "HollyWood");
+            //Creating object of different type to test extention method CopyTo()
             var testTargetObject2 = new TestClassForQ2N2("Miley", new List<string>() { "15000", "18000", "17000" }, 1.50, 75, false, "HollyWood");
 
             Console.WriteLine();
