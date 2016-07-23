@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGLogic", "BGLogic\BGLogic.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGConsoleGraphics", "BGConsoleGraphics\BGConsoleGraphics.csproj", "{1F26717F-F1DD-4B2A-B9AB-FCF881319DB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BGWinFormsGraphics", "BGWinFormsGraphics\BGWinFormsGraphics.csproj", "{DC126617-E488-4AE6-B670-89262A53CF37}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{1F26717F-F1DD-4B2A-B9AB-FCF881319DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F26717F-F1DD-4B2A-B9AB-FCF881319DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F26717F-F1DD-4B2A-B9AB-FCF881319DB1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC126617-E488-4AE6-B670-89262A53CF37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC126617-E488-4AE6-B670-89262A53CF37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC126617-E488-4AE6-B670-89262A53CF37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC126617-E488-4AE6-B670-89262A53CF37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
