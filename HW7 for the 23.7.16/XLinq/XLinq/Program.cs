@@ -102,6 +102,7 @@ namespace XLinq
 
             foreach (var methodGroup in sortClassByMethodQuery)
             {
+                Console.WriteLine();
                 Console.WriteLine($"Number Of methods in classes: {methodGroup.Key}.");
                 Console.WriteLine();
 
