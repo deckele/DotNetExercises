@@ -35,7 +35,7 @@ namespace XLinq
                                                             select new XElement("Parameter",
                                                                 new XAttribute("Name", parameters.Name),
                                                                 new XAttribute("Type", parameters.ParameterType)))))));
-            //xml.Save("PublicClassQueryInMsCoreLib.xml");
+            xml.Save("PublicClassQueryInMsCoreLib.xml");
 
             //Lab 4.2 (a)
             Console.WriteLine("Lab 4.2 (a):");
@@ -89,7 +89,7 @@ namespace XLinq
                                             new XAttribute("Name", type.Attribute("Name").Value),
                                             new XAttribute("Property_Count", type.Descendants("Property").Count()),
                                             new XAttribute("Method_Count", type.Descendants("Method").Count())));
-            //xmlSorted.Save("SortedPublicClassQueryInMsCoreLib.xml");
+            xmlSorted.Save("SortedPublicClassQueryInMsCoreLib.xml");
 
             //Lab 4.2 (e)
             Console.WriteLine("Lab 4.2 (e):");
