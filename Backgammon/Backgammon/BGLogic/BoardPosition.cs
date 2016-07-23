@@ -19,47 +19,47 @@ namespace Backgammon
             //Red checkers initial positions
             for (var i = 0; i < 2; i++)
             {
-                PushChecker(Checker.CheckerColor.Red, 1);
+                PushChecker(CheckerColor.Red, 1);
             }
             for (var i = 0; i < 5; i++)
             {
-                PushChecker(Checker.CheckerColor.Red, 12);
+                PushChecker(CheckerColor.Red, 12);
             }
             for (var i = 0; i < 3; i++)
             {
-                PushChecker(Checker.CheckerColor.Red, 17);
+                PushChecker(CheckerColor.Red, 17);
             }
             for (var i = 0; i < 5; i++)
             {
-                PushChecker(Checker.CheckerColor.Red, 19);
+                PushChecker(CheckerColor.Red, 19);
             }
             //Black checkers initial positions
             for (var i = 0; i < 2; i++)
             {
-                PushChecker(Checker.CheckerColor.Black, 24);
+                PushChecker(CheckerColor.Black, 24);
             }
             for (var i = 0; i < 5; i++)
             {
-                PushChecker(Checker.CheckerColor.Black, 13);
+                PushChecker(CheckerColor.Black, 13);
             }
             for (var i = 0; i < 3; i++)
             {
-                PushChecker(Checker.CheckerColor.Black, 8);
+                PushChecker(CheckerColor.Black, 8);
             }
             for (var i = 0; i < 5; i++)
             {
-                PushChecker(Checker.CheckerColor.Black, 6);
+                PushChecker(CheckerColor.Black, 6);
             }
 
         }
 
         public List<Stack<Checker>> CurrentPosition {get; private set; }
 
-        public Checker.CheckerColor ColorAtPosition(int i)
+        public CheckerColor ColorAtPosition(int i)
         {
             if (CountAtPosition(i) == 0)
             {
-                return Checker.CheckerColor.None;
+                return CheckerColor.None;
             }
             else
             {
@@ -73,7 +73,7 @@ namespace Backgammon
         }
 
         //Method creates new checker in new position using the Stack.Push method.
-        public void PushChecker(Checker.CheckerColor color, int positionIndex)
+        public void PushChecker(CheckerColor color, int positionIndex)
         {
             CurrentPosition[positionIndex].Push(new Checker(color));
         }
@@ -90,7 +90,7 @@ namespace Backgammon
             {
                 if (CountAtPosition(i) != 0)
                 {
-                    if (ColorAtPosition(i) == Checker.CheckerColor.Red)
+                    if (ColorAtPosition(i) == CheckerColor.Red)
                     {
                         redCounter += CountAtPosition(i);
                     }
@@ -116,7 +116,7 @@ namespace Backgammon
             {
                 if (CountAtPosition(i) != 0)
                 {
-                    if (ColorAtPosition(i) == Checker.CheckerColor.Black)
+                    if (ColorAtPosition(i) == CheckerColor.Black)
                     {
                         blackCounter += CountAtPosition(i);
                     }
@@ -130,9 +130,9 @@ namespace Backgammon
             return CountAtPosition(27) == 15;
         }
 
-        public bool CurrentPlayerIsInJail(Checker.CheckerColor currentPlayer)
+        public bool CurrentPlayerIsInJail(CheckerColor currentPlayer)
         {
-            if (currentPlayer == Checker.CheckerColor.Red)
+            if (currentPlayer == CheckerColor.Red)
             {
                 return RedIsInJail();
             }
@@ -142,9 +142,9 @@ namespace Backgammon
             }
         }
 
-        public bool CurrentPlayerIsInGoal(Checker.CheckerColor currentPlayer)
+        public bool CurrentPlayerIsInGoal(CheckerColor currentPlayer)
         {
-            if (currentPlayer == Checker.CheckerColor.Red)
+            if (currentPlayer == CheckerColor.Red)
             {
                 return RedIsInGoal();
             }
@@ -159,30 +159,30 @@ namespace Backgammon
             return (RedIsWin() || BlackIsWin());
         }
 
-        public bool IsBiggestInGoal(Checker.CheckerColor currentPlayer, BoardPosition boardPosition, int checkerindex)
+        public bool IsBiggestInGoal(CheckerColor currentPlayer, BoardPosition boardPosition, int checkerindex)
         {
             if (CurrentPlayerIsInGoal(currentPlayer))
             {
-                if (currentPlayer == Checker.CheckerColor.Red)
+                if (currentPlayer == CheckerColor.Red)
                 {
                     for (int i = checkerindex - 1; i >= 19; i--)                        
                     {
                         if (boardPosition.CountAtPosition(i) != 0)
                         {
-                            if (boardPosition.ColorAtPosition(i) == Checker.CheckerColor.Red)
+                            if (boardPosition.ColorAtPosition(i) == CheckerColor.Red)
                             {
                                 return false;
                             }
                         }
                     }
                 }
-                else if (currentPlayer == Checker.CheckerColor.Black)
+                else if (currentPlayer == CheckerColor.Black)
                 {
                     for (int i = checkerindex + 1; i <= 6; i++)
                     {
                         if (boardPosition.CountAtPosition(i) != 0)
                         {
-                            if (boardPosition.ColorAtPosition(i) == Checker.CheckerColor.Black)
+                            if (boardPosition.ColorAtPosition(i) == CheckerColor.Black)
                             {
                                 return false;
                             }

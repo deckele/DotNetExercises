@@ -16,21 +16,21 @@ namespace Backgammon
 
         public Random RandomMoveGen { get; private set; }
 
-        public Dice Roll(Checker.CheckerColor currentPlayer, Random randomDieGen)
+        public Dice Roll(CheckerColor currentPlayer, Random randomDieGen)
         {
             return new Dice(currentPlayer, randomDieGen);
         }
 
-        public Move ChooseMove(List<int> diceNumbers, List<Move> legalMoves, Checker.CheckerColor currentPlayer)
+        public Move ChooseMove(List<int> diceNumbers, List<Move> legalMoves, CheckerColor currentPlayer)
         {
             Thread.Sleep(2500);
             int userInput = RandomMoveGen.Next(0, legalMoves.Count);
             //removing used die number from list
-            if (currentPlayer == Checker.CheckerColor.Red)
+            if (currentPlayer == CheckerColor.Red)
             {
                 diceNumbers.Remove(legalMoves[userInput].Distance);
             }
-            else if (currentPlayer == Checker.CheckerColor.Black)
+            else if (currentPlayer == CheckerColor.Black)
             {
                 diceNumbers.Remove((-1) * legalMoves[userInput].Distance);
             }

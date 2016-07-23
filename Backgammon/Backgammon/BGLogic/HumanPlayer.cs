@@ -8,12 +8,12 @@ namespace Backgammon
 {
     public class HumanPlayer : IPlayer
     {
-        public Dice Roll(Checker.CheckerColor currentPlayer, Random randomDieGen)
+        public Dice Roll(CheckerColor currentPlayer, Random randomDieGen)
         {
             return new Dice(currentPlayer, randomDieGen);
         }
 
-        public Move ChooseMove(List<int> diceNumbers, List<Move> legalMoves, Checker.CheckerColor currentPlayer)
+        public Move ChooseMove(List<int> diceNumbers, List<Move> legalMoves, CheckerColor currentPlayer)
         {
             int userInput = 0;
             bool checkUserInput = false;
@@ -27,11 +27,11 @@ namespace Backgammon
                 if (checkUserInput && (userInput > 0) && (userInput <= legalMoves.Count))
                 {
                     //removing used die number from list
-                    if (currentPlayer == Checker.CheckerColor.Red)
+                    if (currentPlayer == CheckerColor.Red)
                     {
                         diceNumbers.Remove(legalMoves[userInput - 1].Distance);
                     }
-                    else if (currentPlayer == Checker.CheckerColor.Black)
+                    else if (currentPlayer == CheckerColor.Black)
                     {
                         diceNumbers.Remove((-1) * legalMoves[userInput -1 ].Distance);
                     }

@@ -10,7 +10,7 @@ namespace BGConsoleGraphics
 {
     public class MessageAreaGraphic : IMessageDrawable
     {
-        public void Display(Logic logic, BoardPosition boardPosition, Dice dice, Checker.CheckerColor currentPlayer)
+        public void Display(Logic logic, BoardPosition boardPosition, Dice dice, CheckerColor currentPlayer)
         {
             //Clear previouse moves or messages.
             Console.SetCursorPosition(0, 22);
@@ -42,7 +42,7 @@ namespace BGConsoleGraphics
             }
         }
 
-        public bool DisplayWinner(Checker.CheckerColor currentPlayer)
+        public bool DisplayWinner(CheckerColor currentPlayer)
         {
             Console.SetCursorPosition(0, 22);
             Console.WriteLine($"{currentPlayer} Wins!!! :)                        ");

@@ -8,7 +8,7 @@ namespace Backgammon
 {
     public class Logic
     {
-        public List<Move> ListPossibleMoves(BoardPosition boardPosition, Dice dice, Checker.CheckerColor currentPlayer)
+        public List<Move> ListPossibleMoves(BoardPosition boardPosition, Dice dice, CheckerColor currentPlayer)
         {
             var legalMovesList = new List<Move>();
 
@@ -25,7 +25,7 @@ namespace Backgammon
                     adjustedDiceNumbers.Add(diceNumber);
                 }
             }
-            if (currentPlayer == Checker.CheckerColor.Black)
+            if (currentPlayer == CheckerColor.Black)
             {
                 if (dice.IsDouble)
                 {
@@ -47,7 +47,7 @@ namespace Backgammon
                 foreach (var dieNumber in adjustedDiceNumbers)
                 {
 
-                    if (currentPlayer == Checker.CheckerColor.Red)
+                    if (currentPlayer == CheckerColor.Red)
                     {
                         if (CheckMoveInteraction(boardPosition, currentPlayer, dieNumber) != MoveInteraction.Illegal)
                         {
@@ -55,7 +55,7 @@ namespace Backgammon
                             CheckMoveInteraction(boardPosition, currentPlayer, dieNumber)));
                         }
                     }
-                    else if (currentPlayer == Checker.CheckerColor.Black)
+                    else if (currentPlayer == CheckerColor.Black)
                     {
                         if (CheckMoveInteraction(boardPosition, currentPlayer, 25 + dieNumber) != MoveInteraction.Illegal)
                         {
@@ -86,12 +86,12 @@ namespace Backgammon
                                     }
                                     else if (boardPosition.IsBiggestInGoal(currentPlayer,boardPosition, i))
                                     {
-                                        if ((currentPlayer == Checker.CheckerColor.Red) && (dieNumber > (25 - i)))
+                                        if ((currentPlayer == CheckerColor.Red) && (dieNumber > (25 - i)))
                                         {
                                             legalMovesList.Add(new Move(i, dieNumber,
                                                 CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber)));
                                         }
-                                        else if ((currentPlayer == Checker.CheckerColor.Black) && ((-1) * dieNumber > i))
+                                        else if ((currentPlayer == CheckerColor.Black) && ((-1) * dieNumber > i))
                                         {
                                             legalMovesList.Add(new Move(i, dieNumber,
                                                 CheckMoveInteraction(boardPosition, currentPlayer, i + dieNumber)));
@@ -116,7 +116,7 @@ namespace Backgammon
         }
 
         //Gets a Move and applies it over the board.
-        public void ApplyMove(BoardPosition boardPosition, Move move, Checker.CheckerColor currentPlayer)
+        public void ApplyMove(BoardPosition boardPosition, Move move, CheckerColor currentPlayer)
         {
             switch (move.MoveInteraction)
             {
@@ -133,26 +133,26 @@ namespace Backgammon
                     boardPosition.CurrentPosition[move.PositionIndex].Pop();
                     boardPosition.CurrentPosition[move.PositionIndex + move.Distance].Pop();
                     boardPosition.PushChecker(currentPlayer, move.PositionIndex + move.Distance);
-                    if (currentPlayer == Checker.CheckerColor.Red)
+                    if (currentPlayer == CheckerColor.Red)
                     {
-                        boardPosition.PushChecker(Checker.CheckerColor.Black, 25);
+                        boardPosition.PushChecker(CheckerColor.Black, 25);
                     }
-                    else if (currentPlayer == Checker.CheckerColor.Black)
+                    else if (currentPlayer == CheckerColor.Black)
                     {
-                        boardPosition.PushChecker(Checker.CheckerColor.Red, 0);
+                        boardPosition.PushChecker(CheckerColor.Red, 0);
                     }
                     break;
                 }
                 case MoveInteraction.Out:
                 {
                     boardPosition.CurrentPosition[move.PositionIndex].Pop();
-                    if (currentPlayer == Checker.CheckerColor.Red)
+                    if (currentPlayer == CheckerColor.Red)
                     {
-                        boardPosition.PushChecker(Checker.CheckerColor.Red, 26);
+                        boardPosition.PushChecker(CheckerColor.Red, 26);
                     }
-                    else if (currentPlayer == Checker.CheckerColor.Black)
+                    else if (currentPlayer == CheckerColor.Black)
                     {
-                        boardPosition.PushChecker(Checker.CheckerColor.Black, 27);
+                        boardPosition.PushChecker(CheckerColor.Black, 27);
                     }
                     break;
                 }
@@ -169,7 +169,7 @@ namespace Backgammon
             Illegal
         }
 
-        public MoveInteraction CheckMoveInteraction(BoardPosition boardPosition, Checker.CheckerColor currentPlayer, int targetIndex)
+        public MoveInteraction CheckMoveInteraction(BoardPosition boardPosition, CheckerColor currentPlayer, int targetIndex)
         {
             //If player is in jail.
             if (boardPosition.CurrentPlayerIsInJail(currentPlayer))

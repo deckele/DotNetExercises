@@ -9,7 +9,7 @@ namespace BGConsoleGraphics
 {
     public class DiceGraphic : IDiceDrawable
     {
-        public void Display(Dice dice, Checker.CheckerColor color)
+        public void Display(Dice dice, CheckerColor color)
         {
             Console.SetCursorPosition(0, 16);
             for (int i = 0; i < 6; i++)
@@ -30,9 +30,9 @@ namespace BGConsoleGraphics
             //DisplayDie(dice.CurrentDiceNumbers[1], dice, color);
         }
 
-        private void DisplayDie(int dieNumber, Dice dice, Checker.CheckerColor color)
+        private void DisplayDie(int dieNumber, Dice dice, CheckerColor color)
         {
-            if (color == Checker.CheckerColor.Red)
+            if (color == CheckerColor.Red)
             {
                 Console.BackgroundColor = ConsoleColor.Red;
                 Console.ForegroundColor = ConsoleColor.Black;

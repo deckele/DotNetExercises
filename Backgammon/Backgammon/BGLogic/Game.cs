@@ -9,6 +9,8 @@ namespace Backgammon
 {
     public class Game
     {
+        public EventHandler<EventArgs> OnTurnEnded;
+
         public Game(IBoardDrawable guiBoard, IDiceDrawable guiDice, IMessageDrawable guiMessageArea, 
             IPlayer redPlayer, IPlayer blackPlayer, Random randomNumberGen)
         {
@@ -20,12 +22,12 @@ namespace Backgammon
 
             RandomNumberGen = randomNumberGen;
 
-            Turn = Checker.CheckerColor.Red;
+            Turn = CheckerColor.Red;
         }
 
         private Random RandomNumberGen { get; }
 
-        public Checker.CheckerColor Turn { get; private set; }
+        public CheckerColor Turn { get; private set; }
         public Dice Dice { get; private set; }
 
         private IBoardDrawable GUIBoard { get; }
@@ -36,13 +38,13 @@ namespace Backgammon
 
         private void PassTurn()
         {
-            if (Turn == Checker.CheckerColor.Red)
+            if (Turn == CheckerColor.Red)
             {
-                Turn = Checker.CheckerColor.Black;
+                Turn = CheckerColor.Black;
             }
-            else if (Turn == Checker.CheckerColor.Black)
+            else if (Turn == CheckerColor.Black)
             {
-                Turn = Checker.CheckerColor.Red;
+                Turn = CheckerColor.Red;
             }
             
         }
@@ -57,11 +59,11 @@ namespace Backgammon
             while (!boardPosition.CheckWin())
             {
                 //Current player rolls dice
-                if (Turn == Checker.CheckerColor.Red)
+                if (Turn == CheckerColor.Red)
                 {
                     Dice = RedPlayer.Roll(Turn, RandomNumberGen);
                 }
-                else if (Turn == Checker.CheckerColor.Black)
+                else if (Turn == CheckerColor.Black)
                 {
                     Dice = BlackPlayer.Roll(Turn, RandomNumberGen);
                 }
@@ -74,13 +76,13 @@ namespace Backgammon
 
                     if (logic.ListPossibleMoves(boardPosition, Dice, Turn).Count > 0)
                     {
-                        if (Turn == Checker.CheckerColor.Red)
+                        if (Turn == CheckerColor.Red)
                         {
                             Move userInput = RedPlayer.ChooseMove(Dice.CurrentDiceNumbers,
                                 logic.ListPossibleMoves(boardPosition, Dice, Turn), Turn);
                             logic.ApplyMove(boardPosition, userInput, Turn);
                         }
-                        else if (Turn == Checker.CheckerColor.Black)
+                        else if (Turn == CheckerColor.Black)
                         {
                             Move userInput = BlackPlayer.ChooseMove(Dice.CurrentDiceNumbers,
                                 logic.ListPossibleMoves(boardPosition, Dice, Turn), Turn);

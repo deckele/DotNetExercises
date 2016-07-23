@@ -18,7 +18,7 @@ namespace Backgammon
                 Red,
             }
 
-            public Die(Checker.CheckerColor color, Random randomDieGen)
+            public Die(CheckerColor color, Random randomDieGen)
             {
                 CurrentDieColor = (DieColor)color;
                 DieNumber = randomDieGen.Next(1, 7);
@@ -28,7 +28,7 @@ namespace Backgammon
             public int DieNumber { get; private set; }
         }
 
-        public Dice(Checker.CheckerColor color, Random randomDieGen)
+        public Dice(CheckerColor color, Random randomDieGen)
         {
             CurrentDice = new List<Die>();
             CurrentDice.Add(new Die(color, randomDieGen));

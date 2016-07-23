@@ -9,7 +9,7 @@ namespace Backgammon
 {
     public interface IPlayer
     {
-        Dice Roll(Checker.CheckerColor currentPlayer, Random randomDieGen);
-        Move ChooseMove(List<int> diceNumbersList, List<Move> legalMoves, Checker.CheckerColor currentPlayer);
+        Dice Roll(CheckerColor currentPlayer, Random randomDieGen);
+        Move ChooseMove(List<int> diceNumbersList, List<Move> legalMoves, CheckerColor currentPlayer);
     }
 }

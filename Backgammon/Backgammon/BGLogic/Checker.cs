@@ -2,15 +2,15 @@
 
 namespace Backgammon
 {
+    public enum CheckerColor
+    {
+        Black,
+        Red,
+        None
+    }
+
     public class Checker
     {
-        public enum CheckerColor
-        {
-            Black,
-            Red,
-            None
-        }
-
         public Checker(CheckerColor checkerColor)
         {
             Color = checkerColor;
