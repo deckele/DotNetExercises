@@ -21,7 +21,7 @@ namespace Backgammon
             return new Dice(currentPlayer, randomDieGen);
         }
 
-        public Move ChooseMove(List<int> diceNumbers, List<Move> legalMoves, CheckerColor currentPlayer)
+        public Move ChooseMove(List<int> diceNumbers, List<Move> legalMoves, CheckerColor currentPlayer, Game backgammon)
         {
             Thread.Sleep(2500);
             int userInput = RandomMoveGen.Next(0, legalMoves.Count);

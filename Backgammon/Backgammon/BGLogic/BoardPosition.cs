@@ -16,7 +16,7 @@ namespace Backgammon
                 CurrentPosition.Add(new Stack<Checker>(15));
             }
 
-            //Red checkers initial positions
+            ////Red checkers initial positions
             for (var i = 0; i < 2; i++)
             {
                 PushChecker(CheckerColor.Red, 1);
@@ -50,7 +50,13 @@ namespace Backgammon
             {
                 PushChecker(CheckerColor.Black, 6);
             }
-
+            
+            //For testing red in winning position, enable this code and block other red positions:
+            //for (var i = 0; i < 14; i++)
+            //{
+            //    PushChecker(CheckerColor.Red, 26);
+            //}
+            //PushChecker(CheckerColor.Red, 23);
         }
 
         public List<Stack<Checker>> CurrentPosition {get; private set; }

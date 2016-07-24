@@ -1,4 +1,6 @@
-﻿namespace Backgammon
+﻿using System.Collections.Generic;
+
+namespace Backgammon
 {
     public struct Move
     {

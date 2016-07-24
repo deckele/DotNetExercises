@@ -13,7 +13,6 @@ namespace Backgammon
             var randomNumberGen = new Random();
             var playAgain = true;
 
-            //Creating all objects with upcasting so Game class will have limited access (better encapsulation).
             IBoardDrawable guiBoard = new BoardGraphic();
             IDiceDrawable guiDice = new DiceGraphic();
             IMessageDrawable guiMessageArea = new MessageAreaGraphic();
@@ -23,9 +22,20 @@ namespace Backgammon
                 IPlayer redPlayer = new HumanPlayer();
                 IPlayer blackPlayer = new RandomCompPlayer(randomNumberGen);
 
-                Game backgammon = new Game(guiBoard, guiDice, guiMessageArea, redPlayer, blackPlayer, randomNumberGen);
+                Game backgammon = new Game(redPlayer, blackPlayer, randomNumberGen);
+
+                //Subscribing all graphic functions to game event StateChanged and game event GameEnded.
+                backgammon.StateChanged += guiBoard.Display;
+                backgammon.StateChanged += guiDice.Display;
+                backgammon.StateChanged += guiMessageArea.Display;
+                backgammon.GameEnded += guiBoard.Display;
+                backgammon.GameEnded += guiMessageArea.DisplayWinner;
+                //Subscribing to other return type delegates for getting user input.
+                backgammon.PlayAgainUserInput += guiMessageArea.PlayAgainUserInput;
+                backgammon.MoveChoiceUserInput += guiMessageArea.ChooseMoveUserInput;
+
                 backgammon.Run();
-                playAgain = backgammon.EndGame();
+                playAgain = backgammon.PlayAgainCheck();
             }
         }
     }

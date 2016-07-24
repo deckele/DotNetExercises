@@ -8,6 +8,6 @@ namespace Backgammon
 {
     public interface IDiceDrawable
     {
-        void Display(Dice dice, CheckerColor color);
+        void Display(object obj, StateChangedEventArgs args);
     }
 }

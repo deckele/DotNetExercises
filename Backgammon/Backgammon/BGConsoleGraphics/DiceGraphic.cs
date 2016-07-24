@@ -9,7 +9,7 @@ namespace BGConsoleGraphics
 {
     public class DiceGraphic : IDiceDrawable
     {
-        public void Display(Dice dice, CheckerColor color)
+        public void Display(object obj, StateChangedEventArgs args)
         {
             Console.SetCursorPosition(0, 16);
             for (int i = 0; i < 6; i++)
@@ -17,17 +17,12 @@ namespace BGConsoleGraphics
                 Console.WriteLine("                                                  ");
             }
 
-            for (int i = dice.CurrentDiceNumbers.Count; i > 0; i--)
+            for (int i = args.Dice.CurrentDiceNumbers.Count; i > 0; i--)
             {
                 Console.SetCursorPosition(0, 16);
-                DisplayDie(dice.CurrentDiceNumbers[i - 1], dice, color);
+                DisplayDie(args.Dice.CurrentDiceNumbers[i - 1], args.Dice, args.CheckerColor);
                 Console.MoveBufferArea(0, 16, 9, 5, (i - 1) * 12, 16);
             }
-            //Console.SetCursorPosition(0, 16);
-            //DisplayDie(dice.CurrentDiceNumbers[0], dice, color);
-            //Console.MoveBufferArea(0,16,9,5,12,16);
-            //Console.SetCursorPosition(0, 16);
-            //DisplayDie(dice.CurrentDiceNumbers[1], dice, color);
         }
 
         private void DisplayDie(int dieNumber, Dice dice, CheckerColor color)

@@ -8,6 +8,6 @@ namespace Backgammon
 {
     public interface IBoardDrawable
     {
-        void Display(BoardPosition boardPosition);
+        void Display(object obj, StateChangedEventArgs args);
     }
 }

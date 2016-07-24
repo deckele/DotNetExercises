@@ -9,14 +9,23 @@ namespace Backgammon
 {
     public class Game
     {
-        public EventHandler<EventArgs> OnTurnEnded;
+        public EventHandler<StateChangedEventArgs> StateChanged;
+        public EventHandler<StateChangedEventArgs> GameEnded;
+        public Func<bool> PlayAgainUserInput;
+        public Func<List<int>, List<Move>, CheckerColor, Move> MoveChoiceUserInput;
 
-        public Game(IBoardDrawable guiBoard, IDiceDrawable guiDice, IMessageDrawable guiMessageArea, 
-            IPlayer redPlayer, IPlayer blackPlayer, Random randomNumberGen)
+        protected virtual void OnStateChanged(BoardPosition boardPosition, Dice dice, CheckerColor checkerColor, Logic logic)
         {
-            GUIBoard = guiBoard;
-            GUIDice = guiDice;
-            GUIMessageArea = guiMessageArea;
+            StateChanged?.Invoke(this, new StateChangedEventArgs(boardPosition, dice, checkerColor, logic));
+        }
+
+        protected virtual void OnGameEnded(BoardPosition boardPosition, Dice dice, CheckerColor checkerColor, Logic logic)
+        {
+            GameEnded?.Invoke(this, new StateChangedEventArgs(boardPosition, dice, checkerColor, logic));
+        }
+
+        public Game(IPlayer redPlayer, IPlayer blackPlayer, Random randomNumberGen)
+        {
             RedPlayer = redPlayer;
             BlackPlayer = blackPlayer;
 
@@ -30,9 +39,6 @@ namespace Backgammon
         public CheckerColor Turn { get; private set; }
         public Dice Dice { get; private set; }
 
-        private IBoardDrawable GUIBoard { get; }
-        private IDiceDrawable GUIDice { get; }
-        private IMessageDrawable GUIMessageArea { get; }
         private IPlayer RedPlayer { get; }
         private IPlayer BlackPlayer { get; }
 
@@ -46,7 +52,6 @@ namespace Backgammon
             {
                 Turn = CheckerColor.Red;
             }
-            
         }
 
         public void Run()
@@ -68,24 +73,22 @@ namespace Backgammon
                     Dice = BlackPlayer.Roll(Turn, RandomNumberGen);
                 }
 
-                while (Dice.CurrentDiceNumbers.Count > 0)
+                while ((Dice.CurrentDiceNumbers.Count > 0) && !boardPosition.CheckWin())
                 {
-                    GUIBoard.Display(boardPosition);
-                    GUIDice.Display(Dice, Turn);
-                    GUIMessageArea.Display(logic, boardPosition, Dice, Turn);
+                    OnStateChanged(boardPosition, Dice, Turn, logic);
 
-                    if (logic.ListPossibleMoves(boardPosition, Dice, Turn).Count > 0)
+                    if (logic.ListPossibleMoves(boardPosition, Dice, Turn).Count > 0 )
                     {
                         if (Turn == CheckerColor.Red)
                         {
                             Move userInput = RedPlayer.ChooseMove(Dice.CurrentDiceNumbers,
-                                logic.ListPossibleMoves(boardPosition, Dice, Turn), Turn);
+                                logic.ListPossibleMoves(boardPosition, Dice, Turn), Turn, this);
                             logic.ApplyMove(boardPosition, userInput, Turn);
                         }
                         else if (Turn == CheckerColor.Black)
                         {
                             Move userInput = BlackPlayer.ChooseMove(Dice.CurrentDiceNumbers,
-                                logic.ListPossibleMoves(boardPosition, Dice, Turn), Turn);
+                                logic.ListPossibleMoves(boardPosition, Dice, Turn), Turn, this);
                             logic.ApplyMove(boardPosition, userInput, Turn);
                         }
                     }
@@ -100,17 +103,14 @@ namespace Backgammon
                 {
                     PassTurn();
                 }
-                //Displaying the board for the last time before ending game loop;
-                else
-                {
-                    GUIBoard.Display(boardPosition);
-                }
             }
+
+            OnGameEnded(boardPosition, Dice, Turn, logic);
         }
 
-        public bool EndGame()
+        public bool PlayAgainCheck()
         {
-            return GUIMessageArea.DisplayWinner(Turn);
+            return PlayAgainUserInput.Invoke();
         }
     }
 }

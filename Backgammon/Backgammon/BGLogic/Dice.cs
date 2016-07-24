@@ -57,6 +57,10 @@ namespace Backgammon
         {
             get
             {
+                if (CurrentDice.Count == 0)
+                {
+                    return false;
+                }
                 if (CurrentDice[0].DieNumber == CurrentDice[1].DieNumber)
                 {
                     return true;
