@@ -82,7 +82,7 @@ namespace BGConsoleGraphics
             {
                 if (checkerStack.Count > row)
                 {
-                    Console.Write($" {checkerStack.Peek().ToString()} ");
+                    Console.Write($" {checkerStack.Peek()} ");
                 }
                 else
                 {
@@ -93,22 +93,22 @@ namespace BGConsoleGraphics
             {
                 if (checkerStack.Count > row + 5)
                 {
-                    Console.Write($"{checkerStack.Peek().ToString()}{checkerStack.Peek().ToString()} ");
+                    Console.Write($"{checkerStack.Peek()}{checkerStack.Peek()} ");
                 }
                 else
                 {
-                    Console.Write($" {checkerStack.Peek().ToString()} ");
+                    Console.Write($" {checkerStack.Peek()} ");
                 }
             }
             else if (checkerStack.Count <= 15)
             {
                 if (checkerStack.Count > row + 10)
                 {
-                    Console.Write($"{checkerStack.Peek().ToString()}{checkerStack.Peek().ToString()}{checkerStack.Peek().ToString()}");
+                    Console.Write($"{checkerStack.Peek()}{checkerStack.Peek()}{checkerStack.Peek()}");
                 }
                 else
                 {
-                    Console.Write($" {checkerStack.Peek().ToString()}{checkerStack.Peek().ToString()}");
+                    Console.Write($" {checkerStack.Peek()}{checkerStack.Peek()}");
                 }
             }
             Console.ForegroundColor = ConsoleColor.Gray;
