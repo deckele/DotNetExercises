@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.FromTexBox = new System.Windows.Forms.TextBox();
+            this.FromTextBox = new System.Windows.Forms.TextBox();
             this.ResultListBox = new System.Windows.Forms.ListBox();
             this.ToLabel = new System.Windows.Forms.Label();
             this.FromLabel = new System.Windows.Forms.Label();
@@ -37,12 +37,12 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // FromTexBox
+            // FromTextBox
             // 
-            this.FromTexBox.Location = new System.Drawing.Point(60, 10);
-            this.FromTexBox.Name = "FromTexBox";
-            this.FromTexBox.Size = new System.Drawing.Size(143, 22);
-            this.FromTexBox.TabIndex = 1;
+            this.FromTextBox.Location = new System.Drawing.Point(60, 10);
+            this.FromTextBox.Name = "FromTextBox";
+            this.FromTextBox.Size = new System.Drawing.Size(143, 22);
+            this.FromTextBox.TabIndex = 1;
             // 
             // ResultListBox
             // 
@@ -111,7 +111,7 @@
             this.Controls.Add(this.FromLabel);
             this.Controls.Add(this.ToLabel);
             this.Controls.Add(this.ResultListBox);
-            this.Controls.Add(this.FromTexBox);
+            this.Controls.Add(this.FromTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -125,7 +125,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox FromTexBox;
+        private System.Windows.Forms.TextBox FromTextBox;
         private System.Windows.Forms.ListBox ResultListBox;
         private System.Windows.Forms.Label ToLabel;
         private System.Windows.Forms.Label FromLabel;
