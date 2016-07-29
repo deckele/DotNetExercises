@@ -4,3 +4,6 @@ C:\Users\D\Documents\Visual Studio 2015\Projects\Primes\Primes\bin\Debug\Primes.
 C:\Users\D\Documents\Visual Studio 2015\Projects\Primes\Primes\obj\Debug\Primes.csprojResolveAssemblyReference.cache
 C:\Users\D\Documents\Visual Studio 2015\Projects\Primes\Primes\obj\Debug\Primes.exe
 C:\Users\D\Documents\Visual Studio 2015\Projects\Primes\Primes\obj\Debug\Primes.pdb
+D:\Emanuel\Documents\Coding\GitHub\Repository\DotNetExercises\HW2 for the 16.6.16\Primes\Primes\bin\Debug\Primes.exe.config
+D:\Emanuel\Documents\Coding\GitHub\Repository\DotNetExercises\HW2 for the 16.6.16\Primes\Primes\obj\Debug\Primes.exe
+D:\Emanuel\Documents\Coding\GitHub\Repository\DotNetExercises\HW2 for the 16.6.16\Primes\Primes\obj\Debug\Primes.pdb

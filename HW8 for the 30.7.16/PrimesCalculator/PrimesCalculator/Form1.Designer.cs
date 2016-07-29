@@ -41,7 +41,7 @@
             // 
             this.FromTexBox.Location = new System.Drawing.Point(60, 10);
             this.FromTexBox.Name = "FromTexBox";
-            this.FromTexBox.Size = new System.Drawing.Size(124, 22);
+            this.FromTexBox.Size = new System.Drawing.Size(143, 22);
             this.FromTexBox.TabIndex = 1;
             // 
             // ResultListBox
@@ -49,7 +49,9 @@
             this.ResultListBox.FormattingEnabled = true;
             this.ResultListBox.ItemHeight = 16;
             this.ResultListBox.Location = new System.Drawing.Point(12, 95);
+            this.ResultListBox.MultiColumn = true;
             this.ResultListBox.Name = "ResultListBox";
+            this.ResultListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.ResultListBox.Size = new System.Drawing.Size(345, 340);
             this.ResultListBox.TabIndex = 3;
             this.ResultListBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
@@ -76,21 +78,22 @@
             // 
             this.ToTextBox.Location = new System.Drawing.Point(60, 47);
             this.ToTextBox.Name = "ToTextBox";
-            this.ToTextBox.Size = new System.Drawing.Size(124, 22);
+            this.ToTextBox.Size = new System.Drawing.Size(143, 22);
             this.ToTextBox.TabIndex = 8;
             // 
             // CalculateButton
             // 
-            this.CalculateButton.Location = new System.Drawing.Point(238, 6);
+            this.CalculateButton.Location = new System.Drawing.Point(276, 6);
             this.CalculateButton.Name = "CalculateButton";
             this.CalculateButton.Size = new System.Drawing.Size(81, 31);
             this.CalculateButton.TabIndex = 9;
             this.CalculateButton.Text = "Calculate";
             this.CalculateButton.UseVisualStyleBackColor = true;
+            this.CalculateButton.Click += new System.EventHandler(this.CalculateButton_Click);
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(238, 42);
+            this.CancelButton.Location = new System.Drawing.Point(276, 42);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(81, 30);
             this.CancelButton.TabIndex = 10;
@@ -109,6 +112,7 @@
             this.Controls.Add(this.ToLabel);
             this.Controls.Add(this.ResultListBox);
             this.Controls.Add(this.FromTexBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PrimesCalculator";

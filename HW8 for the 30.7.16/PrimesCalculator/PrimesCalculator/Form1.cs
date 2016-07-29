@@ -31,5 +31,11 @@ namespace PrimesCalculator
         {
 
         }
+
+        private void CalculateButton_Click(object sender, EventArgs e)
+        {
+            var resultingPrimes = PrimeFinder.CalcPrimes(int.Parse(FromTexBox.Text), int.Parse(ToTextBox.Text));
+            ResultListBox.DataSource = resultingPrimes;
+        }
     }
 }
