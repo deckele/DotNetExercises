@@ -13,7 +13,7 @@ namespace PrimesCalculator
 {
     public partial class PrimesCalculator : Form
     {
-        private readonly CancellationTokenSource _source = new CancellationTokenSource();
+        private CancellationTokenSource _source = new CancellationTokenSource();
 
         public PrimesCalculator()
         {
@@ -42,16 +42,22 @@ namespace PrimesCalculator
                 if ((FromTextBox.Text != "") && (ToTextBox.Text != ""))
                 {
                     CalculateButton.Enabled = false;
+                    CancelButton.Enabled = true;
+
                     var resultingPrimes = PrimeFinder.CalcPrimes(int.Parse(FromTextBox.Text), int.Parse(ToTextBox.Text), token.WaitHandle);
                     ResultListBox.DataSource = resultingPrimes;
+
+                    CancelButton.Enabled = false;
                     CalculateButton.Enabled = true;
+
+                    _source = new CancellationTokenSource();
                 }
             }, token);
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            
+            _source.Cancel();
         }
 
         private void FromTextBox_TextChanged(object sender, EventArgs e)

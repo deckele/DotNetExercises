@@ -22,9 +22,12 @@ namespace PrimesCalculator
             var primeList = new ArrayList();
             for (var i = Math.Min(input1, input2); i <= Math.Max(input1, input2); i++)
             {
-                if (waitHandle.WaitOne(0))
+                if (waitHandle != null)
                 {
-                    break;
+                    if (waitHandle.WaitOne(0))
+                    {
+                        break;
+                    }
                 }
 
                 if (PrimeFinder.CheckPrime(i))
