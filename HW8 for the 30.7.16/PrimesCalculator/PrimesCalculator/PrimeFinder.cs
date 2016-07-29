@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PrimesCalculator
@@ -14,18 +15,24 @@ namespace PrimesCalculator
         /// </summary>
         /// <param name="input1"></param>
         /// <param name="input2"></param>
+        /// <param name="waitHandle"></param>
         /// <returns></returns>
-        public static int[] CalcPrimes(int input1, int input2)
+        public static int[] CalcPrimes(int input1, int input2, WaitHandle waitHandle)
         {
-            ArrayList primeList = new ArrayList();
-            for (int i = Math.Min(input1, input2); i <= Math.Max(input1, input2); i++)
+            var primeList = new ArrayList();
+            for (var i = Math.Min(input1, input2); i <= Math.Max(input1, input2); i++)
             {
+                if (waitHandle.WaitOne(0))
+                {
+                    break;
+                }
+
                 if (PrimeFinder.CheckPrime(i))
                 {
                     primeList.Add(i);
                 }
             }
-            int[] primeArray = new int[primeList.Count];
+            var primeArray = new int[primeList.Count];
             primeList.CopyTo(primeArray);
             return primeArray;
         }
@@ -49,7 +56,7 @@ namespace PrimesCalculator
                 }
             }
 
-            for (int i = 3; (i * i) <= number; i += 2)
+            for (var i = 3; (i * i) <= number; i += 2)
             {
                 if ((number % i) == 0)
                 {
