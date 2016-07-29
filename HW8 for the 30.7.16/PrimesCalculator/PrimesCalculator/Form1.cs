@@ -19,6 +19,8 @@ namespace PrimesCalculator
         {
             InitializeComponent();
 
+            CancelButton.Enabled = false;
+
             this.FromTextBox.TextChanged += FromTextBox_TextChanged;
             this.ToTextBox.TextChanged += ToTextBox_TextChanged;
         }
@@ -47,7 +49,6 @@ namespace PrimesCalculator
                     var resultingPrimes = PrimeFinder.CalcPrimes(int.Parse(FromTextBox.Text), int.Parse(ToTextBox.Text), token.WaitHandle);
                     ResultListBox.DataSource = resultingPrimes;
 
-                    CancelButton.Enabled = false;
                     CalculateButton.Enabled = true;
 
                     _source = new CancellationTokenSource();
@@ -57,6 +58,7 @@ namespace PrimesCalculator
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            CancelButton.Enabled = false;
             _source.Cancel();
         }
 
