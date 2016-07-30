@@ -13,7 +13,7 @@ namespace PrimesCalculator
 {
     public partial class PrimesCalculator : Form
     {
-        private CancellationTokenSource _source = new CancellationTokenSource();
+        private CancellationTokenSource _source;
 
         public PrimesCalculator()
         {
@@ -37,6 +37,7 @@ namespace PrimesCalculator
 
         private void CalculateButton_Click(object sender, EventArgs e)
         {
+            _source = new CancellationTokenSource();
             CancellationToken token = _source.Token;
 
             Task.Run(() =>
@@ -49,9 +50,10 @@ namespace PrimesCalculator
                     var resultingPrimes = PrimeFinder.CalcPrimes(int.Parse(FromTextBox.Text), int.Parse(ToTextBox.Text), token.WaitHandle);
                     ResultListBox.DataSource = resultingPrimes;
 
+                    CancelButton.Enabled = false;
                     CalculateButton.Enabled = true;
 
-                    _source = new CancellationTokenSource();
+                    _source.Dispose();
                 }
             }, token);
         }
@@ -62,6 +64,7 @@ namespace PrimesCalculator
             _source.Cancel();
         }
 
+        //2 Events that don't let users input anything but numbers ("FromTextBox_TextChanged" and "ToTextBox_TextChanged").
         private void FromTextBox_TextChanged(object sender, EventArgs e)
         {
             bool enteredLetter = false;
