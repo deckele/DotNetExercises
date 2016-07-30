@@ -60,7 +60,7 @@ namespace Queues
             }
             finally
             {
-               _lock.ExitReadLock(); 
+                _lock.ExitReadLock();
             }
         }
     }
