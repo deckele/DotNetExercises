@@ -1,4 +1,4 @@
-Without Mutex, running the app twice through the following exception: 
+Without Mutex, running the app twice threw the following exception: 
 
 Unhandled Exception: System.IO.IOException: The process cannot access the file 
 'C:\Temp\data.txt' because it is being used by another process.
