@@ -1,6 +1,0 @@
-c:\users\d\documents\visual studio 2015\Projects\Q2.3_GuessingGame\Q2.3_GuessingGame\bin\Debug\Q2.3_GuessingGame.exe.config
-c:\users\d\documents\visual studio 2015\Projects\Q2.3_GuessingGame\Q2.3_GuessingGame\bin\Debug\Q2.3_GuessingGame.exe
-c:\users\d\documents\visual studio 2015\Projects\Q2.3_GuessingGame\Q2.3_GuessingGame\bin\Debug\Q2.3_GuessingGame.pdb
-c:\users\d\documents\visual studio 2015\Projects\Q2.3_GuessingGame\Q2.3_GuessingGame\obj\Debug\Q2.3_GuessingGame.csprojResolveAssemblyReference.cache
-c:\users\d\documents\visual studio 2015\Projects\Q2.3_GuessingGame\Q2.3_GuessingGame\obj\Debug\Q2.3_GuessingGame.exe
-c:\users\d\documents\visual studio 2015\Projects\Q2.3_GuessingGame\Q2.3_GuessingGame\obj\Debug\Q2.3_GuessingGame.pdb

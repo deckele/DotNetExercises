@@ -1,8 +1,0 @@
-c:\users\d\documents\visual studio 2015\Projects\Q3.1_Accounts\Q3.1_Accounts\bin\Debug\Q3.1_Accounts.exe.config
-c:\users\d\documents\visual studio 2015\Projects\Q3.1_Accounts\Q3.1_Accounts\bin\Debug\Q3.1_Accounts.exe
-c:\users\d\documents\visual studio 2015\Projects\Q3.1_Accounts\Q3.1_Accounts\bin\Debug\Q3.1_Accounts.pdb
-c:\users\d\documents\visual studio 2015\Projects\Q3.1_Accounts\Q3.1_Accounts\bin\Debug\AccountsLib.dll
-c:\users\d\documents\visual studio 2015\Projects\Q3.1_Accounts\Q3.1_Accounts\bin\Debug\AccountsLib.pdb
-c:\users\d\documents\visual studio 2015\Projects\Q3.1_Accounts\Q3.1_Accounts\obj\Debug\Q3.1_Accounts.csprojResolveAssemblyReference.cache
-c:\users\d\documents\visual studio 2015\Projects\Q3.1_Accounts\Q3.1_Accounts\obj\Debug\Q3.1_Accounts.exe
-c:\users\d\documents\visual studio 2015\Projects\Q3.1_Accounts\Q3.1_Accounts\obj\Debug\Q3.1_Accounts.pdb

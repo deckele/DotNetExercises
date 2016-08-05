@@ -1,8 +1,0 @@
-C:\Users\decke\Documents\Visual Studio 2015\Projects\Q3.1_Account\Main_Account\bin\Debug\Main_Account.exe.config
-C:\Users\decke\Documents\Visual Studio 2015\Projects\Q3.1_Account\Main_Account\bin\Debug\Main_Account.exe
-C:\Users\decke\Documents\Visual Studio 2015\Projects\Q3.1_Account\Main_Account\bin\Debug\Main_Account.pdb
-C:\Users\decke\Documents\Visual Studio 2015\Projects\Q3.1_Account\Main_Account\bin\Debug\AccountsLib.dll
-C:\Users\decke\Documents\Visual Studio 2015\Projects\Q3.1_Account\Main_Account\bin\Debug\AccountsLib.pdb
-C:\Users\decke\Documents\Visual Studio 2015\Projects\Q3.1_Account\Main_Account\obj\Debug\Main_Account.csprojResolveAssemblyReference.cache
-C:\Users\decke\Documents\Visual Studio 2015\Projects\Q3.1_Account\Main_Account\obj\Debug\Main_Account.exe
-C:\Users\decke\Documents\Visual Studio 2015\Projects\Q3.1_Account\Main_Account\obj\Debug\Main_Account.pdb

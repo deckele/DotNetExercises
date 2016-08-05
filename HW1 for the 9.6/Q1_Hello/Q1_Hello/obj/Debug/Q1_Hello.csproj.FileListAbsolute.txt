@@ -1,6 +1,0 @@
-c:\users\d\documents\visual studio 2015\Projects\Q1_Hello\Q1_Hello\bin\Debug\Q1_Hello.exe.config
-c:\users\d\documents\visual studio 2015\Projects\Q1_Hello\Q1_Hello\bin\Debug\Q1_Hello.exe
-c:\users\d\documents\visual studio 2015\Projects\Q1_Hello\Q1_Hello\bin\Debug\Q1_Hello.pdb
-c:\users\d\documents\visual studio 2015\Projects\Q1_Hello\Q1_Hello\obj\Debug\Q1_Hello.csprojResolveAssemblyReference.cache
-c:\users\d\documents\visual studio 2015\Projects\Q1_Hello\Q1_Hello\obj\Debug\Q1_Hello.exe
-c:\users\d\documents\visual studio 2015\Projects\Q1_Hello\Q1_Hello\obj\Debug\Q1_Hello.pdb

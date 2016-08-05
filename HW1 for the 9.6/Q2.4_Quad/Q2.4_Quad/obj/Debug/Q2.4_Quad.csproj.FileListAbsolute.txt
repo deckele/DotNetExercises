@@ -1,6 +1,0 @@
-c:\users\d\documents\visual studio 2015\Projects\Q2.4_Quad\Q2.4_Quad\bin\Debug\Q2.4_Quad.exe.config
-C:\Users\D\Documents\Visual Studio 2015\Projects\Q2.4_Quad\Q2.4_Quad\bin\Debug\Q2.4_Quad.exe
-C:\Users\D\Documents\Visual Studio 2015\Projects\Q2.4_Quad\Q2.4_Quad\bin\Debug\Q2.4_Quad.pdb
-C:\Users\D\Documents\Visual Studio 2015\Projects\Q2.4_Quad\Q2.4_Quad\obj\Debug\Q2.4_Quad.csprojResolveAssemblyReference.cache
-C:\Users\D\Documents\Visual Studio 2015\Projects\Q2.4_Quad\Q2.4_Quad\obj\Debug\Q2.4_Quad.exe
-C:\Users\D\Documents\Visual Studio 2015\Projects\Q2.4_Quad\Q2.4_Quad\obj\Debug\Q2.4_Quad.pdb
