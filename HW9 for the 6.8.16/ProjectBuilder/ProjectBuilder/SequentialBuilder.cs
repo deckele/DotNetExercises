@@ -20,8 +20,8 @@ namespace ProjectBuilder
             var project6 = Task.Factory.ContinueWhenAll(new[] { project3, project4 },
                 previousProjects => { Console.WriteLine("Project 6 built."); Thread.Sleep(1000); });
             var project7 = Task.Factory.ContinueWhenAll(new[] { project5, project6 },
-                previousProjects => { Console.WriteLine("Project 7 built."); Thread.Sleep(1000); });
-            var project8 = project5.ContinueWith(previousProject => { Console.WriteLine("Project 8 built."); Thread.Sleep(1000); });
+                previousProjects => { Console.WriteLine("Project 7 built.");});
+            var project8 = project5.ContinueWith(previousProject => { Console.WriteLine("Project 8 built.");});
 
             project1.Start();
             project2.Start();
