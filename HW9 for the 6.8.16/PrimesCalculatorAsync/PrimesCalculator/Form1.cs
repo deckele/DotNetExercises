@@ -45,7 +45,7 @@ namespace PrimesCalculator
                     var saveLocation = string.Format(SaveLocationTextBox.Text+".txt");
                     using (var writer = new StreamWriter(saveLocation, true))
                     {
-                        writer.WriteLine($"Calculation done on: {DateTime.Now}. Number of primes in range: {countPrimes}.");
+                        writer.WriteLine($"Calculation done on: {DateTime.Now}. Number of primes in range {FromTextBox.Text} to {ToTextBox.Text}: {countPrimes}.");
                     }
                     SaveLocationTextBox.Text = string.Format($"Calculation saved to file: \"{saveLocation}\"");
                 }
