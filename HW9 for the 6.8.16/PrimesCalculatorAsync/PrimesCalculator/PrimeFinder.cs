@@ -11,13 +11,13 @@ namespace PrimesCalculator
     internal class PrimeFinder
     {
         /// <summary>
-        /// Returns an integer array of all prime numbers between input 1 and input 2 of user.
+        /// Returns an integer counting the number of prime numbers between input 1 and input 2 of user.
         /// </summary>
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <param name="waitHandle"></param>
         /// <returns></returns>
-        public static int[] CalcPrimes(int input1, int input2, WaitHandle waitHandle)
+        public static int CountPrimes(int input1, int input2, WaitHandle waitHandle)
         {
             var primeList = new ArrayList();
             for (var i = Math.Min(input1, input2); i <= Math.Max(input1, input2); i++)
@@ -35,9 +35,20 @@ namespace PrimesCalculator
                     primeList.Add(i);
                 }
             }
-            var primeArray = new int[primeList.Count];
-            primeList.CopyTo(primeArray);
-            return primeArray;
+
+            return primeList.Count;
+        }
+
+        /// <summary>
+        /// Returns an integer counting the number of prime numbers between input 1 and input 2 of user (Asynchronous method).
+        /// </summary>
+        /// <param name="input1"></param>
+        /// <param name="input2"></param>
+        /// <param name="waitHandle"></param>
+        /// <returns></returns>
+        public static async Task<int> CountPrimesAsync(int input1, int input2, WaitHandle waitHandle)
+        {
+            return await Task.Run(() => CountPrimes(input1, input2, waitHandle));
         }
 
         /// <summary>

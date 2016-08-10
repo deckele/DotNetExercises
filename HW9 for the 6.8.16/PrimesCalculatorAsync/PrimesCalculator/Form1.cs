@@ -25,37 +25,25 @@ namespace PrimesCalculator
             this.ToTextBox.TextChanged += ToTextBox_TextChanged;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CalculateButton_Click(object sender, EventArgs e)
+        private async void CalculateButton_Click(object sender, EventArgs e)
         {
             _source = new CancellationTokenSource();
             CancellationToken token = _source.Token;
 
-            Task.Run(() =>
+            if ((FromTextBox.Text != "") && (ToTextBox.Text != ""))
             {
-                if ((FromTextBox.Text != "") && (ToTextBox.Text != ""))
-                {
-                    CalculateButton.Enabled = false;
-                    CancelButton.Enabled = true;
+                CalculateButton.Enabled = false;
+                CancelButton.Enabled = true;
 
-                    var resultingPrimes = PrimeFinder.CalcPrimes(int.Parse(FromTextBox.Text), int.Parse(ToTextBox.Text), token.WaitHandle);
-                    ResultListBox.DataSource = resultingPrimes;
+                var countPrimes = await PrimeFinder.CountPrimesAsync(int.Parse(FromTextBox.Text), int.Parse(ToTextBox.Text),
+                        token.WaitHandle);
+                ResultListBox.DataSource = new[] { countPrimes };
 
-                    CancelButton.Enabled = false;
-                    CalculateButton.Enabled = true;
+                CancelButton.Enabled = false;
+                CalculateButton.Enabled = true;
 
-                    _source.Dispose();
-                }
-            }, token);
+                _source.Dispose();
+            }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

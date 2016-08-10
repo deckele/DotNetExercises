@@ -54,7 +54,6 @@
             this.ResultListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.ResultListBox.Size = new System.Drawing.Size(345, 340);
             this.ResultListBox.TabIndex = 3;
-            this.ResultListBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // ToLabel
             // 
@@ -119,7 +118,6 @@
             this.Name = "PrimesCalculator";
             this.ShowIcon = false;
             this.Text = "PrimesCalculator";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
