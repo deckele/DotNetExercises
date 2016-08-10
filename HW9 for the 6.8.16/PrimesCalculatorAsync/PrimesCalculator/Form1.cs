@@ -42,7 +42,7 @@ namespace PrimesCalculator
 
                 if (SaveLocationTextBox.Text != "")
                 {
-                    var saveLocation = SaveLocationTextBox.Text;
+                    var saveLocation = string.Format(SaveLocationTextBox.Text+".txt");
                     using (var writer = new StreamWriter(saveLocation, true))
                     {
                         writer.WriteLine($"Calculation done on: {DateTime.Now}. Number of primes in range: {countPrimes}.");
