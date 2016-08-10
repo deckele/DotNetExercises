@@ -40,7 +40,7 @@ namespace PrimesCalculator
                         token.WaitHandle);
                 CountLabel.Text = string.Format($"Number of primes in range: {countPrimes}.");
 
-                using (StreamWriter writer = new StreamWriter("MyPrimesHistory.txt", true))
+                using (var writer = new StreamWriter("MyPrimesHistory.txt", true))
                 {
                     writer.WriteLine($"Calculation done on: {DateTime.Now}. Number of primes in range: {countPrimes}.");
                 }
