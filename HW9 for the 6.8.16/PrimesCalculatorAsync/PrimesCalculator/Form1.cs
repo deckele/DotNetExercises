@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -38,6 +39,12 @@ namespace PrimesCalculator
                 var countPrimes = await PrimeFinder.CountPrimesAsync(int.Parse(FromTextBox.Text), int.Parse(ToTextBox.Text),
                         token.WaitHandle);
                 CountLabel.Text = string.Format($"Number of primes in range: {countPrimes}.");
+
+                using (StreamWriter writer = new StreamWriter("MyPrimesHistory.txt", true))
+                {
+                    writer.WriteLine($"Calculation done on: {DateTime.Now}. Number of primes in range: {countPrimes}.");
+                }
+
                 ResultListBox.DataSource = new[] { countPrimes };
 
                 CancelButton.Enabled = false;
