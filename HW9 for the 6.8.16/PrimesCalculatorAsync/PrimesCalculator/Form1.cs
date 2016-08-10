@@ -37,6 +37,7 @@ namespace PrimesCalculator
 
                 var countPrimes = await PrimeFinder.CountPrimesAsync(int.Parse(FromTextBox.Text), int.Parse(ToTextBox.Text),
                         token.WaitHandle);
+                CountLabel.Text = string.Format($"Number of primes in range: {countPrimes}.");
                 ResultListBox.DataSource = new[] { countPrimes };
 
                 CancelButton.Enabled = false;

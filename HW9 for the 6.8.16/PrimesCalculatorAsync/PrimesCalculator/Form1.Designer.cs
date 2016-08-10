@@ -35,6 +35,7 @@
             this.ToTextBox = new System.Windows.Forms.TextBox();
             this.CalculateButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.CountLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // FromTextBox
@@ -48,11 +49,11 @@
             // 
             this.ResultListBox.FormattingEnabled = true;
             this.ResultListBox.ItemHeight = 16;
-            this.ResultListBox.Location = new System.Drawing.Point(12, 95);
+            this.ResultListBox.Location = new System.Drawing.Point(12, 127);
             this.ResultListBox.MultiColumn = true;
             this.ResultListBox.Name = "ResultListBox";
             this.ResultListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.ResultListBox.Size = new System.Drawing.Size(345, 340);
+            this.ResultListBox.Size = new System.Drawing.Size(345, 308);
             this.ResultListBox.TabIndex = 3;
             // 
             // ToLabel
@@ -100,11 +101,21 @@
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // CountLabel
+            // 
+            this.CountLabel.AutoSize = true;
+            this.CountLabel.Location = new System.Drawing.Point(12, 94);
+            this.CountLabel.Name = "CountLabel";
+            this.CountLabel.Size = new System.Drawing.Size(180, 17);
+            this.CountLabel.TabIndex = 11;
+            this.CountLabel.Text = "Number of primes in range:";
+            // 
             // PrimesCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(369, 444);
+            this.Controls.Add(this.CountLabel);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.CalculateButton);
             this.Controls.Add(this.ToTextBox);
@@ -131,6 +142,7 @@
         private System.Windows.Forms.TextBox ToTextBox;
         private System.Windows.Forms.Button CalculateButton;
         private new System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Label CountLabel;
     }
 }
 
