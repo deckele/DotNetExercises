@@ -40,18 +40,22 @@ namespace PrimesCalculator
                         token.WaitHandle);
                 CountLabel.Text = string.Format($"Number of primes in range: {countPrimes}.");
 
-                using (var writer = new StreamWriter("MyPrimesHistory.txt", true))
+                if (SaveLocationTextBox.Text != "")
                 {
-                    writer.WriteLine($"Calculation done on: {DateTime.Now}. Number of primes in range: {countPrimes}.");
+                    var saveLocation = SaveLocationTextBox.Text;
+                    using (var writer = new StreamWriter(saveLocation, true))
+                    {
+                        writer.WriteLine($"Calculation done on: {DateTime.Now}. Number of primes in range: {countPrimes}.");
+                    }
+                    SaveLocationTextBox.Text = string.Format($"Calculation saved to file: \"{saveLocation}\"");
                 }
-
-                SaveLocationTextBox.Text = string.Format($"Calculation saved to file: \"MyPrimesHistory.txt\"");
 
                 CancelButton.Enabled = false;
                 CalculateButton.Enabled = true;
 
                 _source.Dispose();
             }
+
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

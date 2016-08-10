@@ -103,7 +103,6 @@
             // 
             this.SaveLocationTextBox.Location = new System.Drawing.Point(12, 127);
             this.SaveLocationTextBox.Name = "SaveLocationTextBox";
-            this.SaveLocationTextBox.ReadOnly = true;
             this.SaveLocationTextBox.Size = new System.Drawing.Size(345, 22);
             this.SaveLocationTextBox.TabIndex = 12;
             // 
