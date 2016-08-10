@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.FromTextBox = new System.Windows.Forms.TextBox();
-            this.ResultListBox = new System.Windows.Forms.ListBox();
             this.ToLabel = new System.Windows.Forms.Label();
             this.FromLabel = new System.Windows.Forms.Label();
             this.ToTextBox = new System.Windows.Forms.TextBox();
             this.CalculateButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.CountLabel = new System.Windows.Forms.Label();
+            this.SaveLocationTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // FromTextBox
@@ -44,17 +44,6 @@
             this.FromTextBox.Name = "FromTextBox";
             this.FromTextBox.Size = new System.Drawing.Size(143, 22);
             this.FromTextBox.TabIndex = 1;
-            // 
-            // ResultListBox
-            // 
-            this.ResultListBox.FormattingEnabled = true;
-            this.ResultListBox.ItemHeight = 16;
-            this.ResultListBox.Location = new System.Drawing.Point(12, 127);
-            this.ResultListBox.MultiColumn = true;
-            this.ResultListBox.Name = "ResultListBox";
-            this.ResultListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.ResultListBox.Size = new System.Drawing.Size(345, 308);
-            this.ResultListBox.TabIndex = 3;
             // 
             // ToLabel
             // 
@@ -110,18 +99,25 @@
             this.CountLabel.TabIndex = 11;
             this.CountLabel.Text = "Number of primes in range:";
             // 
+            // SaveLocationTextBox
+            // 
+            this.SaveLocationTextBox.Location = new System.Drawing.Point(12, 127);
+            this.SaveLocationTextBox.Name = "SaveLocationTextBox";
+            this.SaveLocationTextBox.Size = new System.Drawing.Size(345, 22);
+            this.SaveLocationTextBox.TabIndex = 12;
+            // 
             // PrimesCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 444);
+            this.ClientSize = new System.Drawing.Size(369, 167);
+            this.Controls.Add(this.SaveLocationTextBox);
             this.Controls.Add(this.CountLabel);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.CalculateButton);
             this.Controls.Add(this.ToTextBox);
             this.Controls.Add(this.FromLabel);
             this.Controls.Add(this.ToLabel);
-            this.Controls.Add(this.ResultListBox);
             this.Controls.Add(this.FromTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -136,13 +132,13 @@
 
         #endregion
         private System.Windows.Forms.TextBox FromTextBox;
-        private System.Windows.Forms.ListBox ResultListBox;
         private System.Windows.Forms.Label ToLabel;
         private System.Windows.Forms.Label FromLabel;
         private System.Windows.Forms.TextBox ToTextBox;
         private System.Windows.Forms.Button CalculateButton;
         private new System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Label CountLabel;
+        private System.Windows.Forms.TextBox SaveLocationTextBox;
     }
 }
 

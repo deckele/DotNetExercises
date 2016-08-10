@@ -45,7 +45,7 @@ namespace PrimesCalculator
                     writer.WriteLine($"Calculation done on: {DateTime.Now}. Number of primes in range: {countPrimes}.");
                 }
 
-                ResultListBox.DataSource = new[] { countPrimes };
+                SaveLocationTextBox.Text = string.Format($"Calculation saved to file MyPrimesHistory.txt");
 
                 CancelButton.Enabled = false;
                 CalculateButton.Enabled = true;
