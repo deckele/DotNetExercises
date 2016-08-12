@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Jobs
 {
-    static class NativeJob
+    public static class NativeJob
     {
         [DllImport("kernel32")]
         public static extern IntPtr CreateJobObject(IntPtr sa, string name);
@@ -25,24 +25,46 @@ namespace Jobs
 
     public class Job : IDisposable
     {
-        private IntPtr _hJob;
-        private List<Process> _processes;
-
-        public Job(string name)
+        private readonly IntPtr _hJob;
+        private readonly List<Process> _processes;
+        private readonly long _sizeInByte;
+        public Job(string name, long sizeInByte)
         {
             _hJob = NativeJob.CreateJobObject(IntPtr.Zero, name);
             _processes = new List<Process>();
-
+            _sizeInByte = sizeInByte;
             if (_hJob == IntPtr.Zero)
             {
                 throw new InvalidOperationException();
             }
+
+            GC.AddMemoryPressure(_sizeInByte);
+            Console.WriteLine("Job was created.");
+            Console.WriteLine("Memory: " + GC.GetTotalMemory(false));
+        }
+
+        ~Job()
+        {
+            GC.RemoveMemoryPressure(_sizeInByte);
+            Console.WriteLine("Job was released.");
+            Console.WriteLine("Memory: " + GC.GetTotalMemory(false));
         }
 
         public Job()
-            : this(null)
+            : this(null, 0)
         {
         }
+
+        public Job(long sizeInByte)
+            : this(null, sizeInByte)
+        {
+        }
+
+        public Job(string name)
+            : this(name, 0)
+        {
+        }
+
 
         protected void AddProcessToJob(IntPtr hProcess)
         {
@@ -54,7 +76,10 @@ namespace Jobs
 
         private void CheckIfDisposed()
         {
-            throw new NotImplementedException();
+            if (disposedValue)
+            {
+                throw new ObjectDisposedException("Object already disposed...");
+            }
         }
 
         public void AddProcessToJob(int pid)
@@ -83,6 +108,11 @@ namespace Jobs
             {
                 if (disposing)
                 {
+                    foreach (var process in _processes)
+                    {
+                        process.Dispose();
+                    }
+                    NativeJob.CloseHandle(_hJob);
                     // TODO: dispose managed state (managed objects).
                 }
 
@@ -105,7 +135,7 @@ namespace Jobs
             // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(true);
             // TODO: uncomment the following line if the finalizer is overridden above.
-            // GC.SuppressFinalize(this);
+            GC.SuppressFinalize(this);
         }
         #endregion
 
