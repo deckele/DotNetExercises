@@ -10,12 +10,12 @@ namespace ProjectBuilder
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Building projects asynchronously:");
+            Console.WriteLine("Building projects concurrently:");
             var concurrentBuilder = new ConcurrentBuilder();
             concurrentBuilder.Build();
 
             Console.WriteLine();
-            Console.WriteLine("Building projects synchronously:");
+            Console.WriteLine("Building projects sequentially:");
             var sequentialBuilder = new SequentialBuilder();
             sequentialBuilder.Build();
         }

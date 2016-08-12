@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,19 @@ namespace CustomAwaiter
             var task2 = Task.Run(async () =>
             {
                 Console.WriteLine("Started awaiting on process until closed." + DateTime.Now);
-                var process = Process.Start("mspaint");
-                if (process != null)
+                try
                 {
-                    await process;
+                    var process = Process.Start("mspaint");
+                    if (process != null)
+                    {
+                        await process;
+                    }
                 }
+                catch (Win32Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
                 Console.WriteLine("Process closed. " + DateTime.Now);
             });
 
