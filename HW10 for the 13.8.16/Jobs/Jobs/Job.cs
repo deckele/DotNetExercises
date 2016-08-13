@@ -28,6 +28,7 @@ namespace Jobs
         private readonly IntPtr _hJob;
         private readonly List<Process> _processes;
         private readonly long _sizeInByte;
+
         public Job(string name, long sizeInByte)
         {
             _hJob = NativeJob.CreateJobObject(IntPtr.Zero, name);
@@ -37,17 +38,6 @@ namespace Jobs
             {
                 throw new InvalidOperationException();
             }
-
-            GC.AddMemoryPressure(_sizeInByte);
-            Console.WriteLine("Job was created.");
-            Console.WriteLine("Memory: " + GC.GetTotalMemory(false));
-        }
-
-        ~Job()
-        {
-            GC.RemoveMemoryPressure(_sizeInByte);
-            Console.WriteLine("Job was released.");
-            Console.WriteLine("Memory: " + GC.GetTotalMemory(false));
         }
 
         public Job()
@@ -65,20 +55,19 @@ namespace Jobs
         {
         }
 
-
         protected void AddProcessToJob(IntPtr hProcess)
         {
             CheckIfDisposed();
 
             if (!NativeJob.AssignProcessToJobObject(_hJob, hProcess))
-                throw new InvalidOperationException("Failed to add process to job");
+                throw new InvalidOperationException("Failed to add process to job.");
         }
 
         private void CheckIfDisposed()
         {
-            if (disposedValue)
+            if (_disposed)
             {
-                throw new ObjectDisposedException("Object already disposed...");
+                throw new ObjectDisposedException("Error: Object already disposed.");
             }
         }
 
@@ -99,45 +88,36 @@ namespace Jobs
             NativeJob.TerminateJobObject(_hJob, 0);
         }
 
-        #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
+        private bool _disposed = false; //To detect redundant calls
+
+        // Implementing the disposable pattern.
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~Job()
+        {
+            GC.RemoveMemoryPressure(_sizeInByte);
+            Console.WriteLine("Job was released.");
+            Console.WriteLine("Memory: " + GC.GetTotalMemory(false));
+            Dispose(false);
+        }
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (_disposed) return;
+
+            if (disposing)
             {
-                if (disposing)
+                foreach (var process in _processes)
                 {
-                    foreach (var process in _processes)
-                    {
-                        process.Dispose();
-                    }
-                    NativeJob.CloseHandle(_hJob);
-                    // TODO: dispose managed state (managed objects).
+                    process.Dispose();
                 }
-
-                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
-                // TODO: set large fields to null.
-
-                disposedValue = true;
             }
+            NativeJob.CloseHandle(_hJob);
+            _disposed = true;
         }
-
-        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
-        // ~Job() {
-        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-        //   Dispose(false);
-        // }
-
-        // This code added to correctly implement the disposable pattern.
-        public void Dispose()
-        {
-            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-            Dispose(true);
-            // TODO: uncomment the following line if the finalizer is overridden above.
-            GC.SuppressFinalize(this);
-        }
-        #endregion
-
     }
 }

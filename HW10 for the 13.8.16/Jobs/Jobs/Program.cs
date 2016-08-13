@@ -21,12 +21,14 @@ namespace Jobs
             Console.ReadLine();
             job.Kill();
 
+            var jobs = new List<Job>();
             for (int i = 0; i < 20; i++)
             {
-                new Job(10240);
+                jobs.Add(new Job(10240));
+                GC.AddMemoryPressure(10240);
+                Console.WriteLine("Job was created.");
+                Console.WriteLine("Memory: " + GC.GetTotalMemory(false));
             }
-
-
         }
     }
 }
