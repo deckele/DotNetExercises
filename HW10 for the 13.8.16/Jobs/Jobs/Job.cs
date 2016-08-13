@@ -38,10 +38,11 @@ namespace Jobs
             {
                 throw new InvalidOperationException();
             }
+            GC.AddMemoryPressure(_sizeInByte);
         }
 
         public Job()
-            : this(null, 0)
+            : this(null, 1)
         {
         }
 
@@ -51,7 +52,7 @@ namespace Jobs
         }
 
         public Job(string name)
-            : this(name, 0)
+            : this(name, 1)
         {
         }
 
@@ -101,7 +102,6 @@ namespace Jobs
         {
             GC.RemoveMemoryPressure(_sizeInByte);
             Console.WriteLine("Job was released.");
-            Console.WriteLine("Memory: " + GC.GetTotalMemory(false));
             Dispose(false);
         }
 
