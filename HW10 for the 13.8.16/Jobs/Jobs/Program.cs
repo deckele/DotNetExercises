@@ -40,6 +40,9 @@ namespace Jobs
                 jobs.Add(new Job(10485760));
                 Console.WriteLine($"Job {i} was created.");
             }
+
+            Console.WriteLine();
+            Console.WriteLine("App needed to free some memory to proceed, calling GC.");
         }
     }
 }
