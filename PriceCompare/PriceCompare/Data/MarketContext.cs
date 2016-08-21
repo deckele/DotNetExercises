@@ -14,7 +14,6 @@ namespace Data
             Database.SetInitializer(new MarketInitializer());
         }
 
-        public DbSet<GeoArea> GeoAreas { get; set; }
         public DbSet<Chain> Chains { get; set; }
         public DbSet<Store> Stores { get; set; }
         public DbSet<Item> Items { get; set; }
