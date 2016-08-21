@@ -10,8 +10,8 @@ namespace Data
         public string Units { get; set; }
         public int QuantityInPackage { get; set; }
 
-        public ICollection<GeoArea> GeoAreas { get; set; }
-        public ICollection<Chain> Chains { get; set; }
-        public ICollection<Store> Stores { get; set; }
+        public virtual ICollection<GeoArea> GeoAreas { get; set; }
+        public virtual ICollection<Chain> Chains { get; set; }
+        public virtual ICollection<Store> Stores { get; set; }
     }
 }
