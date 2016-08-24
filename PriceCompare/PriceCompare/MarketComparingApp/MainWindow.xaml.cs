@@ -29,7 +29,8 @@ namespace MarketComparingApp
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-
+            var marketContext = new MarketContext();
+            MessageBox.Show("DataBase created");
         }
     }
 }
