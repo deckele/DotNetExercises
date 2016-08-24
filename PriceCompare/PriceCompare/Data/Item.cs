@@ -5,7 +5,7 @@ namespace Data
 {
     public class Item
     {
-        public int ID { get; set; }
+        public int ItemID { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
         public string Units { get; set; }

@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Data
 {
     public class Price
     {
-        public long ItemCode {get; set;}
+        [Key()]
+        public long StoreID { get; set; }
+        [Key()]
+        public long ItemID {get; set;}
         public double ItemPrice { get; set; }
 
-        public virtual ICollection<Item> Items
+        public virtual Item Item { get; set; }
     }
 }
