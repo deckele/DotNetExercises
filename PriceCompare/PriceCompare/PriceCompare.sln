@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketComparingApp", "Marke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketDataXmlParser", "MarketDataXmlParser\MarketDataXmlParser.csproj", "{98882511-4B96-4E4F-A667-1BD597EA91BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperComparingApp", "SuperComparingApp\SuperComparingApp.csproj", "{F87A4D11-A668-4A83-A5DE-A45978278BFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{98882511-4B96-4E4F-A667-1BD597EA91BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98882511-4B96-4E4F-A667-1BD597EA91BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98882511-4B96-4E4F-A667-1BD597EA91BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F87A4D11-A668-4A83-A5DE-A45978278BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F87A4D11-A668-4A83-A5DE-A45978278BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F87A4D11-A668-4A83-A5DE-A45978278BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F87A4D11-A668-4A83-A5DE-A45978278BFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
