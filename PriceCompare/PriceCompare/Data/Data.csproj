@@ -53,11 +53,18 @@
     <Compile Include="Item.cs" />
     <Compile Include="MarketContext.cs" />
     <Compile Include="MarketInitializer.cs" />
+    <Compile Include="Price.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Store.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MarketDataXmlParser\MarketDataXmlParser.csproj">
+      <Project>{98882511-4b96-4e4f-a667-1bd597ea91ba}</Project>
+      <Name>MarketDataXmlParser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

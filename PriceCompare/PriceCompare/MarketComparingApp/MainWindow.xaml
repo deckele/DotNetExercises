@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Market Comparing App" Height="382" Width="541">
     <Grid>
-        
+        <Button x:Name="button" Content="Update DataBase" HorizontalAlignment="Left" Margin="231,47,0,0" VerticalAlignment="Top" Width="101" Click="button_Click"/>
+
     </Grid>
 </Window>

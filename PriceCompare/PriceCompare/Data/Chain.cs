@@ -8,6 +8,5 @@ namespace Data
         public string Name { get; set; }
 
         public virtual ICollection<Store> Stores { get; set; }
-        public virtual ICollection<Item> Items { get; set; }
     }
 }

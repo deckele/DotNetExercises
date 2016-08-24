@@ -12,7 +12,6 @@ namespace Data
         public int QuantityInPackage { get; set; }
         public DateTime UpdateDate { get; set; }
 
-        public virtual ICollection<Chain> Chains { get; set; }
         public virtual ICollection<Store> Stores { get; set; }
     }
 }

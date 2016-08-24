@@ -17,6 +17,7 @@ namespace Data
         public DbSet<Chain> Chains { get; set; }
         public DbSet<Store> Stores { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<Price> Prices { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
