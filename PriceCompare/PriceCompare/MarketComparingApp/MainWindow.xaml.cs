@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MarketDataXmlParser;
 using Data;
 
 namespace MarketComparingApp
@@ -29,15 +28,13 @@ namespace MarketComparingApp
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            using (var marketContext = new MarketContext())
-            {
-                MessageBox.Show("DataBase created");
-                var items = marketContext.Items;
-                foreach (var item in items)
-                {
-                    Console.WriteLine($"item ID:{item.ItemID} item name:{item.Name} Quantity:{item.QuantityInPackage}.");
-                }
-            }
+            var marketContext = new MarketContext();
+            var xmlParser = new MarketXmlParser();
+            xmlParser.ParseAllXml(marketContext);
+
+            MessageBox.Show("DataBase created");
+            
+
         }
     }
 }

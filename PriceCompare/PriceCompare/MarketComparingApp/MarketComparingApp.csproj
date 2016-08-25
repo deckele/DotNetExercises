@@ -110,10 +110,6 @@
       <Project>{3992cc10-38f3-4719-83c6-03d9f8e46d37}</Project>
       <Name>Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MarketDataXmlParser\MarketDataXmlParser.csproj">
-      <Project>{98882511-4b96-4e4f-a667-1bd597ea91ba}</Project>
-      <Name>MarketDataXmlParser</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
