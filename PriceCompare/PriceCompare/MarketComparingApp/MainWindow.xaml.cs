@@ -29,8 +29,15 @@ namespace MarketComparingApp
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            var marketContext = new MarketContext();
-            MessageBox.Show("DataBase created");
+            using (var marketContext = new MarketContext())
+            {
+                MessageBox.Show("DataBase created");
+                var items = marketContext.Items;
+                foreach (var item in items)
+                {
+                    Console.WriteLine($"item ID:{item.ItemID} item name:{item.Name} Quantity:{item.QuantityInPackage}.");
+                }
+            }
         }
     }
 }

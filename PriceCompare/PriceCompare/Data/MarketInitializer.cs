@@ -9,7 +9,7 @@ namespace Data
     {
         protected override void Seed(MarketContext context)
         {
-            string filePath = string.Format(@"D:\Program Files\GO\GoProjects\bin\PriceFull7290725900003_001_201608140516.xml");
+            var filePath = string.Format(@"D:\Program Files\GO\GoProjects\bin\PriceFull7290725900003_001_201608140516.xml");
             var doc = XDocument.Load(filePath);
 
             foreach (var itemElement in doc.Descendants("Item"))
@@ -30,10 +30,6 @@ namespace Data
 
                 item.Units = itemElement.Element("UnitOfMeasure")?.Value;
 
-                var itemUpdateDate = itemElement.Element("PriceUpdateDate");
-                if (itemUpdateDate != null)
-                    item.UpdateDate = DateTime.Parse(itemUpdateDate.Value);
-
                 context.Items.Add(item);
 
                 var price = new Price();
@@ -41,6 +37,10 @@ namespace Data
                 var itemPrice = itemElement.Element("ItemPrice");
                 if (itemPrice != null)
                     price.ItemPrice = double.Parse(itemPrice.Value);
+
+                var itemUpdateDate = itemElement.Element("PriceUpdateDate");
+                if (itemUpdateDate != null)
+                    price.UpdateDate = DateTime.Parse(itemUpdateDate.Value);
 
                 context.Prices.Add(price);
             }
