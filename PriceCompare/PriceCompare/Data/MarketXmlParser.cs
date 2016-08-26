@@ -44,6 +44,7 @@ namespace Data
                 item.Units = itemElement.Element("UnitOfMeasure")?.Value;
 
                 context.Items.Add(item);
+                context.SaveChanges();
 
                 var price = new Price();
 
@@ -58,9 +59,9 @@ namespace Data
                         price.UpdateDate = DateTime.Parse(itemUpdateDate.Value);
 
                 context.Prices.Add(price);
-            }
 
-            context.SaveChanges();
+                context.SaveChanges();
+            }
         }
 
         public void ParseStoresXml(MarketContext context)
@@ -92,8 +93,9 @@ namespace Data
                 store.Name = storeElement.Element("StoreName")?.Value;
 
                 context.Stores.Add(store);
+
+                context.SaveChanges();
             }
-            context.SaveChanges();
         }
     }
 }
