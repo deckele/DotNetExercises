@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,15 @@ namespace Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Chain>()
+                .Property(c => c.ChainID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<Store>()
+                .Property(s => s.StoreID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<Item>()
+                .Property(i => i.ItemID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
         }
     }
 }
