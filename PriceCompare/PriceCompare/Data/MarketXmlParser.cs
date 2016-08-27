@@ -28,7 +28,7 @@ namespace Data
             var doc = XDocument.Load(filePath);
 
             long storeId = 0;
-            var storeIdElement = doc.Root?.Attribute("StoreID");
+            var storeIdElement = doc.Root?.Element("StoreID");
             if (storeIdElement != null)
                 if (storeIdElement.Value != "")
                     storeId = long.Parse(storeIdElement.Value);
@@ -73,16 +73,16 @@ namespace Data
 
         public void ParseStoresXml(MarketContext context)
         {
-            var filePath = string.Format(@"D:\Program Files\GO\GoProjects\bin\Stores7290725900003_201608160753");
+            var filePath = string.Format(@"D:\Program Files\GO\GoProjects\bin\Stores7290725900003_201608170515.xml");
             var doc = XDocument.Load(filePath);
 
             var chain = new Chain();
-            var chainId = doc.Element("ChainId");
+            var chainId = doc.Root?.Element("ChainId");
             if (chainId != null)
                 if (chainId.Value != "")
                     chain.ChainID = long.Parse(chainId.Value);
 
-            chain.Name = doc.Element("Store")?.Element("ChainName")?.Value;
+            chain.Name = doc.Root?.Element("Store")?.Element("ChainName")?.Value;
 
             context.Chains.AddOrUpdate(c => c.ChainID, chain);
 
