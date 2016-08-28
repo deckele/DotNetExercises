@@ -36,6 +36,8 @@ namespace Data
 
             chain.Name = doc.Root?.Element("Stores")?.Element("Store")?.Element("ChainName")?.Value;
 
+            if (context.Chains.Find(chain.ChainID) != null)
+                context.Chains.Remove(chain);
             context.Chains.AddOrUpdate(c => c.ChainID, chain);
             context.SaveChanges();
 
@@ -54,6 +56,8 @@ namespace Data
 
                 store.Name = storeElement.Element("StoreName")?.Value;
 
+                if (context.Stores.Find(store.StoreID) != null)
+                    context.Stores.Remove(store);
                 context.Stores.AddOrUpdate(s => s.StoreID, store);
                 context.SaveChanges();
             }
@@ -86,6 +90,8 @@ namespace Data
 
                 item.Units = itemElement.Element("UnitOfMeasure")?.Value;
 
+                if (context.Items.Find(item.ItemID) != null)
+                    context.Items.Remove(item);
                 context.Items.AddOrUpdate(i => i.ItemID, item);
                 context.SaveChanges();
 
@@ -104,6 +110,8 @@ namespace Data
                     if (itemUpdateDate.Value != "")
                         price.UpdateDate = DateTime.Parse(itemUpdateDate.Value);
 
+                if (context.Prices.Find(price.PriceID) != null)
+                    context.Prices.Remove(price);
                 context.Prices.AddOrUpdate(p => p.PriceID, price);
                 context.SaveChanges();
             }
@@ -111,10 +119,15 @@ namespace Data
 
         public void InitializeDatabase(MarketContext context)
         {
-            context.Database.ExecuteSqlCommand("DELETE dbo.Prices");
-            context.Database.ExecuteSqlCommand("DELETE dbo.Items");
-            context.Database.ExecuteSqlCommand("DELETE dbo.Stores");
-            context.Database.ExecuteSqlCommand("DELETE dbo.Chains");
+            context.Prices.RemoveRange(context.Prices);
+            context.Items.RemoveRange(context.Items);
+            context.Stores.RemoveRange(context.Stores);
+            context.Chains.RemoveRange(context.Chains);
+            context.SaveChanges();
+            //context.Database.ExecuteSqlCommand("DELETE dbo.Prices");
+            //context.Database.ExecuteSqlCommand("DELETE dbo.Items");
+            //context.Database.ExecuteSqlCommand("DELETE dbo.Stores");
+            //context.Database.ExecuteSqlCommand("DELETE dbo.Chains");
         }
     }
 }

@@ -43,6 +43,8 @@ namespace MarketComparingApp
             {
                 var xmlParser = new MarketXmlParser();
                 xmlParser.InitializeDatabase(marketContext);
+
+                MessageBox.Show("Database Initialized.");
             }
         }
     }
