@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
@@ -43,8 +44,9 @@ namespace Data
                 if (xmlUpdateDate.Value != "")
                     storeUpdateDate = DateTime.Parse(xmlUpdateDate.Value);
 
-            if (context.Chains.Find(chain.ChainID) != null)
-                context.Chains.Remove(chain);
+            var chainDouble = context.Chains.Find(chain.ChainID);
+            if (chainDouble != null)
+                context.Chains.Remove(chainDouble);
             context.Chains.AddOrUpdate(c => c.ChainID, chain);
             context.SaveChanges();
 
@@ -65,8 +67,9 @@ namespace Data
 
                 store.UpdateDate = storeUpdateDate;
 
-                if (context.Stores.Find(store.StoreID) != null)
-                    context.Stores.Remove(store);
+                var storeDouble = context.Stores.Find(store.StoreID);
+                if (storeDouble != null)
+                    context.Stores.Remove(storeDouble);
                 context.Stores.AddOrUpdate(s => s.StoreID, store);
                 context.SaveChanges();
             }
@@ -99,8 +102,9 @@ namespace Data
 
                 item.Units = itemElement.Element("UnitOfMeasure")?.Value;
 
-                if (context.Items.Find(item.ItemID) != null)
-                    context.Items.Remove(item);
+                var itemDouble = context.Items.Find(item.ItemID);
+                if (itemDouble != null)
+                    context.Items.Remove(itemDouble);
                 context.Items.AddOrUpdate(i => i.ItemID, item);
                 context.SaveChanges();
 
@@ -119,8 +123,9 @@ namespace Data
                     if (itemUpdateDate.Value != "")
                         price.UpdateDate = DateTime.Parse(itemUpdateDate.Value);
 
-                if (context.Prices.Find(price.PriceID) != null)
-                    context.Prices.Remove(price);
+                var priceDouble = context.Prices.Find(price.PriceID);
+                if (priceDouble != null)
+                    context.Prices.Remove(priceDouble);
                 context.Prices.AddOrUpdate(p => p.PriceID, price);
                 context.SaveChanges();
             }
