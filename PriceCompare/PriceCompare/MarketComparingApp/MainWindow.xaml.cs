@@ -39,7 +39,11 @@ namespace MarketComparingApp
 
         private void buttonInitializeDB_Click(object sender, RoutedEventArgs e)
         {
-
+            using (var marketContext = new MarketContext())
+            {
+                var xmlParser = new MarketXmlParser();
+                xmlParser.InitializeDatabase(marketContext);
+            }
         }
     }
 }

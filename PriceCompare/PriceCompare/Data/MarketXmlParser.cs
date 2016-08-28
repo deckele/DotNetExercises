@@ -43,7 +43,7 @@ namespace Data
             {
                 var store = new Store();
 
-                store.Chain = chain;//todo
+                store.Chain = chain;
 
                 var storeId = storeElement.Element("StoreID");
                 if (storeId != null)
@@ -107,6 +107,14 @@ namespace Data
                 context.Prices.AddOrUpdate(p => p.PriceID, price);
                 context.SaveChanges();
             }
+        }
+
+        public void InitializeDatabase(MarketContext context)
+        {
+            context.Database.ExecuteSqlCommand("DELETE dbo.Prices");
+            context.Database.ExecuteSqlCommand("DELETE dbo.Items");
+            context.Database.ExecuteSqlCommand("DELETE dbo.Stores");
+            context.Database.ExecuteSqlCommand("DELETE dbo.Chains");
         }
     }
 }
