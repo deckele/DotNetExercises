@@ -12,7 +12,7 @@ namespace Data
     {
         public MarketContext() : base("MarketContext")
         {
-            Database.SetInitializer(new MarketInitializer());
+            //Database.SetInitializer(new MarketInitializer());
         }
 
         public DbSet<Chain> Chains { get; set; }

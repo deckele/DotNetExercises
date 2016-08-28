@@ -17,9 +17,46 @@ namespace Data
 
         public void ParseAllXml(MarketContext context)
         {
-            ParseItemsXml(context);
             ParseStoresXml(context);
+            ParseItemsXml(context);
+
             context.SaveChanges();
+        }
+
+        public void ParseStoresXml(MarketContext context)
+        {
+            var filePath = string.Format(@"D:\Program Files\GO\GoProjects\bin\Stores7290725900003_201608170515.xml");
+            var doc = XDocument.Load(filePath);
+
+            var chain = new Chain();
+            var chainId = doc.Root?.Element("ChainId");
+            if (chainId != null)
+                if (chainId.Value != "")
+                    chain.ChainID = long.Parse(chainId.Value);
+
+            chain.Name = doc.Root?.Element("Stores")?.Element("Store")?.Element("ChainName")?.Value;
+
+            context.Chains.AddOrUpdate(c => c.ChainID, chain);
+            context.SaveChanges();
+
+            foreach (var storeElement in doc.Descendants("Store"))
+            {
+                var store = new Store();
+
+                store.Chain = chain;//todo
+
+                var storeId = storeElement.Element("StoreID");
+                if (storeId != null)
+                    if (storeId.Value != "")
+                        store.StoreID = long.Parse(storeId.Value);
+
+                store.Adress = storeElement.Element("Address")?.Value + " , " + storeElement.Element("City")?.Value;
+
+                store.Name = storeElement.Element("StoreName")?.Value;
+
+                context.Stores.AddOrUpdate(s => s.StoreID, store);
+                context.SaveChanges();
+            }
         }
 
         public void ParseItemsXml(MarketContext context)
@@ -29,14 +66,12 @@ namespace Data
 
             long storeId = 0;
             var storeIdElement = doc.Root?.Element("StoreID");
-            if (storeIdElement != null)
-                if (storeIdElement.Value != "")
-                    storeId = long.Parse(storeIdElement.Value);
+            long.TryParse(storeIdElement?.Value, out storeId);
 
             foreach (var itemElement in doc.Descendants("Item"))
             {
                 var item = new Item();
-
+                
                 var itemId = itemElement.Element("ItemCode");
                 if (itemId != null)
                     if(itemId.Value != "")
@@ -52,10 +87,12 @@ namespace Data
                 item.Units = itemElement.Element("UnitOfMeasure")?.Value;
 
                 context.Items.AddOrUpdate(i => i.ItemID, item);
+                context.SaveChanges();
 
                 var price = new Price();
-                price.ItemID = item.ItemID;
-                price.StoreID = storeId;
+
+                price.Item = item;
+                price.Store = context.Stores.Find(storeId);
 
                 var itemPrice = itemElement.Element("ItemPrice");
                 if (itemPrice != null)
@@ -67,40 +104,8 @@ namespace Data
                     if (itemUpdateDate.Value != "")
                         price.UpdateDate = DateTime.Parse(itemUpdateDate.Value);
 
-                context.Prices.AddOrUpdate(p => new { p.ItemID, p.StoreID}, price);
-            }
-        }
-
-        public void ParseStoresXml(MarketContext context)
-        {
-            var filePath = string.Format(@"D:\Program Files\GO\GoProjects\bin\Stores7290725900003_201608170515.xml");
-            var doc = XDocument.Load(filePath);
-
-            var chain = new Chain();
-            var chainId = doc.Root?.Element("ChainId");
-            if (chainId != null)
-                if (chainId.Value != "")
-                    chain.ChainID = long.Parse(chainId.Value);
-
-            chain.Name = doc.Root?.Element("Store")?.Element("ChainName")?.Value;
-
-            context.Chains.AddOrUpdate(c => c.ChainID, chain);
-
-            foreach (var storeElement in doc.Descendants("Store"))
-            {
-                var store = new Store();
-                store.ChainID = chain.ChainID;
-
-                var storeId = storeElement.Element("StoreID");
-                if (storeId != null)
-                    if (storeId.Value != "")
-                        store.StoreID = long.Parse(storeId.Value);
-
-                store.Adress = storeElement.Element("Address")?.Value + " , " + storeElement.Element("City")?.Value;
-
-                store.Name = storeElement.Element("StoreName")?.Value;
-
-                context.Stores.AddOrUpdate(s => s.StoreID, store);
+                context.Prices.AddOrUpdate(p => p.PriceID, price);
+                context.SaveChanges();
             }
         }
     }

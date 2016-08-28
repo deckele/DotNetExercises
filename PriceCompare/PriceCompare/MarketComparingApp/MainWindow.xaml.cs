@@ -28,12 +28,17 @@ namespace MarketComparingApp
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            var marketContext = new MarketContext();
-            var xmlParser = new MarketXmlParser();
-            xmlParser.ParseAllXml(marketContext);
+            using (var marketContext = new MarketContext())
+            {
+                var xmlParser = new MarketXmlParser();
+                xmlParser.ParseAllXml(marketContext);
 
-            MessageBox.Show("DataBase created");
-            
+                MessageBox.Show("DataBase created");
+            }
+        }
+
+        private void buttonInitializeDB_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
