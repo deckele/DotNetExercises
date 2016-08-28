@@ -29,12 +29,19 @@ namespace Data
             var doc = XDocument.Load(filePath);
 
             var chain = new Chain();
+
             var chainId = doc.Root?.Element("ChainId");
             if (chainId != null)
                 if (chainId.Value != "")
                     chain.ChainID = long.Parse(chainId.Value);
 
             chain.Name = doc.Root?.Element("Stores")?.Element("Store")?.Element("ChainName")?.Value;
+
+            var storeUpdateDate = default(DateTime);
+            var xmlUpdateDate = doc.Root?.Element("LastUpdateDate");
+            if (xmlUpdateDate != null)
+                if (xmlUpdateDate.Value != "")
+                    storeUpdateDate = DateTime.Parse(xmlUpdateDate.Value);
 
             if (context.Chains.Find(chain.ChainID) != null)
                 context.Chains.Remove(chain);
@@ -55,6 +62,8 @@ namespace Data
                 store.Adress = storeElement.Element("Address")?.Value + " , " + storeElement.Element("City")?.Value;
 
                 store.Name = storeElement.Element("StoreName")?.Value;
+
+                store.UpdateDate = storeUpdateDate;
 
                 if (context.Stores.Find(store.StoreID) != null)
                     context.Stores.Remove(store);
