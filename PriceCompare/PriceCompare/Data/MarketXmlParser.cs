@@ -46,7 +46,10 @@ namespace Data
 
             var chainDouble = context.Chains.Find(chain.ChainID);
             if (chainDouble != null)
+            {
                 context.Chains.Remove(chainDouble);
+                context.SaveChanges();
+            }
             context.Chains.AddOrUpdate(c => c.ChainID, chain);
             context.SaveChanges();
 
@@ -69,7 +72,10 @@ namespace Data
 
                 var storeDouble = context.Stores.Find(store.StoreID);
                 if (storeDouble != null)
+                {
                     context.Stores.Remove(storeDouble);
+                    context.SaveChanges();
+                }
                 context.Stores.AddOrUpdate(s => s.StoreID, store);
                 context.SaveChanges();
             }
@@ -104,7 +110,10 @@ namespace Data
 
                 var itemDouble = context.Items.Find(item.ItemID);
                 if (itemDouble != null)
+                {
                     context.Items.Remove(itemDouble);
+                    context.SaveChanges();
+                }
                 context.Items.AddOrUpdate(i => i.ItemID, item);
                 context.SaveChanges();
 
@@ -125,7 +134,10 @@ namespace Data
 
                 var priceDouble = context.Prices.Find(price.PriceID);
                 if (priceDouble != null)
+                {
                     context.Prices.Remove(priceDouble);
+                    context.SaveChanges();
+                }
                 context.Prices.AddOrUpdate(p => p.PriceID, price);
                 context.SaveChanges();
             }
