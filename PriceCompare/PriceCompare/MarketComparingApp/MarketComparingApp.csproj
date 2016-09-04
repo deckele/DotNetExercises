@@ -112,8 +112,6 @@
       <DependentUpon>Market2DataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Data.Chain.datasource" />
-    <None Include="Properties\DataSources\Data.Item.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
