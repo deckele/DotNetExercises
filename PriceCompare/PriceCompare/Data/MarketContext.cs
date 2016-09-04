@@ -25,6 +25,12 @@ namespace Data
             modelBuilder.Entity<Chain>()
                 .Property(c => c.ChainID)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<Store>()
+                .Property(s => s.StoreID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<Store>()
+                .Property(s => s.ChainID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Item>()
                 .Property(i => i.ItemID)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);

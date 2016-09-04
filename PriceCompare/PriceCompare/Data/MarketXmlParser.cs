@@ -74,7 +74,7 @@ namespace Data
 
                 store.UpdateDate = storeUpdateDate;
 
-                var storeDouble = context.Stores.Find(store.StoreID);
+                var storeDouble = context.Stores.Find(store.StoreID, chain.ChainID);
                 if (storeDouble != null)
                 {
                     context.Stores.Remove(storeDouble);
@@ -89,6 +89,10 @@ namespace Data
         {
             var filePath = string.Format(@"D:\Program Files\GO\GoProjects\bin\PriceFull7290725900003_001_201608140516.xml");
             var doc = XDocument.Load(filePath);
+
+            long chainId = 0;
+            var chainIdElement = doc.Root?.Element("ChainID");
+            long.TryParse(chainIdElement?.Value, out chainId);
 
             long storeId = 0;
             var storeIdElement = doc.Root?.Element("StoreID");
@@ -124,7 +128,7 @@ namespace Data
                 var price = new Price();
 
                 price.Item = item;
-                price.Store = context.Stores.Find(storeId);
+                price.Store = context.Stores.Find(storeId, chainId);
 
                 var itemPrice = itemElement.Element("ItemPrice");
                 if (itemPrice != null)

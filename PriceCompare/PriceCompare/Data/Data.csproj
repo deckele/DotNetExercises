@@ -66,6 +66,10 @@
     <Compile Include="Migrations\201609041314385_market3.Designer.cs">
       <DependentUpon>201609041314385_market3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609041755521_Market4.cs" />
+    <Compile Include="Migrations\201609041755521_Market4.Designer.cs">
+      <DependentUpon>201609041755521_Market4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Price.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609041314385_market3.resx">
       <DependentUpon>201609041314385_market3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609041755521_Market4.resx">
+      <DependentUpon>201609041755521_Market4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

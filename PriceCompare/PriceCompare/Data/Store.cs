@@ -8,9 +8,10 @@ namespace Data
 {
     public class Store
     {
-        [Key]
-        public int StorePK { get; set; }
+        [Key, Column(Order = 1)]
         public long StoreID { get; set; }
+        [Key, Column(Order= 0), ForeignKey("Chain")]
+        public long ChainID { get; set; }
         public string Name { get; set; }
         public string Adress { get; set; }
         public DateTime? UpdateDate { get; set; }
