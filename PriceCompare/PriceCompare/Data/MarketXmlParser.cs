@@ -64,7 +64,11 @@ namespace Data
                     if (storeId.Value != "")
                         store.StoreID = long.Parse(storeId.Value);
 
-                store.Adress = storeElement.Element("Address")?.Value + " , " + storeElement.Element("City")?.Value;
+                var storeAdress = storeElement.Element("City")?.Value;
+                if (string.IsNullOrWhiteSpace(storeAdress))
+                    store.Adress = storeElement.Element("Address")?.Value + ", " + storeElement.Element("City")?.Value;
+                else
+                    store.Adress = storeElement.Element("Address")?.Value;
 
                 store.Name = storeElement.Element("StoreName")?.Value;
 

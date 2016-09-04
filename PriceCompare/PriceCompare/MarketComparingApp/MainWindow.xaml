@@ -5,10 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MarketComparingApp"
         mc:Ignorable="d"
-        Title="Market Comparing App" Height="382" Width="541">
+        Title="Market Comparing App" WindowState="Maximized" Height="700" Width="1200"
+        Background="LightSteelBlue">
     <Grid>
-        <Button x:Name="buttonUpdateDB" Content="Update DataBase" HorizontalAlignment="Left" Margin="231,47,0,0" VerticalAlignment="Top" Width="101" Click="button_Click"/>
-        <Button x:Name="buttonInitializeDB" Content="Initialize Database" HorizontalAlignment="Left" Margin="231,214,0,0" VerticalAlignment="Top" Width="101" Click="buttonInitializeDB_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="500*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="230*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="420*"/>
+            <RowDefinition Height="75*"/>
+        </Grid.RowDefinitions>
+
+
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="7">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New" />
+                    <MenuItem Header="_Open" />
+                    <MenuItem Header="_Save" />
+                    <Separator />
+                    <MenuItem Header="_Exit" />
+                </MenuItem>
+                <MenuItem Header="_Tools">
+                    <MenuItem Header="_Manage users"/>
+                    <MenuItem Header="_Show groups" IsCheckable="True" IsChecked="True" />
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+
+        <GridSplitter Grid.Row="2" Grid.Column="1" BorderThickness="1" BorderBrush="Black"/>
+        <GridSplitter Grid.Row="2" Grid.Column="3" BorderThickness="1" BorderBrush="Black"/>
+        <GridSplitter Grid.Row="2" Grid.Column="5" BorderThickness="1" BorderBrush="Black"/>
+
+        <ListBox ItemsSource="{Binding Items}"
+                 Name="ItemsListBox"
+                 Grid.Column="0" Grid.Row="2" 
+                 BorderBrush="Black" BorderThickness="1" 
+                 AllowDrop="True" DataContext=""/>
+
+
+
+        <Button x:Name="buttonUpdateDB" Content="Update DataBase" HorizontalAlignment="Left" Margin="0,19.4,0,0" VerticalAlignment="Top" Width="101" Click="button_Click" Height="19" Grid.Row="1"/>
+        <Button x:Name="buttonInitializeDB" Content="Initialize Database" HorizontalAlignment="Left" Margin="0,43.4,0,0" VerticalAlignment="Top" Width="101" Click="buttonInitializeDB_Click" Grid.Row="1" Height="19"/>
+
 
     </Grid>
 </Window>
