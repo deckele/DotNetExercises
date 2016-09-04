@@ -24,8 +24,6 @@ namespace MarketComparingApp
         public MainWindow()
         {
             InitializeComponent();
-
-            DataContext = new MarketContext();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
@@ -48,6 +46,19 @@ namespace MarketComparingApp
 
                 MessageBox.Show("Database Initialized.");
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Data.CollectionViewSource itemViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("itemViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // itemViewSource.Source = [generic data source]
+            MarketComparingApp.Market2DataSet market2DataSet = ((MarketComparingApp.Market2DataSet)(this.FindResource("market2DataSet")));
+            // Load data into the table Items. You can modify this code as needed.
+            MarketComparingApp.Market2DataSetTableAdapters.ItemsTableAdapter market2DataSetItemsTableAdapter = new MarketComparingApp.Market2DataSetTableAdapters.ItemsTableAdapter();
+            market2DataSetItemsTableAdapter.Fill(market2DataSet.Items);
+            System.Windows.Data.CollectionViewSource itemsViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("itemsViewSource")));
+            itemsViewSource.View.MoveCurrentToFirst();
         }
     }
 }

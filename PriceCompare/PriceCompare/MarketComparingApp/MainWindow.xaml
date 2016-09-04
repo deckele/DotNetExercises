@@ -1,13 +1,19 @@
-﻿<Window x:Class="MarketComparingApp.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MarketComparingApp"
+        xmlns:Data="clr-namespace:Data;assembly=Data" x:Class="MarketComparingApp.MainWindow"
         mc:Ignorable="d"
         Title="Market Comparing App" WindowState="Maximized" Height="700" Width="1200"
-        Background="LightSteelBlue">
-    <Grid>
+        Background="LightSteelBlue" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="itemViewSource" d:DesignSource="{d:DesignInstance {x:Type Data:Item}, CreateList=True}"/>
+        <local:Market2DataSet x:Key="market2DataSet"/>
+        <CollectionViewSource x:Key="itemsViewSource" Source="{Binding Items, Source={StaticResource market2DataSet}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource itemViewSource}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="Auto"/>
@@ -45,16 +51,26 @@
         <GridSplitter Grid.Row="2" Grid.Column="3" BorderThickness="1" BorderBrush="Black"/>
         <GridSplitter Grid.Row="2" Grid.Column="5" BorderThickness="1" BorderBrush="Black"/>
 
-        <ListBox ItemsSource="{Binding Items}"
-                 Name="ItemsListBox"
-                 Grid.Column="0" Grid.Row="2" 
-                 BorderBrush="Black" BorderThickness="1" 
-                 AllowDrop="True" DataContext=""/>
+        <!--<ListBox
+			x:Name="ItemsListBox"
+			Grid.Column="0" Grid.Row="2" 
+			BorderBrush="Black" BorderThickness="1" 
+			AllowDrop="True" DataContext="" SelectedValuePath="ItemID" ItemsSource="{Binding Source={StaticResource itemViewSource}}" DisplayMemberPath="ItemID"/>-->
 
 
 
         <Button x:Name="buttonUpdateDB" Content="Update DataBase" HorizontalAlignment="Left" Margin="0,19.4,0,0" VerticalAlignment="Top" Width="101" Click="button_Click" Height="19" Grid.Row="1"/>
         <Button x:Name="buttonInitializeDB" Content="Initialize Database" HorizontalAlignment="Left" Margin="0,43.4,0,0" VerticalAlignment="Top" Width="101" Click="buttonInitializeDB_Click" Grid.Row="1" Height="19"/>
+        
+        <DataGrid x:Name="itemsDataGrid" AutoGenerateColumns="False" Grid.ColumnSpan="2" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource itemsViewSource}}" Margin="0,85.4,0,0" Grid.Row="1" Grid.RowSpan="2" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="itemIDColumn" Binding="{Binding ItemID}" Header="Item ID" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="unitsColumn" Binding="{Binding Units}" Header="Units" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="quantityInPackageColumn" Binding="{Binding QuantityInPackage}" Header="Quantity In Package" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
 
 
     </Grid>
