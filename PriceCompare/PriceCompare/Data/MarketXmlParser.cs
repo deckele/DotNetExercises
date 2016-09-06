@@ -43,7 +43,7 @@ namespace Data
             if (xmlUpdateDate != null)
                 if (xmlUpdateDate.Value != "")
                     storeUpdateDate = DateTime.Parse(xmlUpdateDate.Value);
-
+            
             var chainDouble = context.Chains.Find(chain.ChainID);
             if (chainDouble != null)
             {

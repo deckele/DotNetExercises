@@ -9,11 +9,8 @@
         Title="Market Comparing App" WindowState="Maximized" Height="700" Width="1200"
         Background="LightSteelBlue" Loaded="Window_Loaded">
     <Window.Resources>
-        <CollectionViewSource x:Key="itemViewSource" d:DesignSource="{d:DesignInstance {x:Type Data:Item}, CreateList=True}"/>
-        <local:Market2DataSet x:Key="market2DataSet"/>
-        <CollectionViewSource x:Key="itemsViewSource" Source="{Binding Items, Source={StaticResource market2DataSet}}"/>
     </Window.Resources>
-    <Grid DataContext="{StaticResource itemViewSource}">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200*"/>
             <ColumnDefinition Width="200*"/>
@@ -62,12 +59,13 @@
         </DataGrid>-->
 
         <DataGrid x:Name ="ItemsDataGrid"
+                  IsReadOnly="True"
                   Grid.Row="2" Grid.Column="0"
-                  ItemsSource="{Binding}">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader" MinWidth="300" />
-            </DataGrid.Columns>
+                  ItemsSource="{Binding Items}"
+                  EnableRowVirtualization="True" 
+                  Margin="4" 
+                  RowDetailsVisibilityMode="VisibleWhenSelected" 
+                  FlowDirection="RightToLeft">
         </DataGrid>
-
     </Grid>
 </Window>
