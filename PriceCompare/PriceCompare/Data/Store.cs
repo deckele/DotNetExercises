@@ -13,7 +13,8 @@ namespace Data
         [Key, Column(Order= 0), ForeignKey("Chain")]
         public long ChainID { get; set; }
         public string Name { get; set; }
-        public string Adress { get; set; }
+        public string City { get; set; }
+        public string Address { get; set; }
         public DateTime? UpdateDate { get; set; }
 
         public virtual Chain Chain { get; set; }

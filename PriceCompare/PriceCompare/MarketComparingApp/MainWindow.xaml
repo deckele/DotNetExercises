@@ -16,11 +16,8 @@
     <Grid DataContext="{StaticResource itemViewSource}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200*"/>
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="200*"/>
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="500*"/>
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="230*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -47,10 +44,6 @@
             </Menu>
         </DockPanel>
 
-        <GridSplitter Grid.Row="2" Grid.Column="1" BorderThickness="1" BorderBrush="Black"/>
-        <GridSplitter Grid.Row="2" Grid.Column="3" BorderThickness="1" BorderBrush="Black"/>
-        <GridSplitter Grid.Row="2" Grid.Column="5" BorderThickness="1" BorderBrush="Black"/>
-
         <!--<ListBox
 			x:Name="ItemsListBox"
 			Grid.Column="0" Grid.Row="2" 
@@ -62,13 +55,19 @@
         <Button x:Name="buttonUpdateDB" Content="Update DataBase" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" Width="101" Click="button_Click" Height="19" Grid.Row="3"/>
         <Button x:Name="buttonInitializeDB" Content="Initialize Database" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" Width="101" Click="buttonInitializeDB_Click" Grid.Row="3" Height="19"/>
 
-        <DataGrid x:Name="itemsDataGrid" Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource itemsViewSource}}" Margin="0,85.4,0.4,0" RowDetailsVisibilityMode="VisibleWhenSelected" FlowDirection="RightToLeft" Grid.RowSpan="2">
+        <!--<DataGrid x:Name="itemsDataGrid" Grid.Column="0" Grid.Row="1" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource itemsViewSource}}" Margin="0,85.4,0.4,0" RowDetailsVisibilityMode="VisibleWhenSelected" FlowDirection="RightToLeft" Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader" MinWidth="300" />
+            </DataGrid.Columns>
+        </DataGrid>-->
+
+        <DataGrid x:Name ="ItemsDataGrid"
+                  Grid.Row="2" Grid.Column="0"
+                  ItemsSource="{Binding}">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader" MinWidth="300" />
             </DataGrid.Columns>
         </DataGrid>
-
-
 
     </Grid>
 </Window>

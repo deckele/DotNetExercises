@@ -78,6 +78,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ObservableObject.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="Market2DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -122,6 +125,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CartCompare\CartCompare.csproj">
+      <Project>{8e5ba3e5-a8ac-4954-bf35-e9a8147d4f9c}</Project>
+      <Name>CartCompare</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{3992cc10-38f3-4719-83c6-03d9f8e46d37}</Project>
       <Name>Data</Name>

@@ -24,6 +24,8 @@ namespace MarketComparingApp
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainWindowViewModel();
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

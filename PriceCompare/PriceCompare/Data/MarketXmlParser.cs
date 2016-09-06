@@ -64,11 +64,9 @@ namespace Data
                     if (storeId.Value != "")
                         store.StoreID = long.Parse(storeId.Value);
 
-                var storeAdress = storeElement.Element("City")?.Value;
-                if (string.IsNullOrWhiteSpace(storeAdress))
-                    store.Adress = storeElement.Element("Address")?.Value + ", " + storeElement.Element("City")?.Value;
-                else
-                    store.Adress = storeElement.Element("Address")?.Value;
+                store.City = storeElement.Element("City")?.Value;
+
+                store.Address = storeElement.Element("Address")?.Value;
 
                 store.Name = storeElement.Element("StoreName")?.Value;
 
@@ -84,7 +82,7 @@ namespace Data
                 context.SaveChanges();
             }
         }
-
+        
         public void ParseItemsXml(MarketContext context)
         {
             var filePath = string.Format(@"D:\Program Files\GO\GoProjects\bin\PriceFull7290725900003_001_201608140516.xml");
@@ -98,7 +96,10 @@ namespace Data
             var storeIdElement = doc.Root?.Element("StoreID");
             long.TryParse(storeIdElement?.Value, out storeId);
 
-            foreach (var itemElement in doc.Descendants("Item"))
+            var itemsNodeElements = doc.Root?.Element("Items")?.Elements("Item");
+            if(itemsNodeElements == null)
+                throw new ArgumentException(); //ToDo Catch exception in caller 
+            foreach (var itemElement in itemsNodeElements)
             {
                 var item = new Item();
                 
@@ -119,8 +120,9 @@ namespace Data
                 var itemDouble = context.Items.Find(item.ItemID);
                 if (itemDouble != null)
                 {
-                    context.Items.Remove(itemDouble);
-                    context.SaveChanges();
+                    continue;
+                    //context.Items.Remove(itemDouble);
+                    //context.SaveChanges();
                 }
                 context.Items.AddOrUpdate(i => i.ItemID, item);
                 context.SaveChanges();
