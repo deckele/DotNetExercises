@@ -7,16 +7,40 @@
         xmlns:Data="clr-namespace:Data;assembly=Data" x:Class="MarketComparingApp.MainWindow"
         mc:Ignorable="d"
         Title="Market Comparing App" WindowState="Maximized" Height="700" Width="1200"
-        Background="LightSteelBlue" Loaded="Window_Loaded" d:DataContext="{d:DesignInstance local:MainWindowViewModel}">
+        Background="LightSteelBlue" d:DataContext="{d:DesignInstance local:MainWindowViewModel}">
     <Window.Resources>
         <CollectionViewSource x:Key="NumberCollection" Source="{Binding DropDownItemQuantityMenu}" />
+        <ContextMenu x:Key="ExtremePricesContextMenu" >
+            <DataGrid x:Name ="ExtremePricesDataGrid" SelectionMode="Extended"
+                  ItemsSource="{Binding Carts}"
+                  AutoGenerateColumns="False" EnableRowVirtualization="True"
+                  Margin="4" 
+                  RowDetailsVisibilityMode="VisibleWhenSelected" 
+                  FlowDirection="RightToLeft" VerticalScrollBarVisibility="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding ThirdHighestPriceItem}" 
+                                    Header="ThirdHighestPriceItem" Width="SizeToHeader"/>
+                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding SecondHighestPriceItem}" 
+                                    Header="SecondHighestPriceItem" Width="SizeToHeader"/>
+                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding HighestPriceItem}" 
+                                    Header="HighestPriceItem" Width="SizeToHeader"/>
+                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding ThirdLowestPriceItem}" 
+                                    Header="ThirdLowestPriceItem" Width="SizeToHeader"/>
+                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding SecondLowestPriceItem}" 
+                                    Header="SecondLowestPriceItem" Width="SizeToHeader"/>
+                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding LowestPriceItem}" 
+                                    Header="LowestPriceItem" Width="SizeToHeader"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ContextMenu>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="100*"/>
-            <ColumnDefinition Width="300*"/>
-            <ColumnDefinition Width="600*"/>
+            <ColumnDefinition Width="330"/>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="330"/>
+            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="330*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -25,8 +49,7 @@
             <RowDefinition Height="75*"/>
         </Grid.RowDefinitions>
 
-
-        <DockPanel Grid.Row="0" Grid.ColumnSpan="7">
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="5" Margin="0,0,-0.4,85.2" Grid.RowSpan="2">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
                     <MenuItem Header="_New" />
@@ -63,9 +86,9 @@
                   Grid.Row="2" Grid.Column="0"
                   ItemsSource="{Binding AllItems}"
                   AutoGenerateColumns="False" EnableRowVirtualization="True"
-                  Margin="4" 
+                  Margin="4,3.8,3.6,4" 
                   RowDetailsVisibilityMode="VisibleWhenSelected" 
-                  FlowDirection="RightToLeft">
+                  FlowDirection="RightToLeft" VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Quantity">
                     <DataGridTemplateColumn.CellTemplate>
@@ -77,13 +100,13 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn IsReadOnly="True" x:Name="NameColumn" Binding="{Binding Item.Name}" 
-                                    Header="Name" Width="SizeToHeader" MinWidth="210"/>
+                                    Header="Name" Width="SizeToHeader" MinWidth="241"/>
             </DataGrid.Columns>
         </DataGrid>
-        
+
         <StackPanel VerticalAlignment="Center"
                     Orientation="Vertical" 
-                    Grid.Row="2" Grid.Column="1" >
+                    Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0.4,204.8,329.2,205" >
             <Button Name="AddButton"
                     VerticalAlignment="Center" HorizontalAlignment="Center" 
                     Content="Add &gt;&gt;" 
@@ -95,5 +118,48 @@
                     Width="80" Height="25"
                     Margin="5"/>
         </StackPanel>
+
+        <DataGrid x:Name ="SelectedItemsDataGrid" SelectionMode="Extended"
+                  Grid.Row="2" Grid.Column="2"
+                  ItemsSource="{Binding SelectedItems}"
+                  AutoGenerateColumns="False" EnableRowVirtualization="True"
+                  Margin="4.4,3.8,4.2,4" 
+                  RowDetailsVisibilityMode="VisibleWhenSelected" 
+                  FlowDirection="RightToLeft" VerticalScrollBarVisibility="Visible">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Quantity">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox x:Name="QuantityColumn" SelectedItem="{Binding AllItems.Item.ItemQuantity}" 
+                                        ItemsSource="{Binding Source={StaticResource NumberCollection}}" 
+                                        IsSynchronizedWithCurrentItem="False"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Item.Name}" 
+                                    Header="Name" Width="SizeToHeader" MinWidth="241"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid x:Name ="CartsComparingDataGrid" SelectionMode="Extended"
+                  Grid.Row="2" Grid.Column="4"
+                  ItemsSource="{Binding Carts}"
+                  AutoGenerateColumns="False" EnableRowVirtualization="True"
+                  Margin="3.8,3.8,3.6,4" 
+                  RowDetailsVisibilityMode="VisibleWhenSelected" 
+                  FlowDirection="RightToLeft" VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Adress}" 
+                                    Header="Adress" Width="SizeToHeader"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding City}" 
+                                    Header="City" Width="SizeToHeader"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding StoreName}" 
+                                    Header="Store Name" Width="SizeToHeader"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding ChainName}" 
+                                    Header="Chain Name" Width="SizeToHeader"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding CartTotalPrice}" 
+                                    Header="Total Cart Price" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

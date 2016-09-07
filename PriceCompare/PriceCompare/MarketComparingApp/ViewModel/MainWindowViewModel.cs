@@ -15,20 +15,22 @@ namespace MarketComparingApp
 {
     public class MainWindowViewModel : ObservableObject
     {
+        public MainWindowViewModel()
+        {
+            AllItems = new ObservableCollection<ItemViewModel>();
+            SelectedItems = new ObservableCollection<ItemViewModel>();
+            DropDownItemQuantityMenu = Enumerable.Range(0, 201).ToArray();
+            Commands = new ObservableCollection<ICommandEx>();
+
+            LoadFromDatabase();
+        }
+
         private List<Store> Stores { get; set; }
         public ObservableCollection<ItemViewModel> AllItems { get; private set; }
         public ObservableCollection<ItemViewModel> SelectedItems { get; private set; }
         public int[] DropDownItemQuantityMenu { get; }
         public ObservableCollection<Cart> Carts { get; private set; }
-        
-        public MainWindowViewModel()
-        {
-            AllItems = new ObservableCollection<ItemViewModel>();
-            SelectedItems = new ObservableCollection<ItemViewModel>();
-            DropDownItemQuantityMenu = Enumerable.Range(0,201).ToArray();
-
-            LoadFromDatabase();
-        }
+        public ObservableCollection<ICommandEx> Commands { get; }
 
         public void LoadFromDatabase()
         {
