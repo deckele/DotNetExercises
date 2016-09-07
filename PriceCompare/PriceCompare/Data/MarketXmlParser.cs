@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Data.Entity.Migrations.Model;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,34 @@ namespace Data
             ParseItemsXml(context);
 
             context.SaveChanges();
+        }
+
+        public void ParseStoresXml(MarketContext context, string filePath)
+        {
+            var doc = XDocument.Load(filePath);
+            var xmlQueryPath = doc.Root?.Element("SubChains")?.Element("SubChain")?.Element("Stores")?.Elements("Store");
+            //Root element query for ChainId, ChainName and LastUpdateDate:
+            long chainId;
+            long.TryParse(doc.Root?.Element("ChainId")?.Value, out chainId);
+            string chainName = doc.Root?.Element("ChainName")?.Value;
+            DateTime lastUpdateDate;
+            DateTime.TryParse(doc.Root?.Element("LastUpdateDate")?.Value, out lastUpdateDate);
+
+            //Link to xml query for all other fields: 
+            var storesDataInTuples = from element in xmlQueryPath
+                .Select(storeElement => storeElement.Parent)
+                .Select(store => new StoreFiles
+                {
+                    ChainId = chainId,
+                    ChainName = chainName,
+                    LastUpdateDate = lastUpdateDate.Date,
+                    LastUpdateTime = lastUpdateTime,
+                    StoreId = long.Parse(store.Element("StoreId").Value),
+                    StoreName = store.Element("StoreName").Value,
+                    Address = store.Element("Address").Value,
+                    City = store.Element("City").Value
+                });
+
         }
 
         public void ParseStoresXml(MarketContext context)
