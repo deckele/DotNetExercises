@@ -7,8 +7,9 @@
         xmlns:Data="clr-namespace:Data;assembly=Data" x:Class="MarketComparingApp.MainWindow"
         mc:Ignorable="d"
         Title="Market Comparing App" WindowState="Maximized" Height="700" Width="1200"
-        Background="LightSteelBlue" Loaded="Window_Loaded">
+        Background="LightSteelBlue" Loaded="Window_Loaded" d:DataContext="{d:DesignInstance local:MainWindowViewModel}">
     <Window.Resources>
+        <CollectionViewSource x:Key="NumberCollection" Source="{Binding ItemQuantity}" />
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -58,8 +59,7 @@
             </DataGrid.Columns>
         </DataGrid>-->
 
-        <DataGrid x:Name ="ItemsDataGrid"
-                  IsReadOnly="True"
+        <DataGrid x:Name ="ItemsDataGrid" SelectionMode="Extended"
                   Grid.Row="2" Grid.Column="0"
                   ItemsSource="{Binding AllItems}"
                   AutoGenerateColumns="False" EnableRowVirtualization="True" 
@@ -67,8 +67,17 @@
                   RowDetailsVisibilityMode="VisibleWhenSelected" 
                   FlowDirection="RightToLeft">
             <DataGrid.Columns>
-                <DataGridComboBoxColumn x:Name="QuantityColumn" ItemsSource="{Binding Path=DataContext.ItemQuantity}" Header="Quantity" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="NameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader" MinWidth="300"/>
+                <DataGridTemplateColumn Header="Quantity">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox x:Name="QuantityColumn" SelectedItem="{Binding ItemQuantity}" 
+                                        ItemsSource="{Binding Source={StaticResource NumberCollection}}" 
+                                        IsSynchronizedWithCurrentItem="False"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn IsReadOnly="True" x:Name="NameColumn" Binding="{Binding Item.Name}" 
+                                    Header="Name" Width="SizeToHeader" MinWidth="250"/>
             </DataGrid.Columns>
         </DataGrid>
         
