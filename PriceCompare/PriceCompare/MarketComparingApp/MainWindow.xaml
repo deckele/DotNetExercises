@@ -9,7 +9,7 @@
         Title="Market Comparing App" WindowState="Maximized" Height="700" Width="1200"
         Background="LightSteelBlue" Loaded="Window_Loaded" d:DataContext="{d:DesignInstance local:MainWindowViewModel}">
     <Window.Resources>
-        <CollectionViewSource x:Key="NumberCollection" Source="{Binding ItemQuantity}" />
+        <CollectionViewSource x:Key="NumberCollection" Source="{Binding DropDownItemQuantityMenu}" />
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -62,7 +62,7 @@
         <DataGrid x:Name ="ItemsDataGrid" SelectionMode="Extended"
                   Grid.Row="2" Grid.Column="0"
                   ItemsSource="{Binding AllItems}"
-                  AutoGenerateColumns="False" EnableRowVirtualization="True" 
+                  AutoGenerateColumns="False" EnableRowVirtualization="True"
                   Margin="4" 
                   RowDetailsVisibilityMode="VisibleWhenSelected" 
                   FlowDirection="RightToLeft">
@@ -70,14 +70,14 @@
                 <DataGridTemplateColumn Header="Quantity">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox x:Name="QuantityColumn" SelectedItem="{Binding ItemQuantity}" 
+                            <ComboBox x:Name="QuantityColumn" SelectedItem="{Binding AllItems.Item.ItemQuantity}" 
                                         ItemsSource="{Binding Source={StaticResource NumberCollection}}" 
                                         IsSynchronizedWithCurrentItem="False"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn IsReadOnly="True" x:Name="NameColumn" Binding="{Binding Item.Name}" 
-                                    Header="Name" Width="SizeToHeader" MinWidth="250"/>
+                                    Header="Name" Width="SizeToHeader" MinWidth="210"/>
             </DataGrid.Columns>
         </DataGrid>
         
