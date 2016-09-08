@@ -14,5 +14,15 @@ namespace Data
 
         public virtual Store Store { get; set; }
         public virtual Item Item { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var otherPrice = (Price)obj;
+            return (PriceID == otherPrice.PriceID);
+        }
+        public override int GetHashCode()
+        {
+            return (int) PriceID;
+        }
     }
 }

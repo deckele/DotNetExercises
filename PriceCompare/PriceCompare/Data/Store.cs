@@ -17,12 +17,22 @@ namespace Data
         public string Address { get; set; }
         public DateTime? UpdateDate { get; set; }
 
-        public virtual Chain Chain { get; set; }
-        public virtual ICollection<Price> Prices { get; set; }
+        public Chain Chain { get; set; }
+        public ICollection<Price> Prices { get; private set; }
 
         public Store()
         {
             Prices = new HashSet<Price>();
+        }
+
+        public override bool Equals(object obj)
+        {
+            var otherStore = (Store)obj;
+            return (StoreID == otherStore.StoreID) && (ChainID == otherStore.ChainID);
+        }
+        public override int GetHashCode()
+        {
+            return (int)StoreID ^ (int)ChainID;
         }
     }
 }

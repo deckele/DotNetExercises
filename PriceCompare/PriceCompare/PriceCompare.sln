@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketComparingApp", "Marke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CartCompare", "CartCompare\CartCompare.csproj", "{8E5BA3E5-A8AC-4954-BF35-E9A8147D4F9C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager", "FileManager\FileManager.csproj", "{FA318594-1B86-4D52-AF8C-780097BB4ABE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8E5BA3E5-A8AC-4954-BF35-E9A8147D4F9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E5BA3E5-A8AC-4954-BF35-E9A8147D4F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E5BA3E5-A8AC-4954-BF35-E9A8147D4F9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA318594-1B86-4D52-AF8C-780097BB4ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA318594-1B86-4D52-AF8C-780097BB4ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA318594-1B86-4D52-AF8C-780097BB4ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA318594-1B86-4D52-AF8C-780097BB4ABE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

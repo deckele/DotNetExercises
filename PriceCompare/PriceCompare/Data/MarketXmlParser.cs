@@ -25,34 +25,6 @@ namespace Data
             context.SaveChanges();
         }
 
-        public void ParseStoresXml(MarketContext context, string filePath)
-        {
-            var doc = XDocument.Load(filePath);
-            var xmlQueryPath = doc.Root?.Element("SubChains")?.Element("SubChain")?.Element("Stores")?.Elements("Store");
-            //Root element query for ChainId, ChainName and LastUpdateDate:
-            long chainId;
-            long.TryParse(doc.Root?.Element("ChainId")?.Value, out chainId);
-            string chainName = doc.Root?.Element("ChainName")?.Value;
-            DateTime lastUpdateDate;
-            DateTime.TryParse(doc.Root?.Element("LastUpdateDate")?.Value, out lastUpdateDate);
-
-            //Link to xml query for all other fields: 
-            var storesDataInTuples = from element in xmlQueryPath
-                .Select(storeElement => storeElement.Parent)
-                .Select(store => new StoreFiles
-                {
-                    ChainId = chainId,
-                    ChainName = chainName,
-                    LastUpdateDate = lastUpdateDate.Date,
-                    LastUpdateTime = lastUpdateTime,
-                    StoreId = long.Parse(store.Element("StoreId").Value),
-                    StoreName = store.Element("StoreName").Value,
-                    Address = store.Element("Address").Value,
-                    City = store.Element("City").Value
-                });
-
-        }
-
         public void ParseStoresXml(MarketContext context)
         {
             var filePath = string.Format(@"D:\Program Files\GO\GoProjects\bin\Stores7290725900003_201608170515.xml");
@@ -107,7 +79,7 @@ namespace Data
                     context.Stores.Remove(storeDouble);
                     context.SaveChanges();
                 }
-                context.Stores.AddOrUpdate(s => s.StoreID, store);
+                context.Stores.AddOrUpdate(s => new { s.StoreID, s.ChainID}, store);
                 context.SaveChanges();
             }
         }
@@ -139,10 +111,7 @@ namespace Data
 
                 item.Name = itemElement.Element("ItemName")?.Value;
 
-                var itemQty = itemElement.Element("QtyInPackage");
-                if (itemQty != null)
-                    if (itemQty.Value != "")
-                        item.QuantityInPackage = int.Parse(itemQty.Value);
+                item.QuantityInPackage = itemElement.Element("QtyInPackage")?.Value;
 
                 item.Units = itemElement.Element("UnitOfMeasure")?.Value;
 

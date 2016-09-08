@@ -38,7 +38,7 @@ namespace MarketComparingApp
             {
                 Stores = context.Stores.ToList();
 
-                var items = context.Items.Include(p => p.Prices);
+                var items = context.Items.Include(i => i.Prices);
                 foreach (var item in items)
                 {
                     AllItems.Add(new ItemViewModel() {Item= item});
