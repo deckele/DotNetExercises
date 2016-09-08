@@ -20,8 +20,8 @@ namespace FileManager
 
         public void ParseAllXml(MarketContext context)
         {
-            ParseStoresXml(context, string.Format(@"D:\Program Files\GO\GoProjects\bin\Stores7290725900003_201608170515.xml"));
-            ParsePricesXml(context, string.Format(@"D:\Program Files\GO\GoProjects\bin\PriceFull7290725900003_001_201608140516.xml"));
+            ParseStoresXml(context, (@"D:\Program Files\GO\GoProjects\bin\Stores7290725900003_201608170515.xml"));
+            ParsePricesXml(context, (@"D:\Program Files\GO\GoProjects\bin\PriceFull7290725900003_001_201608140516.xml"));
 
             context.SaveChanges();
         }

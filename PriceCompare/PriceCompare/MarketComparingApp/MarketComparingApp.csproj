@@ -135,6 +135,10 @@
       <Project>{3992cc10-38f3-4719-83c6-03d9f8e46d37}</Project>
       <Name>Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FileManager\FileManager.csproj">
+      <Project>{fa318594-1b86-4d52-af8c-780097bb4abe}</Project>
+      <Name>FileManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
