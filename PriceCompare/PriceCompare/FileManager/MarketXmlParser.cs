@@ -20,8 +20,8 @@ namespace FileManager
 
         public void ParseAllXml(MarketContext context)
         {
-            ParseStoresXml(context, (@"D:\Program Files\GO\GoProjects\bin\Stores7290725900003_201608170515.xml"));
-            ParsePricesXml(context, (@"D:\Program Files\GO\GoProjects\bin\PriceFull7290725900003_001_201608140516.xml"));
+            ParseStoresXml(context, (@"D:\Program Files\GO\GoProjects\bin\Stores7290873255550-201608202005.xml"));
+            ParsePricesXml(context, (@"D:\Program Files\GO\GoProjects\bin\PriceFull7290873255550-081-201608210010.xml"));
 
             context.SaveChanges();
         }
@@ -80,6 +80,7 @@ namespace FileManager
             
             //Link to xml query for all other fields, creating "Item" and "Price" objects:
             long itemId = -1;
+            int priceId = -1;
             double itemPrice = -1;
             DateTime updateDate = default(DateTime);
             var pricesData = from element in doc.Descendants("ItemCode")
@@ -89,14 +90,15 @@ namespace FileManager
                              where DateTime.TryParse(itemElement.Element("PriceUpdateDate")?.Value, out updateDate)
                              select new Price()
                              {
+                                 PriceID = priceId--,
                                  ItemPrice = itemPrice,
                                  UpdateDate = updateDate,
                                  Store = context.Stores.Find(storeId, chainId), //"Price" object has a "Store" object in a one to many DB relationship.
                                  Item = new Item() //"Price" object has an "item" object in a one to many DB relationship.
                                  {
                                      //If ItemID has less than 9 digits, it is actually an Inner barcode.
-                                     //If item has an inner barcode, the new unique ItemID is itemId*chainId*storeId:
-                                     ItemID = (itemId < 100000000) ? (itemId*chainId*storeId) : itemId, 
+                                     //If item has an inner barcode, the new unique ItemID is (itemId * storeId) ^ chainId * -1:
+                                     ItemID = (itemId < 100000000) ? ((itemId * storeId) ^ chainId * -1) : itemId, 
                                      Name = itemElement.Element("ItemName")?.Value,
                                      Units = itemElement.Element("UnitOfMeasure")?.Value,
                                      UnitsQuantity = itemElement.Element("Quantity")?.Value,
@@ -105,15 +107,14 @@ namespace FileManager
                                  }
                              };
 
-            var uniquePricesList = pricesData.ToList().Distinct();
-            var uniquePricesNotInDatabase = uniquePricesList.Except(context.Prices);
-            context.Prices.AddRange(uniquePricesNotInDatabase);
+            //var uniquePricesList = pricesData.ToList().Distinct();
+            //var uniquePricesNotInDatabase = uniquePricesList.Except(context.Prices);
+            var pricesList = pricesData.ToList();
+            context.Prices.AddRange(pricesList);
 
-            var itemsData = from price in uniquePricesNotInDatabase
+            var itemsData = from price in pricesList
                             select price.Item;
-
-            var uniqueItemsList = itemsData.ToList().Distinct();
-            var uniqueItemsNotInDatabase = uniqueItemsList.Except(context.Items);
+            var uniqueItemsNotInDatabase = itemsData.Distinct().Except(context.Items);
             context.Items.AddRange(uniqueItemsNotInDatabase);
         }
 

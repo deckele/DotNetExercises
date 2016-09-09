@@ -8,7 +8,7 @@ namespace Data
 {
     public class Price
     {
-        public int PriceID { get; set; }
+        public long PriceID { get; set; }
         public double ItemPrice { get; set; }
         public DateTime? UpdateDate { get; set; }
 

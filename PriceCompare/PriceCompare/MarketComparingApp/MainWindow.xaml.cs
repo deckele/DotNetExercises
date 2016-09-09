@@ -35,6 +35,7 @@ namespace MarketComparingApp
                 var xmlParser = new FileManager.MarketXmlParser();
                 xmlParser.ParseAllXml(context);
 
+                OnContentChanged(DataContext, DataContext);
                 MessageBox.Show("DataBase created");
             }
         }
@@ -46,6 +47,7 @@ namespace MarketComparingApp
                 var xmlParser = new MarketXmlParser();
                 xmlParser.InitializeDatabase(marketContext);
 
+                OnContentChanged(DataContext,DataContext);
                 MessageBox.Show("Database Initialized.");
             }
         }
