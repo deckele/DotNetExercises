@@ -54,33 +54,41 @@
     <Compile Include="MarketContext.cs" />
     <Compile Include="MarketInitializer.cs" />
     <Compile Include="MarketXmlParser.cs" />
-    <Compile Include="Migrations\201608281816234_Initial.cs" />
-    <Compile Include="Migrations\201608281816234_Initial.Designer.cs">
-      <DependentUpon>201608281816234_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201609091754189_InitialCreate.cs" />
+    <Compile Include="Migrations\201609091754189_InitialCreate.Designer.cs">
+      <DependentUpon>201609091754189_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609011355408_market2.cs" />
-    <Compile Include="Migrations\201609011355408_market2.Designer.cs">
-      <DependentUpon>201609011355408_market2.cs</DependentUpon>
+    <Compile Include="Migrations\201609091755320_initial.cs" />
+    <Compile Include="Migrations\201609091755320_initial.Designer.cs">
+      <DependentUpon>201609091755320_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609041314385_market3.cs" />
-    <Compile Include="Migrations\201609041314385_market3.Designer.cs">
-      <DependentUpon>201609041314385_market3.cs</DependentUpon>
+    <Compile Include="Migrations\201609091800546_market1.cs" />
+    <Compile Include="Migrations\201609091800546_market1.Designer.cs">
+      <DependentUpon>201609091800546_market1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609041755521_Market4.cs" />
-    <Compile Include="Migrations\201609041755521_Market4.Designer.cs">
-      <DependentUpon>201609041755521_Market4.cs</DependentUpon>
+    <Compile Include="Migrations\201609091814165_market2.cs" />
+    <Compile Include="Migrations\201609091814165_market2.Designer.cs">
+      <DependentUpon>201609091814165_market2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609051845144_market5.cs" />
-    <Compile Include="Migrations\201609051845144_market5.Designer.cs">
-      <DependentUpon>201609051845144_market5.cs</DependentUpon>
+    <Compile Include="Migrations\201609110530011_market3.cs" />
+    <Compile Include="Migrations\201609110530011_market3.Designer.cs">
+      <DependentUpon>201609110530011_market3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609082220000_market6.cs" />
-    <Compile Include="Migrations\201609082220000_market6.Designer.cs">
-      <DependentUpon>201609082220000_market6.cs</DependentUpon>
+    <Compile Include="Migrations\201609110558565_market4.cs" />
+    <Compile Include="Migrations\201609110558565_market4.Designer.cs">
+      <DependentUpon>201609110558565_market4.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609082342247_market7.cs" />
-    <Compile Include="Migrations\201609082342247_market7.Designer.cs">
-      <DependentUpon>201609082342247_market7.cs</DependentUpon>
+    <Compile Include="Migrations\201609110653353_market5.cs" />
+    <Compile Include="Migrations\201609110653353_market5.Designer.cs">
+      <DependentUpon>201609110653353_market5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609110728589_market6.cs" />
+    <Compile Include="Migrations\201609110728589_market6.Designer.cs">
+      <DependentUpon>201609110728589_market6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609111113318_market7.cs" />
+    <Compile Include="Migrations\201609111113318_market7.Designer.cs">
+      <DependentUpon>201609111113318_market7.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Price.cs" />
@@ -92,26 +100,32 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608281816234_Initial.resx">
-      <DependentUpon>201608281816234_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609091754189_InitialCreate.resx">
+      <DependentUpon>201609091754189_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609011355408_market2.resx">
-      <DependentUpon>201609011355408_market2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609091755320_initial.resx">
+      <DependentUpon>201609091755320_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609041314385_market3.resx">
-      <DependentUpon>201609041314385_market3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609091800546_market1.resx">
+      <DependentUpon>201609091800546_market1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609041755521_Market4.resx">
-      <DependentUpon>201609041755521_Market4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609091814165_market2.resx">
+      <DependentUpon>201609091814165_market2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609051845144_market5.resx">
-      <DependentUpon>201609051845144_market5.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609110530011_market3.resx">
+      <DependentUpon>201609110530011_market3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609082220000_market6.resx">
-      <DependentUpon>201609082220000_market6.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609110558565_market4.resx">
+      <DependentUpon>201609110558565_market4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609082342247_market7.resx">
-      <DependentUpon>201609082342247_market7.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609110653353_market5.resx">
+      <DependentUpon>201609110653353_market5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609110728589_market6.resx">
+      <DependentUpon>201609110728589_market6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609111113318_market7.resx">
+      <DependentUpon>201609111113318_market7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

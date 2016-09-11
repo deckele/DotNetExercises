@@ -8,17 +8,17 @@ namespace Data
 {
     public class Store
     {
+        [Key, Column(Order = 0), ForeignKey("Chain")]
+        public long ChainID { get; set; }
         [Key, Column(Order = 1)]
         public long StoreID { get; set; }
-        [Key, Column(Order= 0), ForeignKey("Chain")]
-        public long ChainID { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
-        public DateTime? UpdateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
 
         public Chain Chain { get; set; }
-        public ICollection<Price> Prices { get; private set; }
+        public ICollection<Price> Prices { get; set; }
 
         public Store()
         {
@@ -27,7 +27,9 @@ namespace Data
 
         public override bool Equals(object obj)
         {
-            var otherStore = (Store)obj;
+            var otherStore = obj as Store;
+            if (otherStore == null)
+                return false;
             return (StoreID == otherStore.StoreID) && (ChainID == otherStore.ChainID);
         }
         public override int GetHashCode()

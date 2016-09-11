@@ -5,14 +5,15 @@ namespace Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<MarketContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Data.MarketContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "Data.MarketContext";
         }
 
-        protected override void Seed(MarketContext context)
+        protected override void Seed(Data.MarketContext context)
         {
             //  This method will be called after migrating to the latest version.
 

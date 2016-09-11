@@ -20,7 +20,7 @@ namespace Data
         public void ParseAllXml(MarketContext context)
         {
             ParseStoresXml(context);
-            ParseItemsXml(context);
+            //ParseItemsXml(context);
 
             context.SaveChanges();
         }
@@ -84,72 +84,72 @@ namespace Data
             }
         }
         
-        public void ParseItemsXml(MarketContext context)
-        {
-            var filePath = string.Format(@"D:\Program Files\GO\GoProjects\bin\PriceFull7290725900003_001_201608140516.xml");
-            var doc = XDocument.Load(filePath);
+        //public void ParseItemsXml(MarketContext context)
+        //{
+        //    var filePath = string.Format(@"D:\Program Files\GO\GoProjects\bin\PriceFull7290725900003_001_201608140516.xml");
+        //    var doc = XDocument.Load(filePath);
 
-            long chainId = 0;
-            var chainIdElement = doc.Root?.Element("ChainID");
-            long.TryParse(chainIdElement?.Value, out chainId);
+        //    long chainId = 0;
+        //    var chainIdElement = doc.Root?.Element("ChainID");
+        //    long.TryParse(chainIdElement?.Value, out chainId);
 
-            long storeId = 0;
-            var storeIdElement = doc.Root?.Element("StoreID");
-            long.TryParse(storeIdElement?.Value, out storeId);
+        //    long storeId = 0;
+        //    var storeIdElement = doc.Root?.Element("StoreID");
+        //    long.TryParse(storeIdElement?.Value, out storeId);
 
-            var itemsNodeElements = doc.Root?.Element("Items")?.Elements("Item");
-            if(itemsNodeElements == null)
-                throw new ArgumentException(); //ToDo Catch exception in caller 
-            foreach (var itemElement in itemsNodeElements)
-            {
-                var item = new Item();
+        //    var itemsNodeElements = doc.Root?.Element("Items")?.Elements("Item");
+        //    if(itemsNodeElements == null)
+        //        throw new ArgumentException(); //ToDo Catch exception in caller 
+        //    foreach (var itemElement in itemsNodeElements)
+        //    {
+        //        var item = new Item();
                 
-                var itemId = itemElement.Element("ItemCode");
-                if (itemId != null)
-                    if(itemId.Value != "")
-                        item.ItemID = long.Parse(itemId.Value);
+        //        var itemId = itemElement.Element("ItemCode");
+        //        if (itemId != null)
+        //            if(itemId.Value != "")
+        //                item.ItemID = long.Parse(itemId.Value);
 
-                item.Name = itemElement.Element("ItemName")?.Value;
+        //        item.Name = itemElement.Element("ItemName")?.Value;
 
-                item.QuantityInPackage = itemElement.Element("QtyInPackage")?.Value;
+        //        item.QuantityInPackage = itemElement.Element("QtyInPackage")?.Value;
 
-                item.Units = itemElement.Element("UnitOfMeasure")?.Value;
+        //        item.Units = itemElement.Element("UnitOfMeasure")?.Value;
 
-                var itemDouble = context.Items.Find(item.ItemID);
-                if (itemDouble != null)
-                {
-                    continue;
-                    //context.Items.Remove(itemDouble);
-                    //context.SaveChanges();
-                }
-                context.Items.AddOrUpdate(i => i.ItemID, item);
-                context.SaveChanges();
+        //        var itemDouble = context.Items.Find(item.ItemID);
+        //        if (itemDouble != null)
+        //        {
+        //            continue;
+        //            //context.Items.Remove(itemDouble);
+        //            //context.SaveChanges();
+        //        }
+        //        context.Items.AddOrUpdate(i => i.ItemID, item);
+        //        context.SaveChanges();
 
-                var price = new Price();
+        //        var price = new Price();
 
-                price.Item = item;
-                price.Store = context.Stores.Find(storeId, chainId);
+        //        price.Item = item;
+        //        price.Store = context.Stores.Find(storeId, chainId);
 
-                var itemPrice = itemElement.Element("ItemPrice");
-                if (itemPrice != null)
-                    if (itemPrice.Value != "")
-                        price.ItemPrice = double.Parse(itemPrice.Value);
+        //        var itemPrice = itemElement.Element("ItemPrice");
+        //        if (itemPrice != null)
+        //            if (itemPrice.Value != "")
+        //                price.ItemPrice = double.Parse(itemPrice.Value);
 
-                var itemUpdateDate = itemElement.Element("PriceUpdateDate");
-                if (itemUpdateDate != null)
-                    if (itemUpdateDate.Value != "")
-                        price.UpdateDate = DateTime.Parse(itemUpdateDate.Value);
+        //        var itemUpdateDate = itemElement.Element("PriceUpdateDate");
+        //        if (itemUpdateDate != null)
+        //            if (itemUpdateDate.Value != "")
+        //                price.UpdateDate = DateTime.Parse(itemUpdateDate.Value);
 
-                var priceDouble = context.Prices.Find(price.PriceID);
-                if (priceDouble != null)
-                {
-                    context.Prices.Remove(priceDouble);
-                    context.SaveChanges();
-                }
-                context.Prices.AddOrUpdate(p => p.PriceID, price);
-                context.SaveChanges();
-            }
-        }
+        //        var priceDouble = context.Prices.Find(price.PriceID);
+        //        if (priceDouble != null)
+        //        {
+        //            context.Prices.Remove(priceDouble);
+        //            context.SaveChanges();
+        //        }
+        //        context.Prices.AddOrUpdate(p => p.PriceID, price);
+        //        context.SaveChanges();
+        //    }
+        //}
 
         public void InitializeDatabase(MarketContext context)
         {

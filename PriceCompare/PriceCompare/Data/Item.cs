@@ -12,7 +12,7 @@ namespace Data
         public string QuantityInPackage { get; set; }
         public long? InnerBarcode { get; set; }   //If item barcode has less than 9 digits, it was generated in the store or chain levels.
                                                   //Thus, items can't be compared if they have only inner barcodes.
-        public virtual ICollection<Price> Prices { get; private set; }
+        public virtual ICollection<Price> Prices { get; set; }
 
         public Item()
         {
@@ -21,7 +21,9 @@ namespace Data
 
         public override bool Equals(object obj)
         {
-            var otherItem = (Item)obj;
+            var otherItem = obj as Item;
+            if (otherItem == null)
+                return false;
             return (ItemID == otherItem.ItemID);
         }
         public override int GetHashCode()

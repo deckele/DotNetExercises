@@ -7,13 +7,13 @@ namespace Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Market4 : IMigrationMetadata
+    public sealed partial class market4 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Market4));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(market4));
         
         string IMigrationMetadata.Id
         {
-            get { return "201609041755521_Market4"; }
+            get { return "201609110558565_market4"; }
         }
         
         string IMigrationMetadata.Source

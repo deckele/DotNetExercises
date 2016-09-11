@@ -33,7 +33,7 @@ namespace MarketComparingApp
             using (var context = new MarketContext())
             {
                 var xmlParser = new FileManager.MarketXmlParser();
-                xmlParser.ParseAllXml(context);
+                xmlParser.ParseAllXml();
 
                 OnContentChanged(DataContext, DataContext);
                 MessageBox.Show("DataBase created");
