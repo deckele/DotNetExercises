@@ -53,22 +53,24 @@ namespace FileManager
             DateTime lastUpdateDate;
             DateTime.TryParse(doc.Root?.Element("LastUpdateDate")?.Value, out lastUpdateDate);
 
-            if (context.Chains.Find(chainId) == null)
+            //if (context.Chains.Find(chainId) == null)
+            //{
+            var chain = new Chain()
             {
-                var chain = new Chain()
-                {
-                    ChainID = chainId,
-                    Name = chainName
-                };
-                context.Chains.AddOrUpdate(chain);
-                context.SaveChanges();
-            }
+                ChainID = chainId,
+                Name = chainName
+            };
+            context.Chains.AddOrUpdate(chain);
+            context.SaveChanges();
+            //}
 
             //Link to xml query for all other fields, creating "Store" object: 
             long storeId = -1;
-            var storesData = from element in doc.Descendants("StoreId")
+            var storesData = (from element in doc.Descendants("StoreId")
                              let storeElement = element.Parent
-                             where long.TryParse(storeElement.Element("StoreId")?.Value, out storeId) //Choose only elements where StoreID can be parsed
+                             //Choose only elements where StoreID can be parsed
+                             where long.TryParse(storeElement.Element("StoreId")?.Value, out storeId)
+                             //where (context.Stores.Find(chainId,storeId)==null)
                              select new Store()
                                 {
                                     StoreID = storeId,
@@ -78,9 +80,9 @@ namespace FileManager
                                     City = storeElement.Element("City")?.Value,
                                     UpdateDate = lastUpdateDate,
                                     Chain = context.Chains.Find(chainId) //Store object has a chain object in a one to one DB relationship.
-                                };
+                                }).Distinct();
             
-            var uniqueStoresList = storesData.Distinct();
+            //var uniqueStoresList = storesData.Distinct();
             //var uniqueStoresNotInDatabase = uniqueStoresData;
 
             //var chainDuplicate = context.Chains.Find(chain.ChainID); //Check for duplicates in database
@@ -90,9 +92,13 @@ namespace FileManager
             //    context.SaveChanges();
             //}
             //context.Chains.AddOrUpdate(chain);
-            context.Stores.AddRange(uniqueStoresList);
+            //context.Stores.AddRange(storesData);
             //var duplicateStores = context.Stores.Local.Union(context.Stores);
             //context.Stores.RemoveRange(duplicateStores);
+            foreach (var store in storesData)
+            {
+                context.Stores.AddOrUpdate(store);
+            }
             context.SaveChanges();
         }
 
@@ -112,7 +118,7 @@ namespace FileManager
                                let itemElement = element.Parent
                                //Choose only if itemElements can be parsed...
                                where long.TryParse(itemElement.Element("ItemCode")?.Value, out itemId)
-                               where (context.Items.Find(itemId) == null)
+                               //where (context.Items.Find(itemId) == null)
                                select new Item()
                                {
                                    //If ItemID has less than 9 digits, it is actually an Inner barcode.
@@ -125,7 +131,11 @@ namespace FileManager
                                    InnerBarcode = (itemId < 100000000) ? itemId : 0
                                }).Distinct();
 
-            context.Items.AddRange(newItemsData);
+            foreach (var item in newItemsData)
+            {
+                context.Items.AddOrUpdate(item);
+            }
+            //context.Items.AddRange(newItemsData);
             context.SaveChanges();
             //var itemsDataNotInDb = (from itemData in newItemsData
             //                       where context.Items.Contains(itemData)
@@ -134,7 +144,7 @@ namespace FileManager
             double itemPrice = -1;
             //Item item = null;
             DateTime updateDate = default(DateTime);
-            var pricesData = from element in doc.Descendants("ItemCode")
+            var pricesData = (from element in doc.Descendants("ItemCode")
                              let itemElement = element.Parent
                              //Choose only if itemElements can be parsed...
                              where long.TryParse(itemElement.Element("ItemCode")?.Value, out itemId)
@@ -154,33 +164,12 @@ namespace FileManager
                                  Store = context.Stores.Find(chainId, storeId), 
                                  //"Price" object contains an "item" object in a one to many DB relationship.
                                  Item = context.Items.Find(itemId)
-                             };
-            //var pricesList = pricesData.ToList();
-            //var newItemIds = pricesList.Select(p => p.Item.ItemID).Distinct().ToArray();
-            //var itemsInDb = context.Items.Where(i => newItemIds.Contains(i.ItemID))
-            //                             .Select(i => i.ItemID).ToArray();
-            //var itemsNotInDb = pricesList.Where(p => !itemsInDb.Contains(p.Item.ItemID));
-            //foreach (var price in itemsNotInDb)
-            //{
-            //    context.Items.Add(price.Item);
-            //}
-            //context.Configuration.AutoDetectChangesEnabled = false;
+                             }).Distinct();
 
-            var uniquePricesData = pricesData.Distinct();
-            //foreach (var price in uniquePricesDataList)
-            //{
-            //    var duplicateItem = context.Items.Find(price.ItemID);
-            //    if (duplicateItem != null)
-            //        context.Items.Remove(duplicateItem);
-            //    context.SaveChanges();
-            //    context.Items.Add(price.Item);
-            //    var duplicatePrice = context.Prices.Find(price.ItemID, price.StoreID, price.ChainID);
-            //    if (duplicatePrice != null)
-            //        context.Prices.Remove(duplicatePrice);
-            //    context.SaveChanges();
-            //    context.Prices.Add(price);
-            //}
-            context.Prices.AddRange(uniquePricesData);
+            foreach (var price in pricesData)
+            {
+                context.Prices.AddOrUpdate(price); 
+            }
             context.SaveChanges();
         }
 

@@ -30,7 +30,9 @@ namespace Data
             var otherStore = obj as Store;
             if (otherStore == null)
                 return false;
-            return (StoreID == otherStore.StoreID) && (ChainID == otherStore.ChainID);
+            if (StoreID == otherStore.StoreID)
+                return (ChainID == otherStore.ChainID);
+            return false;
         }
         public override int GetHashCode()
         {
