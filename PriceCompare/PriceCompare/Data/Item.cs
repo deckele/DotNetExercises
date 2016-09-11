@@ -10,8 +10,7 @@ namespace Data
         public string Units { get; set; }
         public string UnitsQuantity { get; set; }
         public string QuantityInPackage { get; set; }
-        public long? InnerBarcode { get; set; }   //If item barcode has less than 9 digits, it was generated in the store or chain levels.
-                                                  //Thus, items can't be compared if they have only inner barcodes.
+
         public virtual ICollection<Price> Prices { get; set; }
 
         public Item()

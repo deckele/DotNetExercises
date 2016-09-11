@@ -43,6 +43,7 @@ namespace FileManager
         }
 
         public void ParseStoresXml(MarketContext context, string filePath)
+            #region Parse and add Chains to DB
         {
             var doc = XDocument.Load(filePath);
 
@@ -52,9 +53,6 @@ namespace FileManager
             string chainName = doc.Root?.Element("ChainName")?.Value;
             DateTime lastUpdateDate;
             DateTime.TryParse(doc.Root?.Element("LastUpdateDate")?.Value, out lastUpdateDate);
-
-            //if (context.Chains.Find(chainId) == null)
-            //{
             var chain = new Chain()
             {
                 ChainID = chainId,
@@ -62,15 +60,14 @@ namespace FileManager
             };
             context.Chains.AddOrUpdate(chain);
             context.SaveChanges();
-            //}
-
+            #endregion
+            #region Parse and add Stores to DB
             //Link to xml query for all other fields, creating "Store" object: 
             long storeId = -1;
             var storesData = (from element in doc.Descendants("StoreId")
                              let storeElement = element.Parent
                              //Choose only elements where StoreID can be parsed
                              where long.TryParse(storeElement.Element("StoreId")?.Value, out storeId)
-                             //where (context.Stores.Find(chainId,storeId)==null)
                              select new Store()
                                 {
                                     StoreID = storeId,
@@ -79,88 +76,71 @@ namespace FileManager
                                     Address = storeElement.Element("Address")?.Value,
                                     City = storeElement.Element("City")?.Value,
                                     UpdateDate = lastUpdateDate,
-                                    Chain = context.Chains.Find(chainId) //Store object has a chain object in a one to one DB relationship.
+                                    //Store object has a chain object in a one to one DB relationship.
+                                    Chain = context.Chains.Find(chainId) 
                                 }).Distinct();
-            
-            //var uniqueStoresList = storesData.Distinct();
-            //var uniqueStoresNotInDatabase = uniqueStoresData;
 
-            //var chainDuplicate = context.Chains.Find(chain.ChainID); //Check for duplicates in database
-            //if (chainDuplicate != null)
-            //{
-            //    context.Chains.Remove(chainDuplicate);
-            //    context.SaveChanges();
-            //}
-            //context.Chains.AddOrUpdate(chain);
-            //context.Stores.AddRange(storesData);
-            //var duplicateStores = context.Stores.Local.Union(context.Stores);
-            //context.Stores.RemoveRange(duplicateStores);
             foreach (var store in storesData)
             {
                 context.Stores.AddOrUpdate(store);
             }
             context.SaveChanges();
+            #endregion
         }
+
 
         public void ParsePricesXml(MarketContext context, string filePath)
         {
+            #region Parse and add Items to DB
             var doc = XDocument.Load(filePath);
-
             //Root element query for ChainId, and StoreId, for finding a Store Object later:
             long chainId;
             long.TryParse(doc.Root?.Element("ChainId")?.Value, out chainId);
             long storeId;
             long.TryParse(doc.Root?.Element("StoreId")?.Value, out storeId);
             
-            //Link to xml query for all other fields, creating "Item" and "Price" objects:
+            //Link to xml query for all other fields, creating "Item" and then "Price" objects:
             long itemId = -1;
             var newItemsData = (from element in doc.Descendants("ItemCode")
                                let itemElement = element.Parent
                                //Choose only if itemElements can be parsed...
                                where long.TryParse(itemElement.Element("ItemCode")?.Value, out itemId)
-                               //where (context.Items.Find(itemId) == null)
+                               //If ItemID has less than 9 digits, it is actually an Inner barcode.
+                               //If item has an inner barcode, it can't be compared without individual mapping.
+                               where itemId >= 100000000
                                select new Item()
                                {
-                                   //If ItemID has less than 9 digits, it is actually an Inner barcode.
-                                   //If item has an inner barcode, the new unique ItemID is (itemId * storeId) ^ chainId * -1:
-                                   ItemID = (itemId < 100000000) ? ((itemId*storeId) ^ chainId*-1) : itemId,
+                                   ItemID = itemId,
                                    Name = itemElement.Element("ItemName")?.Value,
                                    Units = itemElement.Element("UnitOfMeasure")?.Value,
                                    UnitsQuantity = itemElement.Element("Quantity")?.Value,
                                    QuantityInPackage = itemElement.Element("QtyInPackage")?.Value,
-                                   InnerBarcode = (itemId < 100000000) ? itemId : 0
                                }).Distinct();
 
             foreach (var item in newItemsData)
             {
                 context.Items.AddOrUpdate(item);
             }
-            //context.Items.AddRange(newItemsData);
             context.SaveChanges();
-            //var itemsDataNotInDb = (from itemData in newItemsData
-            //                       where context.Items.Contains(itemData)
-            //                       select itemData).ToDictionary(itemData => itemData.ItemID, itemData => itemData);
-            
+            #endregion
+            #region Parse and add Prices to DB
             double itemPrice = -1;
-            //Item item = null;
             DateTime updateDate = default(DateTime);
             var pricesData = (from element in doc.Descendants("ItemCode")
                              let itemElement = element.Parent
                              //Choose only if itemElements can be parsed...
                              where long.TryParse(itemElement.Element("ItemCode")?.Value, out itemId)
-                             //where (itemsDataNotInDb.TryGetValue(itemId, out item))
+                             where itemId >= 100000000
                              where double.TryParse(itemElement.Element("ItemPrice")?.Value, out itemPrice)
                              where DateTime.TryParse(itemElement.Element("PriceUpdateDate")?.Value, out updateDate)
                              select new Price()
                              {
-                                 //If ItemID has less than 9 digits, it is actually an Inner barcode.
-                                 //If item has an inner barcode, the new unique ItemID is (itemId * storeId) ^ chainId * -1:
-                                 ItemID = (itemId < 100000000) ? ((itemId * storeId) ^ chainId * -1) : itemId,
+                                 ItemID = itemId,
                                  StoreID = storeId,
                                  ChainID = chainId,
                                  ItemPrice = itemPrice,
                                  UpdateDate = updateDate,
-                                 //"Price" object has a "Store" object in a one to many DB relationship.
+                                 //"Price" object contains a "Store" object in a one to many DB relationship.
                                  Store = context.Stores.Find(chainId, storeId), 
                                  //"Price" object contains an "item" object in a one to many DB relationship.
                                  Item = context.Items.Find(itemId)
@@ -171,6 +151,7 @@ namespace FileManager
                 context.Prices.AddOrUpdate(price); 
             }
             context.SaveChanges();
+            #endregion
         }
 
         public void InitializeDatabase(MarketContext context)
