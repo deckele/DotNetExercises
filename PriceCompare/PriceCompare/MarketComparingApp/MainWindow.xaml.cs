@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Data;
+using FileManager;
 
 namespace MarketComparingApp
 {
@@ -30,8 +31,8 @@ namespace MarketComparingApp
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            var xmlParser = new FileManager.MarketXmlParser();
-            xmlParser.ParseAllXml(@"D:\Emanuel\Documents\Coding\PricesForMarketProject\test1");
+            var xmlParser = new MarketXmlParser();
+            xmlParser.ParseAllXml(@"D:\Emanuel\Documents\Coding\PricesForMarketProject");
 
             MessageBox.Show("DataBase created");
 
