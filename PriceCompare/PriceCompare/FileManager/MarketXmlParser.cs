@@ -15,30 +15,27 @@ namespace FileManager
 {
     public class MarketXmlParser
     {
-        public void FileExtract(string folderPath)
+        public void ParseAllXml(string directory)
         {
+            var fileExtractor = new FileExtractor();
+            fileExtractor.DecompressGzFiles(directory, "PriceFull");
 
-        }
+            var storesXmls = fileExtractor.GetXmlFilePaths(directory, "Stores");
+            foreach (var storeXml in storesXmls)
+            {
+                using (var context = new MarketContext())
+                {
+                    ParseStoresXml(context, storeXml);
+                }
+            }
 
-        public void ParseAllXml()
-        {
-            //ParseStoresXml(context, (@"D:\Program Files\GO\GoProjects\bin\Stores7290873255550-201608202005.xml"));
-            //ParsePricesXml(context, (@"D:\Program Files\GO\GoProjects\bin\PriceFull7290873255550-081-201608210010.xml"));
-            using (var context = new MarketContext())
+            var priceFullXmls = fileExtractor.GetXmlFilePaths(directory, "PriceFull");
+            foreach (var priceFullXml in priceFullXmls)
             {
-                ParseStoresXml(context, (@"D:\Emanuel\Desktop\hararaa\hararaa\Stores7290058140886-201608152005.xml"));
-            }
-            using (var context = new MarketContext())
-            {
-                ParseStoresXml(context, (@"D:\Emanuel\Desktop\hararaa\hararaa\Stores7290700100008-201608152005.xml"));
-            }
-            using (var context = new MarketContext())
-            {
-                ParsePricesXml(context, (@"D:\Emanuel\Desktop\hararaa\hararaa\Price7290058140886-001-201608150800.xml"));
-            }
-            using (var context = new MarketContext())
-            {
-                ParsePricesXml(context, (@"D:\Emanuel\Desktop\hararaa\hararaa\Price7290700100008-001-2016081511001xml.xml"));
+                using (var context = new MarketContext())
+                {
+                    ParsePricesXml(context, priceFullXml);
+                }
             }
         }
 

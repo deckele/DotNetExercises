@@ -30,14 +30,11 @@ namespace MarketComparingApp
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new MarketContext())
-            {
-                var xmlParser = new FileManager.MarketXmlParser();
-                xmlParser.ParseAllXml();
+            var xmlParser = new FileManager.MarketXmlParser();
+            xmlParser.ParseAllXml(@"D:\Emanuel\Documents\Coding\PricesForMarketProject\test1");
 
-                OnContentChanged(DataContext, DataContext);
-                MessageBox.Show("DataBase created");
-            }
+            MessageBox.Show("DataBase created");
+
         }
 
         private void buttonInitializeDB_Click(object sender, RoutedEventArgs e)
