@@ -29,13 +29,13 @@ namespace MarketComparingApp
             DataContext = new MainWindowViewModel();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            var xmlParser = new MarketXmlParser();
-            xmlParser.ParseAllXml(@"D:\Emanuel\Documents\Coding\PricesForMarketProject\Selection");
+        //private void button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var xmlParser = new MarketXmlParser();
+        //    xmlParser.ParseAllXml(@"D:\Emanuel\Documents\Coding\PricesForMarketProject\Selection");
 
-            MessageBox.Show("DataBase created");
-        }
+        //    MessageBox.Show("DataBase created");
+        //}
 
         //Initializing Database was only for debug
         //private void buttonInitializeDB_Click(object sender, RoutedEventArgs e)
