@@ -19,13 +19,13 @@ namespace CartCompare
         public double CartTotalPrice { get; set; }
         public string Adress { get; set; }
         public string City { get; set; }
-        public ObservableCollection<double> CartPrices { get; set; }
+        public ObservableCollection<Price> CartPrices { get; set; }
 
-        public double? HighestPriceItem { get; set; }
-        public double? SecondHighestPriceItem { get; set; }
-        public double? ThirdHighestPriceItem { get; set; }
-        public double? LowestPriceItem { get; set; }
-        public double? SecondLowestPriceItem { get; set; }
-        public double? ThirdLowestPriceItem { get; set; }
+        public Price HighestPriceItem { get; set; }
+        public Price SecondHighestPriceItem { get; set; }
+        public Price ThirdHighestPriceItem { get; set; }
+        public Price LowestPriceItem { get; set; }
+        public Price SecondLowestPriceItem { get; set; }
+        public Price ThirdLowestPriceItem { get; set; }
     }
 }

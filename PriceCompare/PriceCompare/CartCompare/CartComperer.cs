@@ -20,7 +20,7 @@ namespace CartCompare
         //}
 
         //Check which stores can supply our shopping list:
-        public ObservableCollection<Cart> GetValidCarts(ObservableCollection<Item> chosenItems, List<Store> stores)
+        public ObservableCollection<Cart> GetValidCarts(ObservableCollection<ItemInQuantity> chosenItemsInQty, List<Store> stores)
         {
             //Output container:
             var validCarts = new ObservableCollection<Cart>();
@@ -31,21 +31,21 @@ namespace CartCompare
                 bool cartOk = true;
                 var cartToCompare = new CartToCompare(store);
 
-                foreach (var chosenItem in chosenItems)
+                foreach (var chosenItemInQty in chosenItemsInQty)
                 {
                     //Does our store have a price for this xhosen item?
                     bool foundStore = false;
 
                     //Check the prices list for the item:
-                    foreach (var price in chosenItem.Prices)
+                    foreach (var price in chosenItemInQty.Item.Prices)
                     {
                         //If there's a price that matches our store:
                         if (price.Store.Equals(store))
                         {
                             //Mark the chosen item was found
                             foundStore = true;
-                            //Add the item to the cart:
-                            cartToCompare.CartTotalPrice += price.ItemPrice;
+                            //Add the item to the cart multiplied by chosen quantity:
+                            cartToCompare.CartTotalPrice += (price.ItemPrice * chosenItemInQty.ItemQuantity);
                             //No need to look for another price:
                             break;
                         }
@@ -62,16 +62,13 @@ namespace CartCompare
                 //If we found all the selected items:
                 if (cartOk)
                 {
-                    
                     //Sort the cart items by their cost for the three highest and lowest prices:
-                    var sortedCartPricesList = cartToCompare.CartPrices.Select(p => p.ItemPrice).ToList();
-                    sortedCartPricesList.Sort();
-                    var sortedCartPrices = new ObservableCollection<double>();
+                    var sortedCartPricesList = cartToCompare.CartPrices.OrderBy(p => p.ItemPrice);
+                    var sortedCartPrices = new ObservableCollection<Price>();
                     foreach (var sortedPrice in sortedCartPricesList)
                     {
                         sortedCartPrices.Add(sortedPrice);
                     }
-
                     //Create validated cart object: 
                     var cart = new Cart()
                     {
@@ -83,12 +80,12 @@ namespace CartCompare
                         Adress = cartToCompare.Store.Address,
                         City = cartToCompare.Store.City,
 
-                        HighestPriceItem = sortedCartPrices.Count > 0 ? (double?)sortedCartPrices.Last() : null,
-                        SecondHighestPriceItem = sortedCartPrices.Count > 1 ? (double?)sortedCartPrices[sortedCartPrices.Count-2] : null,
-                        ThirdHighestPriceItem = sortedCartPrices.Count > 2 ? (double?)sortedCartPrices[sortedCartPrices.Count - 3] : null,
-                        LowestPriceItem = sortedCartPrices.Count > 0 ? (double?)sortedCartPrices[0] : null,
-                        SecondLowestPriceItem = sortedCartPrices.Count > 1 ? (double?)sortedCartPrices[1] : null,
-                        ThirdLowestPriceItem = sortedCartPrices.Count > 2 ? (double?)sortedCartPrices[2] : null,
+                        HighestPriceItem = sortedCartPrices.Count > 0 ? sortedCartPrices.Last() : null,
+                        SecondHighestPriceItem = sortedCartPrices.Count > 1 ? sortedCartPrices[sortedCartPrices.Count - 2] : null,
+                        ThirdHighestPriceItem = sortedCartPrices.Count > 2 ? sortedCartPrices[sortedCartPrices.Count - 3] : null,
+                        LowestPriceItem = sortedCartPrices.Count > 0 ? sortedCartPrices[0] : null,
+                        SecondLowestPriceItem = sortedCartPrices.Count > 1 ? sortedCartPrices[1] : null,
+                        ThirdLowestPriceItem = sortedCartPrices.Count > 2 ? sortedCartPrices[2] : null,
                     };
                     validCarts.Add(cart);
                 }

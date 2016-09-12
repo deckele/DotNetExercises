@@ -52,6 +52,7 @@
     <Compile Include="CartToCompare.cs" />
     <Compile Include="Cart.cs" />
     <Compile Include="CartComperer.cs" />
+    <Compile Include="ItemInQuantity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
