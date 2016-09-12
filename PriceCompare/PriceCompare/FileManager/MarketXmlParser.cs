@@ -145,13 +145,16 @@ namespace FileManager
 
             foreach (var price in pricesData)
             {
+                //if (!context.Prices.Contains(price))
+                //    context.Prices.Add(price);
+                //else
                 context.Prices.AddOrUpdate(price); 
             }
             context.SaveChanges();
             #endregion
         }
 
-        public void InitializeDatabase(MarketContext context)
+        private void InitializeDatabase(MarketContext context)
         {
             context.Prices.RemoveRange(context.Prices);
             context.Items.RemoveRange(context.Items);

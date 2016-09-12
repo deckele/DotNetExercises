@@ -1,17 +1,19 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Data;
 
 namespace CartCompare
 {
-    internal class UnvalidatedCart
+    internal class CartToCompare
     {
-        public UnvalidatedCart(Store store)
+        public CartToCompare(Store store)
         {
             CartTotalPrice = 0.0;
             Store = store;
         }
 
         public double CartTotalPrice { get; set; }
-        private Store Store { get; }
+        public Store Store { get; }
+        public List<Price> CartPrices { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace MarketComparingApp
     {
         public MainWindowViewModel()
         {
+            Stores = new List<Store>();
             AllItems = new ObservableCollection<ItemViewModel>();
             SelectedItems = new ObservableCollection<ItemViewModel>();
             DropDownItemQuantityMenu = Enumerable.Range(0, 201).ToArray();
@@ -31,17 +32,17 @@ namespace MarketComparingApp
         public int[] DropDownItemQuantityMenu { get; }
         public ObservableCollection<Cart> Carts { get; private set; }
         public ObservableCollection<ICommandEx> Commands { get; }
-
+        
         public void LoadFromDatabase()
         {
             using (var context = new MarketContext())
             {
-                Stores = context.Stores?.ToList();
+                Stores = context.Stores.Include(s=>s.Chain).ToList();
 
                 var items = context.Items.Include(i => i.Prices);
                 foreach (var item in items)
                 {
-                    AllItems.Add(new ItemViewModel() {Item= item});
+                    AllItems.Add(new ItemViewModel() {Item= item, ItemQuantity = 0});
                 }
             }
         }

@@ -49,9 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnvalidatedCart.cs" />
+    <Compile Include="CartToCompare.cs" />
     <Compile Include="Cart.cs" />
-    <Compile Include="CartValidator.cs" />
+    <Compile Include="CartComperer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

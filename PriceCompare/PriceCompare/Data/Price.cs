@@ -37,7 +37,7 @@ namespace Data
         }
         public override int GetHashCode()
         {
-            return (int)((ItemID * StoreID) ^ ChainID );
+            return (int)(ItemID);
         }
     }
 }
