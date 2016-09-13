@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -29,6 +30,9 @@ namespace MarketComparingApp
             LoadFromDatabase();
 
             UpdateDatabaseCommand = new DelegateCommand(UpdateDatabase);
+            AddCommand = new DelegateCommand<object>(Add);
+            RemoveCommand = new DelegateCommand(Remove);
+            CompareCommand = new DelegateCommand(Compare);
         }
 
         private List<Store> Stores { get; set; }
@@ -56,10 +60,45 @@ namespace MarketComparingApp
         {
             var xmlParser = new MarketXmlParser();
             xmlParser.ParseAllXml(@"D:\Emanuel\Documents\Coding\PricesForMarketProject\Selection");
+            OnPropertyChanged();
 
             MessageBox.Show("DataBase created");
         }
+        private void Add(object obj)
+        {
+            var newAllItemsList = new ObservableCollection<ItemInQuantity>();
+            var newSelectedItemsList = new ObservableCollection<ItemInQuantity>();
+            foreach (var itemInQuantity in AllItems)
+            {
+                if (itemInQuantity.ItemQuantity == 0)
+                {
+                    newAllItemsList.Add(itemInQuantity);
+                }
+                else if (itemInQuantity.ItemQuantity > 0)
+                {
+                    newSelectedItemsList.Add(itemInQuantity);
+                    Debug.WriteLine($"Added item {itemInQuantity.Item.Name}");
+                }
+            }
+            AllItems = newAllItemsList;
+            SelectedItems = newSelectedItemsList;
+            OnPropertyChanged();
+        }
+        private void Remove()
+        {
+
+        }
+        private void Compare()
+        {
+            var cartComparer = new CartComperer();
+            Carts = cartComparer.GetValidCarts(SelectedItems, Stores);
+            OnPropertyChanged();
+        }
+
 
         public DelegateCommand UpdateDatabaseCommand { get; }
+        public DelegateCommand<object> AddCommand { get; }
+        public DelegateCommand RemoveCommand { get; }
+        public DelegateCommand CompareCommand { get; }
     }
 }

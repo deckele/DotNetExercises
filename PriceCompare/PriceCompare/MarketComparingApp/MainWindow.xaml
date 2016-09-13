@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MarketComparingApp"
-        xmlns:Data="clr-namespace:Data;assembly=Data" x:Class="MarketComparingApp.MainWindow"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:Data="clr-namespace:Data;assembly=Data" 
+        x:Class="MarketComparingApp.MainWindow"
         mc:Ignorable="d"
         Title="Market Comparing App" WindowState="Maximized" Height="700" Width="1200"
         Background="LightSteelBlue" d:DataContext="{d:DesignInstance local:MainWindowViewModel}">
@@ -87,6 +89,7 @@
 
         <DataGrid x:Name ="ItemsDataGrid" SelectionMode="Extended"
                   Grid.Row="2" Grid.Column="0"
+                  SelectionUnit="FullRow"
                   ItemsSource="{Binding AllItems}"
                   AutoGenerateColumns="False" EnableRowVirtualization="True"
                   Margin="4,3.8,3.6,4" 
@@ -96,7 +99,7 @@
                 <DataGridTemplateColumn Header="Quantity">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox x:Name="QuantityColumn" SelectedItem="{Binding AllItems.Item.ItemQuantity}" 
+                            <ComboBox x:Name="QuantityColumn" SelectedItem="{Binding AllItems.Item.ItemQuantity, Mode=TwoWay}" 
                                         ItemsSource="{Binding Source={StaticResource NumberCollection}}" 
                                         IsSynchronizedWithCurrentItem="False"/>
                         </DataTemplate>
@@ -110,12 +113,14 @@
         <StackPanel VerticalAlignment="Center"
                     Orientation="Vertical" 
                     Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0.4,204.8,329.2,205" >
-            <Button Name="AddButton"
+            <Button Name="AddButton" Command="{Binding AddCommand}" 
+                    CommandParameter="{Binding ElementName=ItemsDataGrid, Path=Items}"
                     VerticalAlignment="Center" HorizontalAlignment="Center" 
                     Content="Add &gt;&gt;" 
                     Width="80" Height="25"
                     Margin="5"/>
-            <Button Name="RemoveButton"
+            <Button Name="RemoveButton" Command="{Binding RemoveCommand}" 
+                    CommandParameter="{Binding ElementName=SelectedItemsDataGrid, Path=SelectedItems}"
                     VerticalAlignment="Center" HorizontalAlignment="Center" 
                     Content="&lt;&lt; Remove"
                     Width="80" Height="25"
@@ -133,8 +138,8 @@
                 <DataGridTemplateColumn Header="Quantity">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox x:Name="QuantityColumn" SelectedItem="{Binding AllItems.Item.ItemQuantity}" 
-                                        ItemsSource="{Binding Source={StaticResource NumberCollection}}" 
+                            <ComboBox x:Name="QuantityColumn" SelectedItem="{Binding AllItems.Item.ItemQuantity, Mode=TwoWay}" 
+                                        ItemsSource="{Binding Source={StaticResource NumberCollection}}"
                                         IsSynchronizedWithCurrentItem="False"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
