@@ -11,7 +11,13 @@ namespace CartCompare
     {
         public Cart()
         {
-
+            CartPrices = new ObservableCollection<Price>();
+            HighestPriceItem = new Price();
+            SecondHighestPriceItem = new Price();
+            ThirdHighestPriceItem = new Price();
+            LowestPriceItem = new Price();
+            SecondLowestPriceItem = new Price();
+            ThirdLowestPriceItem = new Price();
         }
 
         public string ChainName { get; set; }

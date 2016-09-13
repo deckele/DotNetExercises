@@ -125,9 +125,9 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel VerticalAlignment="Center"
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center"
                     Orientation="Vertical" 
-                    Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0.4,204.8,329.2,205" >
+                    Grid.Row="2" Margin="1.4,166,330.2,0" Width="82" Grid.ColumnSpan="2" Grid.Column="1" >
             <Button Name="AddButton" Command="{Binding AddCommand}" 
                     CommandParameter="{Binding Items, ElementName=AllItemsDataGrid}"
                     VerticalAlignment="Center" HorizontalAlignment="Center" 
@@ -139,7 +139,7 @@
                     VerticalAlignment="Center" HorizontalAlignment="Right" 
                     Content="&lt;&lt; Remove"
                     Width="80" Height="25"
-                    Margin="0,5,2,5" Click="RemoveButton_Click"/>
+                    Margin="5" Click="RemoveButton_Click"/>
         </StackPanel>
 
         <DataGrid x:Name ="SelectedItemsDataGrid" SelectionMode="Extended"

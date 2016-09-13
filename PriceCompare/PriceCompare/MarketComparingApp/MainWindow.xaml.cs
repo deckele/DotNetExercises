@@ -72,19 +72,27 @@ namespace MarketComparingApp
             AllItemsDataGrid.DataContext = MainWindowViewModel;
             SelectedItemsDataGrid.DataContext = MainWindowViewModel;
         }
-
+        
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            var newSelectedItemsList = MainWindowViewModel.SelectedItems;
+            var newSelectedItemsList = new ObservableCollection<ItemInQuantity>();
 
             foreach (var dataGridCellInfo in SelectedItemsDataGrid.SelectedItems)
             {
                 var itemInQuantity = dataGridCellInfo as ItemInQuantity;
+                if (itemInQuantity == null)
+                {
+                    continue;
+                }
+                itemInQuantity.ItemQuantity = 0;
                 MainWindowViewModel.AllItems.Add(itemInQuantity);
-                newSelectedItemsList.Remove(itemInQuantity);
+                newSelectedItemsList.Add(itemInQuantity);
                 Debug.WriteLine($"Removed item: {itemInQuantity?.Item.Name}.");
             }
-            MainWindowViewModel.SelectedItems = newSelectedItemsList;
+            foreach (var itemInQuantity in newSelectedItemsList)
+            {
+                MainWindowViewModel.SelectedItems.Remove(itemInQuantity);
+            }
             AllItemsDataGrid.DataContext = null;
             SelectedItemsDataGrid.DataContext = null;
             AllItemsDataGrid.DataContext = MainWindowViewModel;

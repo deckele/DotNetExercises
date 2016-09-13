@@ -10,6 +10,7 @@ namespace CartCompare
         {
             CartTotalPrice = 0.0;
             Store = store;
+            CartPrices = new List<Price>();
         }
 
         public double CartTotalPrice { get; set; }

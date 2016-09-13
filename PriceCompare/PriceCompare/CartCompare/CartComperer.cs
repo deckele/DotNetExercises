@@ -33,7 +33,7 @@ namespace CartCompare
 
                 foreach (var chosenItemInQty in chosenItemsInQty)
                 {
-                    //Does our store have a price for this xhosen item?
+                    //Does our store have a price for this chosen item?
                     bool foundStore = false;
 
                     //Check the prices list for the item:
@@ -45,6 +45,7 @@ namespace CartCompare
                             //Mark the chosen item was found
                             foundStore = true;
                             //Add the item to the cart multiplied by chosen quantity:
+                            cartToCompare.CartPrices.Add(price);
                             cartToCompare.CartTotalPrice += (price.ItemPrice * chosenItemInQty.ItemQuantity);
                             //No need to look for another price:
                             break;
