@@ -4,9 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MarketComparingApp"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:Data="clr-namespace:Data;assembly=Data" 
         x:Class="MarketComparingApp.MainWindow"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="Market Comparing App" WindowState="Maximized" Height="700" Width="1200"
         Background="LightSteelBlue" d:DataContext="{d:DesignInstance local:MainWindowViewModel}">
@@ -36,7 +35,13 @@
             </DataGrid>
         </ContextMenu>
     </Window.Resources>
-    <Grid>
+    <!--<i:Interaction.Triggers>
+        <i:EventTrigger EventName="CurrentCellDirtyStateChanged">
+            <i:InvokeCommandAction Command="{Binding Path=UpdateAllItemsListCommand}"
+                                           CommandParameter="{Binding SelectedItems}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>-->
+    <Grid x:Name="CurrentCellDirtyStateChanged">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="330"/>
             <ColumnDefinition Width="75*"/>
@@ -87,21 +92,31 @@
             </DataGrid.Columns>
         </DataGrid>-->
 
-        <DataGrid x:Name ="ItemsDataGrid" SelectionMode="Extended"
+        <DataGrid x:Name ="AllItemsDataGrid" SelectionMode="Extended"
                   Grid.Row="2" Grid.Column="0"
-                  SelectionUnit="FullRow"
+                  SelectionUnit="Cell"
                   ItemsSource="{Binding AllItems}"
                   AutoGenerateColumns="False" EnableRowVirtualization="True"
                   Margin="4,3.8,3.6,4" 
                   RowDetailsVisibilityMode="VisibleWhenSelected" 
                   FlowDirection="RightToLeft" VerticalScrollBarVisibility="Visible">
+
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Quantity">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox x:Name="QuantityColumn" SelectedItem="{Binding AllItems.Item.ItemQuantity, Mode=TwoWay}" 
+                            <ComboBox x:Name="QuantityColumn" SelectedItem="{Binding AllItems.Item.ItemQuantity}"
                                         ItemsSource="{Binding Source={StaticResource NumberCollection}}" 
-                                        IsSynchronizedWithCurrentItem="False"/>
+                                        IsSynchronizedWithCurrentItem="False" SelectionChanged="OnSelectionChanged_AllItemsDataGrid">
+
+                                <!--<i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <local:EventCommandExecuter 
+                                            Command="{Binding Path=UpdateAllItemsListCommand, Mode=OneTime}" 
+                                            EventArgsConverterParameter="{Binding ElementName=SomeEventSource, Mode=OneTime}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>-->
+                            </ComboBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -114,17 +129,17 @@
                     Orientation="Vertical" 
                     Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0.4,204.8,329.2,205" >
             <Button Name="AddButton" Command="{Binding AddCommand}" 
-                    CommandParameter="{Binding ElementName=ItemsDataGrid, Path=Items}"
+                    CommandParameter="{Binding Items, ElementName=AllItemsDataGrid}"
                     VerticalAlignment="Center" HorizontalAlignment="Center" 
                     Content="Add &gt;&gt;" 
                     Width="80" Height="25"
-                    Margin="5"/>
+                    Margin="5" Click="AddButton_Click" />
             <Button Name="RemoveButton" Command="{Binding RemoveCommand}" 
                     CommandParameter="{Binding ElementName=SelectedItemsDataGrid, Path=SelectedItems}"
-                    VerticalAlignment="Center" HorizontalAlignment="Center" 
+                    VerticalAlignment="Center" HorizontalAlignment="Right" 
                     Content="&lt;&lt; Remove"
                     Width="80" Height="25"
-                    Margin="5"/>
+                    Margin="0,5,2,5" Click="RemoveButton_Click"/>
         </StackPanel>
 
         <DataGrid x:Name ="SelectedItemsDataGrid" SelectionMode="Extended"
@@ -139,7 +154,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox x:Name="QuantityColumn" SelectedItem="{Binding AllItems.Item.ItemQuantity, Mode=TwoWay}" 
-                                        ItemsSource="{Binding Source={StaticResource NumberCollection}}"
+                                        ItemsSource="{Binding Source={StaticResource NumberCollection} }"
                                         IsSynchronizedWithCurrentItem="False"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -153,6 +168,7 @@
                     Orientation="Vertical" 
                     Grid.Row="2" Grid.Column="3">
             <Button Name="CompareButton" Content="Compare!" 
+                    Command="{Binding CompareCommand}" 
                     VerticalAlignment="Center" HorizontalAlignment="Center" 
                     Width="60" Height="25"
                     Margin="5"/>
@@ -164,7 +180,7 @@
                   AutoGenerateColumns="False" EnableRowVirtualization="True"
                   Margin="3.8,3.8,3.6,4" 
                   RowDetailsVisibilityMode="VisibleWhenSelected" 
-                  FlowDirection="RightToLeft" VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
+                  FlowDirection="RightToLeft" VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Adress}" 
                                     Header="Adress" Width="SizeToHeader"/>

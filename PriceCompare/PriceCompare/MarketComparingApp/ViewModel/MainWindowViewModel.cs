@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using CartCompare;
 using Data;
 using FileManager;
@@ -30,14 +31,15 @@ namespace MarketComparingApp
             LoadFromDatabase();
 
             UpdateDatabaseCommand = new DelegateCommand(UpdateDatabase);
-            AddCommand = new DelegateCommand<object>(Add);
-            RemoveCommand = new DelegateCommand(Remove);
+            //UpdateItemListCommand = new DelegateCommand<object>(UpdateItemList);
+            //AddCommand = new DelegateCommand<object>(Add);
+            //RemoveCommand = new DelegateCommand(Remove);
             CompareCommand = new DelegateCommand(Compare);
         }
 
         private List<Store> Stores { get; set; }
-        public ObservableCollection<ItemInQuantity> AllItems { get; private set; }
-        public ObservableCollection<ItemInQuantity> SelectedItems { get; private set; }
+        public ObservableCollection<ItemInQuantity> AllItems { get; set; }
+        public ObservableCollection<ItemInQuantity> SelectedItems { get; set; }
         public ObservableCollection<Cart> Carts { get; private set; }
         public int[] DropDownItemQuantityMenu { get; }
         public ObservableCollection<ICommandEx> Commands { get; }
@@ -64,6 +66,11 @@ namespace MarketComparingApp
 
             MessageBox.Show("DataBase created");
         }
+
+        private void UpdateItemList(object obj)
+        {
+            MessageBox.Show("updating");
+        }
         private void Add(object obj)
         {
             var newAllItemsList = new ObservableCollection<ItemInQuantity>();
@@ -86,7 +93,6 @@ namespace MarketComparingApp
         }
         private void Remove()
         {
-
         }
         private void Compare()
         {
@@ -95,8 +101,8 @@ namespace MarketComparingApp
             OnPropertyChanged();
         }
 
-
         public DelegateCommand UpdateDatabaseCommand { get; }
+        public DelegateCommand<object> UpdateItemListCommand { get; }
         public DelegateCommand<object> AddCommand { get; }
         public DelegateCommand RemoveCommand { get; }
         public DelegateCommand CompareCommand { get; }

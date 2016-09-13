@@ -20,7 +20,7 @@ namespace CartCompare
         public string Adress { get; set; }
         public string City { get; set; }
         public ObservableCollection<Price> CartPrices { get; set; }
-
+        
         public Price HighestPriceItem { get; set; }
         public Price SecondHighestPriceItem { get; set; }
         public Price ThirdHighestPriceItem { get; set; }
