@@ -8,7 +8,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         Title="Market Comparing App" Height="700" Width="1200"
-        Background="Wheat" d:DataContext="{d:DesignInstance local:MainWindowViewModel}">
+        Background="Wheat" d:DataContext="{d:DesignInstance local:MainWindowViewModel}" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <CollectionViewSource x:Key="NumberCollection" Source="{Binding DropDownItemQuantityMenu}" />
     </Window.Resources>
@@ -21,17 +21,19 @@
             <ColumnDefinition Width="250*"/>
             <ColumnDefinition Width="75*"/>
             <ColumnDefinition Width="250*"/>
-
         </Grid.ColumnDefinitions>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="18"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="40*"/>
             <RowDefinition Height="200*"/>
             <RowDefinition Height="200*"/>
         </Grid.RowDefinitions>
+        
         <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5" 
                 Margin="5,40,5,40" Opacity="0.6" Background="DarkGray" Panel.ZIndex="0" />
-        <DockPanel Grid.Row="0" Grid.ColumnSpan="5" Margin="0,0,-0.4,85.2" Grid.RowSpan="2">
+        
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
                     <MenuItem Header="_New" />
@@ -47,15 +49,20 @@
             </Menu>
         </DockPanel>
 
+        <TextBox Grid.Row="1" Grid.Column="0" Text ="All Items" FontSize="30" 
+                 HorizontalAlignment="Center" Margin="4" Background="Transparent" Foreground="AliceBlue"/>
+        <TextBox Grid.Row="1" Grid.Column="2" Text ="Shopping Cart" FontSize="30" 
+                 HorizontalAlignment="Center" Margin="4" Background="Transparent" Foreground="AliceBlue"/>
+        
         <Button x:Name="ButtonUpdateDb" Content="Update DataBase"
                 Command="{Binding UpdateDatabaseCommand}"
                 HorizontalAlignment="Left" VerticalAlignment="Top"
                 Margin="10,25,0,0" Width="101" Height="19" 
                 Grid.Row="3" Grid.Column="0"/>
 
-        <StackPanel VerticalAlignment="Center"
+        <StackPanel VerticalAlignment="Top"
                     Orientation="Vertical" 
-                    Grid.Row="2" Width="82" Grid.Column="1" Height="75" >
+                    Grid.Row="2" Width="82" Grid.Column="1" Height="75" Margin="0,20,0,0">
             <Button Name="AddButton" Command="{Binding AddCommand}" 
                     CommandParameter="{Binding Items, ElementName=AllItemsDataGrid}"
                     VerticalAlignment="Center" HorizontalAlignment="Center" 
@@ -72,12 +79,11 @@
         
         <StackPanel VerticalAlignment="Bottom"
                     Orientation="Vertical" 
-                    Grid.Row="2" Grid.Column="1">
+                    Grid.Row="2" Grid.Column="1" Margin="5,5,5,40">
             <Button Name="CompareButton" Content="Compare!" 
                     Command="{Binding CompareCommand}" 
                     VerticalAlignment="Center" HorizontalAlignment="Center" 
-                    Width="60" Height="25"
-                    Margin="5,5,5,20"/>
+                    Width="60" Height="50" Background="Beige"/>
         </StackPanel>
 
         <DataGrid x:Name ="AllItemsDataGrid" SelectionMode="Extended"
