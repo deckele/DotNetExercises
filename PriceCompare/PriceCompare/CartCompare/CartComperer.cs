@@ -10,20 +10,12 @@ namespace CartCompare
 {
     public class CartComperer
     {
-        ////Output container:
-        //public ObservableCollection<Cart> ValidCarts { get; set; }
-
-        //public CartComperer(ObservableCollection<Item> chosenItems, List<Store> stores)
-        //{
-        //    ValidCarts = new ObservableCollection<Cart>();
-        //    GetValidCarts(chosenItems, stores);
-        //}
-
         //Check which stores can supply our shopping list:
         public ObservableCollection<Cart> GetValidCarts(ObservableCollection<ItemInQuantity> chosenItemsInQty, List<Store> stores)
         {
             //Output container:
-            var validCarts = new ObservableCollection<Cart>();
+            var validCartsList = new List<Cart>();
+            var carts = new ObservableCollection<Cart>();
 
             foreach (var store in stores)
             {
@@ -88,10 +80,15 @@ namespace CartCompare
                         SecondLowestPriceItem = sortedCartPrices.Count > 1 ? sortedCartPrices[1] : null,
                         ThirdLowestPriceItem = sortedCartPrices.Count > 2 ? sortedCartPrices[2] : null,
                     };
-                    validCarts.Add(cart);
+                    validCartsList.Add(cart);
                 }
             }
-            return validCarts;
+            var sortedCartsList = validCartsList.OrderBy(c => c.CartTotalPrice);
+            foreach (var cart in sortedCartsList)
+            {
+                carts.Add(cart);
+            }
+            return carts;
         }
     }
 }

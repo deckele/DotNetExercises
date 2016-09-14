@@ -36,7 +36,6 @@
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_New" />
                     <MenuItem Header="_Open" />
                     <MenuItem Header="_Save" />
                     <Separator />
@@ -50,8 +49,10 @@
         </DockPanel>
 
         <TextBox Grid.Row="1" Grid.Column="0" Text ="All Items" FontSize="30" 
+                 IsReadOnly="True" BorderBrush="Transparent"
                  HorizontalAlignment="Center" Margin="4" Background="Transparent" Foreground="AliceBlue"/>
         <TextBox Grid.Row="1" Grid.Column="2" Text ="Shopping Cart" FontSize="30" 
+                 IsReadOnly="True" BorderBrush="Transparent"
                  HorizontalAlignment="Center" Margin="4" Background="Transparent" Foreground="AliceBlue"/>
         
         <Button x:Name="ButtonUpdateDb" Content="Update DataBase"

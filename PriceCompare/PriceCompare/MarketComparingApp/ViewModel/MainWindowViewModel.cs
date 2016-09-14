@@ -28,7 +28,7 @@ namespace MarketComparingApp
             DropDownItemQuantityMenu = Enumerable.Range(0, 201).ToArray();
             Commands = new ObservableCollection<ICommandEx>();
 
-            LoadFromDatabase();
+            LoadFromDatabaseComparable();
 
             UpdateDatabaseCommand = new DelegateCommand(UpdateDatabase);
             //UpdateItemListCommand = new DelegateCommand<object>(UpdateItemList);
@@ -44,16 +44,31 @@ namespace MarketComparingApp
         public int[] DropDownItemQuantityMenu { get; }
         public ObservableCollection<ICommandEx> Commands { get; }
         
-        private void LoadFromDatabase()
+        private void LoadAllFromDatabase()
         {
             using (var context = new MarketContext())
             {
                 Stores = context.Stores.Include(s=>s.Chain).ToList();
 
-                var items = context.Items.Include(i => i.Prices.Select(p => p.Item)).ToList();
+                var items = context.Items.Include(i => i.Prices.Select(p => p.Item)).ToList().OrderBy(i => i.Name);
                 foreach (var item in items)
                 {
                     AllItems.Add(new ItemInQuantity() {Item= item, ItemQuantity = 0});
+                }
+                OnPropertyChanged(nameof(AllItems));
+                OnPropertyChanged(nameof(SelectedItems));
+            }
+        }
+        private void LoadFromDatabaseComparable()
+        {
+            using (var context = new MarketContext())
+            {
+                Stores = context.Stores.Include(s => s.Chain).ToList();
+
+                var items = context.Items.Where(i => i.Prices.Count > 8).Include(i => i.Prices.Select(p => p.Item)).ToList().OrderBy(i => i.Name);
+                foreach (var item in items)
+                {
+                    AllItems.Add(new ItemInQuantity() { Item = item, ItemQuantity = 0 });
                 }
                 OnPropertyChanged(nameof(AllItems));
                 OnPropertyChanged(nameof(SelectedItems));
