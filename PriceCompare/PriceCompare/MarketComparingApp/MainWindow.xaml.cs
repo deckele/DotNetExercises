@@ -52,14 +52,29 @@ namespace MarketComparingApp
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             var newAllItemsList = new ObservableCollection<ItemInQuantity>();
+            var selectedItems = new List<ItemInQuantity>();
+            foreach (var dataGridCellInfo in AllItemsDataGrid.SelectedItems)
+            {
+                var selectedItem = dataGridCellInfo as ItemInQuantity;
+                selectedItems.Add(selectedItem);
+            }
 
             foreach (var dataGridCellInfo in AllItemsDataGrid.Items)
             {
                 var itemInQuantity = dataGridCellInfo as ItemInQuantity;
-                if (itemInQuantity?.ItemQuantity == 0)
+                //If item is selected but a quantity was not chosen, still get the item:
+                if (selectedItems.Contains(itemInQuantity) && (itemInQuantity?.ItemQuantity == 0))
+                {
+                    itemInQuantity.ItemQuantity = 1;
+                    MainWindowViewModel.SelectedItems.Add(itemInQuantity);
+                    Debug.WriteLine($"Added item: {itemInQuantity.Item.Name}.");
+                }
+                //if a quantity of zero was chosen, item isn't added to selected list:
+                else if (itemInQuantity?.ItemQuantity == 0)
                 {
                     newAllItemsList.Add(itemInQuantity);
                 }
+                //if the quantity is greater than zero, item is added to selected list:
                 else if (itemInQuantity?.ItemQuantity > 0)
                 {
                     MainWindowViewModel.SelectedItems.Add(itemInQuantity);
@@ -97,6 +112,11 @@ namespace MarketComparingApp
             SelectedItemsDataGrid.DataContext = null;
             AllItemsDataGrid.DataContext = MainWindowViewModel;
             SelectedItemsDataGrid.DataContext = MainWindowViewModel;
+        }
+
+        private void OnMouseDirectlyOverChanged_CartsDataGrid(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            
         }
 
 

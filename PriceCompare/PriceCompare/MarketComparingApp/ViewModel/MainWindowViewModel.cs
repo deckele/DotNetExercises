@@ -44,7 +44,7 @@ namespace MarketComparingApp
         public int[] DropDownItemQuantityMenu { get; }
         public ObservableCollection<ICommandEx> Commands { get; }
         
-        public void LoadFromDatabase()
+        private void LoadFromDatabase()
         {
             using (var context = new MarketContext())
             {
@@ -55,6 +55,8 @@ namespace MarketComparingApp
                 {
                     AllItems.Add(new ItemInQuantity() {Item= item, ItemQuantity = 0});
                 }
+                OnPropertyChanged(nameof(AllItems));
+                OnPropertyChanged(nameof(SelectedItems));
             }
         }
 
@@ -62,9 +64,10 @@ namespace MarketComparingApp
         {
             var xmlParser = new MarketXmlParser();
             xmlParser.ParseAllXml(@"D:\Emanuel\Documents\Coding\PricesForMarketProject\Selection");
-            OnPropertyChanged();
 
             MessageBox.Show("DataBase created");
+            OnPropertyChanged(nameof(AllItems));
+            OnPropertyChanged(nameof(SelectedItems));
         }
 
         private void UpdateItemList(object obj)
@@ -89,7 +92,8 @@ namespace MarketComparingApp
             }
             AllItems = newAllItemsList;
             SelectedItems = newSelectedItemsList;
-            OnPropertyChanged();
+            OnPropertyChanged(nameof(AllItems));
+            OnPropertyChanged(nameof(SelectedItems));
         }
         private void Remove()
         {
@@ -98,7 +102,7 @@ namespace MarketComparingApp
         {
             var cartComparer = new CartComperer();
             Carts = cartComparer.GetValidCarts(SelectedItems, Stores);
-            OnPropertyChanged();
+            OnPropertyChanged(nameof(Carts));
         }
 
         public DelegateCommand UpdateDatabaseCommand { get; }
