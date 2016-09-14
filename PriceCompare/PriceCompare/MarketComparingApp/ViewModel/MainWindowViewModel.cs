@@ -14,6 +14,7 @@ using CartCompare;
 using Data;
 using FileManager;
 using MarketComparingApp.Annotations;
+using Microsoft.Win32;
 
 namespace MarketComparingApp
 {
@@ -32,6 +33,8 @@ namespace MarketComparingApp
 
             UpdateDatabaseCommand = new DelegateCommand(UpdateDatabase);
             //UpdateItemListCommand = new DelegateCommand<object>(UpdateItemList);
+            OpenCommand = new DelegateCommand(Open);
+            ExitCommand = new DelegateCommand(Exit);
             //AddCommand = new DelegateCommand<object>(Add);
             //RemoveCommand = new DelegateCommand(Remove);
             CompareCommand = new DelegateCommand(Compare);
@@ -85,6 +88,21 @@ namespace MarketComparingApp
             OnPropertyChanged(nameof(SelectedItems));
         }
 
+        private void Open()
+        {
+            var dialog = new OpenFileDialog { Filter = "Save file|*.xml" };
+            if (dialog.ShowDialog() == true)
+            {
+                //var image = new ImageViewModel(dialog.FileName);
+                //Images.Add(image);
+                //SelectedImage = image;
+            }
+        }
+        private void Exit()
+        {
+            Application.Current.MainWindow.Close();
+        }
+
         private void UpdateItemList(object obj)
         {
             MessageBox.Show("updating");
@@ -122,6 +140,8 @@ namespace MarketComparingApp
 
         public DelegateCommand UpdateDatabaseCommand { get; }
         public DelegateCommand<object> UpdateItemListCommand { get; }
+        public DelegateCommand OpenCommand { get; }
+        public DelegateCommand ExitCommand { get; }
         public DelegateCommand<object> AddCommand { get; }
         public DelegateCommand RemoveCommand { get; }
         public DelegateCommand CompareCommand { get; }

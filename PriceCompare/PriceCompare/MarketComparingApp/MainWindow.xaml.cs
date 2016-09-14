@@ -114,22 +114,7 @@ namespace MarketComparingApp
             SelectedItemsDataGrid.DataContext = MainWindowViewModel;
         }
 
-        private void OnMouseDirectlyOverChanged_CartsDataGrid(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            
-        }
-
-
-
-        //private void button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var xmlParser = new MarketXmlParser();
-        //    xmlParser.ParseAllXml(@"D:\Emanuel\Documents\Coding\PricesForMarketProject\Selection");
-
-        //    MessageBox.Show("DataBase created");
-        //}
-
-        //Initializing Database was only for debug
+        //Initializing Database for debug only:
         //private void buttonInitializeDB_Click(object sender, RoutedEventArgs e)
         //{
         //    using (var marketContext = new MarketContext())
@@ -141,6 +126,5 @@ namespace MarketComparingApp
         //        MessageBox.Show("Database Initialized.");
         //    }
         //}
-
     }
 }

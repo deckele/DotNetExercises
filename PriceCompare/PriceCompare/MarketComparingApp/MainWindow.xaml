@@ -36,13 +36,14 @@
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_Open" />
+                    <MenuItem Header="_Open" Command="{Binding OpenCommand}" />
                     <MenuItem Header="_Save" />
                     <Separator />
-                    <MenuItem Header="_Exit" />
+                    <MenuItem Header="_Exit" Command="{Binding ExitCommand}"/>
                 </MenuItem>
                 <MenuItem Header="_Tools">
                     <MenuItem Header="_Manage users"/>
+                    <MenuItem Header="_Update Database" Command="{Binding UpdateDatabaseCommand}"/>
                     <MenuItem Header="_Show groups" IsCheckable="True" IsChecked="True" />
                 </MenuItem>
             </Menu>
@@ -55,12 +56,6 @@
                  IsReadOnly="True" BorderBrush="Transparent"
                  HorizontalAlignment="Center" Margin="4" Background="Transparent" Foreground="AliceBlue"/>
         
-        <Button x:Name="ButtonUpdateDb" Content="Update DataBase"
-                Command="{Binding UpdateDatabaseCommand}"
-                HorizontalAlignment="Left" VerticalAlignment="Top"
-                Margin="10,25,0,0" Width="101" Height="19" 
-                Grid.Row="3" Grid.Column="0"/>
-
         <StackPanel VerticalAlignment="Top"
                     Orientation="Vertical" 
                     Grid.Row="2" Width="82" Grid.Column="1" Height="75" Margin="0,20,0,0">
