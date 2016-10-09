@@ -65,13 +65,13 @@
                     VerticalAlignment="Center" HorizontalAlignment="Center" 
                     Content="Add &gt;&gt;" 
                     Width="70" Height="25"
-                    Margin="5" Click="AddButton_Click" />
+                    Margin="5" />
             <Button Name="RemoveButton" Command="{Binding RemoveCommand}" 
                     CommandParameter="{Binding ElementName=SelectedItemsDataGrid, Path=SelectedItems}"
                     VerticalAlignment="Center" HorizontalAlignment="Right" 
                     Content="&lt;&lt; Remove"
                     Width="70" Height="25"
-                    Margin="5" Click="RemoveButton_Click"/>
+                    Margin="5" />
         </StackPanel>
         
         <StackPanel VerticalAlignment="Bottom"

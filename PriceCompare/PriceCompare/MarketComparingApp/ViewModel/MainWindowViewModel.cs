@@ -35,8 +35,8 @@ namespace MarketComparingApp.ViewModel
             //UpdateItemListCommand = new DelegateCommand<object>(UpdateItemList);
             OpenCommand = new DelegateCommand(Open);
             ExitCommand = new DelegateCommand(Exit);
-            //AddCommand = new DelegateCommand<object>(Add);
-            //RemoveCommand = new DelegateCommand(Remove);
+            AddCommand = new DelegateCommand(Add);
+            RemoveCommand = new DelegateCommand(Remove);
             CompareCommand = new DelegateCommand(Compare);
         }
 
@@ -89,29 +89,70 @@ namespace MarketComparingApp.ViewModel
         {
             MessageBox.Show("updating");
         }
-        private void Add(object obj)
+        private void Add()
         {
             var newAllItemsList = new ObservableCollection<ItemInQuantity>();
-            var newSelectedItemsList = new ObservableCollection<ItemInQuantity>();
-            foreach (var itemInQuantity in AllItems)
+            var selectedItems = new List<ItemInQuantity>();
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            foreach (var dataGridCellInfo in mainWindow.AllItemsDataGrid.SelectedItems)
             {
-                if (itemInQuantity.ItemQuantity == 0)
+                var selectedItem = dataGridCellInfo as ItemInQuantity;
+                selectedItems.Add(selectedItem);
+            }
+
+            foreach (var dataGridCellInfo in mainWindow.AllItemsDataGrid.Items)
+            {
+                var itemInQuantity = dataGridCellInfo as ItemInQuantity;
+                //If item is selected but a quantity was not chosen, still get the item:
+                if (selectedItems.Contains(itemInQuantity) && (itemInQuantity?.ItemQuantity == 0))
+                {
+                    itemInQuantity.ItemQuantity = 1;
+                    SelectedItems.Add(itemInQuantity);
+                    Debug.WriteLine($"Added item: {itemInQuantity.Item.Name}.");
+                }
+                //if a quantity of zero was chosen, item isn't added to selected list:
+                else if (itemInQuantity?.ItemQuantity == 0)
                 {
                     newAllItemsList.Add(itemInQuantity);
                 }
-                else if (itemInQuantity.ItemQuantity > 0)
+                //if the quantity is greater than zero, item is added to selected list:
+                else if (itemInQuantity?.ItemQuantity > 0)
                 {
-                    newSelectedItemsList.Add(itemInQuantity);
-                    Debug.WriteLine($"Added item {itemInQuantity.Item.Name}");
+                    SelectedItems.Add(itemInQuantity);
+                    Debug.WriteLine($"Added item: {itemInQuantity.Item.Name}.");
                 }
             }
             AllItems = newAllItemsList;
-            SelectedItems = newSelectedItemsList;
-            OnPropertyChanged(nameof(AllItems));
-            OnPropertyChanged(nameof(SelectedItems));
+            mainWindow.AllItemsDataGrid.DataContext = null;
+            mainWindow.SelectedItemsDataGrid.DataContext = null;
+            mainWindow.AllItemsDataGrid.DataContext = mainWindow.MainWindowViewModel;
+            mainWindow.SelectedItemsDataGrid.DataContext = mainWindow.MainWindowViewModel;
         }
         private void Remove()
         {
+            var newSelectedItemsList = new ObservableCollection<ItemInQuantity>();
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+
+            foreach (var dataGridCellInfo in mainWindow.SelectedItemsDataGrid.SelectedItems)
+            {
+                var itemInQuantity = dataGridCellInfo as ItemInQuantity;
+                if (itemInQuantity == null)
+                {
+                    continue;
+                }
+                itemInQuantity.ItemQuantity = 0;
+                mainWindow.MainWindowViewModel.AllItems.Add(itemInQuantity);
+                newSelectedItemsList.Add(itemInQuantity);
+                Debug.WriteLine($"Removed item: {itemInQuantity?.Item.Name}.");
+            }
+            foreach (var itemInQuantity in newSelectedItemsList)
+            {
+                mainWindow.MainWindowViewModel.SelectedItems.Remove(itemInQuantity);
+            }
+            mainWindow.AllItemsDataGrid.DataContext = null;
+            mainWindow.SelectedItemsDataGrid.DataContext = null;
+            mainWindow.AllItemsDataGrid.DataContext = mainWindow.MainWindowViewModel;
+            mainWindow.SelectedItemsDataGrid.DataContext = mainWindow.MainWindowViewModel;
         }
         private void Compare()
         {
@@ -124,7 +165,7 @@ namespace MarketComparingApp.ViewModel
         public DelegateCommand<object> UpdateItemListCommand { get; }
         public DelegateCommand OpenCommand { get; }
         public DelegateCommand ExitCommand { get; }
-        public DelegateCommand<object> AddCommand { get; }
+        public DelegateCommand AddCommand { get; }
         public DelegateCommand RemoveCommand { get; }
         public DelegateCommand CompareCommand { get; }
     }
