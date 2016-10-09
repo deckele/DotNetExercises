@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace Data
 {
-    public class MarketInitializer : DropCreateDatabaseIfModelChanges<MarketContext>
+    internal class MarketInitializer : DropCreateDatabaseIfModelChanges<MarketContext>
     {
         protected override void Seed(MarketContext context)
         {

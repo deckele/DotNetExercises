@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Chain.cs" />
+    <Compile Include="DataManager.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="MarketContext.cs" />
     <Compile Include="MarketInitializer.cs" />

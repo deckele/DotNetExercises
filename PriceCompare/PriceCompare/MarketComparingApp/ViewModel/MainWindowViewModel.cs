@@ -29,7 +29,7 @@ namespace MarketComparingApp.ViewModel
             DropDownItemQuantityMenu = Enumerable.Range(0, 201).ToArray();
             Commands = new ObservableCollection<ICommandEx>();
 
-            LoadFromDatabaseComparable();
+            LoadAllFromDatabase(8);
 
             UpdateDatabaseCommand = new DelegateCommand(UpdateDatabase);
             //UpdateItemListCommand = new DelegateCommand<object>(UpdateItemList);
@@ -46,36 +46,18 @@ namespace MarketComparingApp.ViewModel
         public ObservableCollection<Cart> Carts { get; private set; }
         public int[] DropDownItemQuantityMenu { get; }
         public ObservableCollection<ICommandEx> Commands { get; }
-        
-        private void LoadAllFromDatabase()
-        {
-            using (var context = new MarketContext())
-            {
-                Stores = context.Stores.Include(s=>s.Chain).ToList();
 
-                var items = context.Items.Include(i => i.Prices.Select(p => p.Item)).ToList().OrderBy(i => i.Name);
-                foreach (var item in items)
-                {
-                    AllItems.Add(new ItemInQuantity() {Item= item, ItemQuantity = 0});
-                }
-                OnPropertyChanged(nameof(AllItems));
-                OnPropertyChanged(nameof(SelectedItems));
-            }
-        }
-        private void LoadFromDatabaseComparable()
+        private void LoadAllFromDatabase(int itemComparability = 2)
         {
-            using (var context = new MarketContext())
-            {
-                Stores = context.Stores.Include(s => s.Chain).ToList();
+            var dataService = new DataManager(itemComparability);
 
-                var items = context.Items.Where(i => i.Prices.Count > 8).Include(i => i.Prices.Select(p => p.Item)).ToList().OrderBy(i => i.Name);
-                foreach (var item in items)
-                {
-                    AllItems.Add(new ItemInQuantity() { Item = item, ItemQuantity = 0 });
-                }
-                OnPropertyChanged(nameof(AllItems));
-                OnPropertyChanged(nameof(SelectedItems));
+            Stores = dataService.Stores;
+            foreach (var item in dataService.Items)
+            {
+                AllItems.Add(new ItemInQuantity() {Item = item, ItemQuantity = 0});
             }
+            OnPropertyChanged(nameof(AllItems));
+            OnPropertyChanged(nameof(SelectedItems));
         }
 
         private void UpdateDatabase()
