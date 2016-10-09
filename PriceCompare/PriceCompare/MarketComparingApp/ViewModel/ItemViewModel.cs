@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Data;
 
-namespace MarketComparingApp
+namespace MarketComparingApp.ViewModel
 {
     public class ItemViewModel : ObservableObject
     {

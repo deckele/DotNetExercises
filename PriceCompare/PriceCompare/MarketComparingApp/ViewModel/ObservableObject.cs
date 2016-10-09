@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MarketComparingApp.Annotations;
 
-namespace MarketComparingApp
+namespace MarketComparingApp.ViewModel
 {
     public class ObservableObject : INotifyPropertyChanged
     {

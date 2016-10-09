@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:MarketComparingApp"
         x:Class="MarketComparingApp.MainWindow"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:viewModel="clr-namespace:MarketComparingApp.ViewModel"
         mc:Ignorable="d"
         Title="Market Comparing App" Height="700" Width="1200"
-        Background="Wheat" d:DataContext="{d:DesignInstance local:MainWindowViewModel}" WindowStartupLocation="CenterScreen">
+        Background="Wheat" d:DataContext="{d:DesignInstance viewModel:MainWindowViewModel}" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <CollectionViewSource x:Key="NumberCollection" Source="{Binding DropDownItemQuantityMenu}" />
     </Window.Resources>

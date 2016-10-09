@@ -16,7 +16,7 @@ using FileManager;
 using MarketComparingApp.Annotations;
 using Microsoft.Win32;
 
-namespace MarketComparingApp
+namespace MarketComparingApp.ViewModel
 {
     public class MainWindowViewModel : ObservableObject
     {

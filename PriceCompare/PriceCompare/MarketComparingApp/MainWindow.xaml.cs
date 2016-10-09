@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using CartCompare;
 using Data;
 using FileManager;
+using MarketComparingApp.ViewModel;
 
 namespace MarketComparingApp
 {
