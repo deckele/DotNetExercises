@@ -8,8 +8,8 @@ class ItemsCtrl {
 
     constructor(itemsService : IItemService) {
         itemsService.getItems()
-            .then(collection => {
-                this.items = collection;
+            .then(data => {
+                this.items = data;
             });
     }
 }

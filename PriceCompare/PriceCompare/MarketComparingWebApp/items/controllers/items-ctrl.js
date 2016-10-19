@@ -2,8 +2,8 @@ var ItemsCtrl = (function () {
     function ItemsCtrl(itemsService) {
         var _this = this;
         itemsService.getItems()
-            .then(function (collection) {
-            _this.items = collection;
+            .then(function (data) {
+            _this.items = data;
         });
     }
     return ItemsCtrl;
