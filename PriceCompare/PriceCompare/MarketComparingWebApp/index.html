@@ -9,7 +9,7 @@
 </head>
 <body ng-controller="mainCtrl as $ctrl">
 <div ng-controller="itemsCtrl as $ctrl">
-    <items model="$ctrl.items"></items>
+    <items all-items="$ctrl.itemsFromDb"></items>
 </div>
 
     <script src="bower_components/angular/angular.min.js"></script>

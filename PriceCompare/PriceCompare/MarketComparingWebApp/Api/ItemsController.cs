@@ -33,11 +33,11 @@ namespace MarketComparingWebApp.Api
             //db.Items.Include(i => i.Prices)
             var items = Items.Select(i => new
             {
-                Prices = i.Prices.Select(x => new
+                Prices = i.Prices.Select(p => new
                 {
-                    x.StoreID,
-                    x.ItemID,
-                    x.ChainID
+                    p.StoreID,
+                    p.ItemID,
+                    p.ChainID
                 }),
                 i.ItemID,
                 i.Name

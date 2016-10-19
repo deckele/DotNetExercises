@@ -2,7 +2,8 @@
 {
     templateUrl: "items/templates/items.html",
     bindings: {
-        model: "<"
+        allItems: "=",
+        selectedItems: "="
     },
     controller: ItemsCtrl
 });

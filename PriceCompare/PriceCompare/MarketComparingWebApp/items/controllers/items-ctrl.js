@@ -3,7 +3,7 @@ var ItemsCtrl = (function () {
         var _this = this;
         itemsService.getItems()
             .then(function (data) {
-            _this.items = data;
+            _this.itemsFromDb = data;
         });
     }
     return ItemsCtrl;

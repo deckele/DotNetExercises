@@ -1,10 +1,13 @@
 ﻿class ItemsCtrl {
-    items: IItem[];
+    itemsFromDb: IItem[];
+    allItems: IItem[];
+    selectedItems: IItem[];
+
 
     constructor(itemsService : IItemService) {
         itemsService.getItems()
             .then(data => {
-                this.items = data;
+                this.itemsFromDb = data;
             });
     }
 }
