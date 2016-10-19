@@ -17,4 +17,4 @@ class ItemsService {
     }
 }
 
-app.service('itemsService', ItemsService);
+app.service("itemsService", ItemsService);

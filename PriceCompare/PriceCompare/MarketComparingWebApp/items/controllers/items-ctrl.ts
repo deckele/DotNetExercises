@@ -1,9 +1,4 @@
-﻿interface IItem {
-    itemId: number;
-    name: string;
-}
-
-class ItemsCtrl {
+﻿class ItemsCtrl {
     items: IItem[];
 
     constructor(itemsService : IItemService) {

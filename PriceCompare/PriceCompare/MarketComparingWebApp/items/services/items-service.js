@@ -12,5 +12,5 @@ var ItemsService = (function () {
     };
     return ItemsService;
 }());
-app.service('itemsService', ItemsService);
+app.service("itemsService", ItemsService);
 //# sourceMappingURL=items-service.js.map

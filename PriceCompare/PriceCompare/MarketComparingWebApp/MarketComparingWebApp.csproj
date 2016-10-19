@@ -128,6 +128,8 @@
       <DependentUpon>app.css</DependentUpon>
     </Content>
     <Content Include="index.html" />
+    <Content Include="items\templates\item.html" />
+    <Content Include="items\templates\items.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +140,9 @@
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="controllers\main-ctrl.ts" />
+    <TypeScriptCompile Include="items\components\item.ts" />
+    <TypeScriptCompile Include="items\components\items.ts" />
+    <TypeScriptCompile Include="items\controllers\item-ctrl.ts" />
     <TypeScriptCompile Include="items\controllers\items-ctrl.ts" />
     <TypeScriptCompile Include="items\services\items-service.ts" />
     <TypeScriptCompile Include="typings\globals\angular-route\index.d.ts" />
@@ -148,10 +153,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="items\components\" />
-    <Folder Include="items\templates\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{3992CC10-38F3-4719-83C6-03D9F8E46D37}</Project>
