@@ -250,6 +250,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="items-service.ts" />
     <TypeScriptCompile Include="typings\globals\angular\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\jquery\index.d.ts" />
   </ItemGroup>

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title>Market Comparing App</title>
+    <meta charset="utf-8"/>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="app.min.css" rel="stylesheet" />
+</head>
+<body ng-controller="mainCtrl as $ctrl">
+    <div ng-controller="itemsCtrl as $ctrl">
+        <ul>
+            <li ng-repeat="item in $ctrl.items">
+                Item name: {{item.Name}} Item ID: {{item.ItemID}}
+            </li>
+        </ul>
+    </div>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+
+    <script src="app.js"></script>
+    <script src="controllers/main-ctrl.js"></script>
+
+    <script src="items/services/items-service.js"></script>
+    <script src="items/controllers/items-ctrl.js"></script>
+</body>
+</html>

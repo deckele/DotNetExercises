@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager", "FileManager\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketWebApp", "MarketWebApp\MarketWebApp.csproj", "{84820CBF-3D20-4072-8389-CB770335FD29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketComparingWebApp", "MarketComparingWebApp\MarketComparingWebApp.csproj", "{8DBCCF1B-EA24-4EF5-9254-869E7ADEEAE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{84820CBF-3D20-4072-8389-CB770335FD29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84820CBF-3D20-4072-8389-CB770335FD29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84820CBF-3D20-4072-8389-CB770335FD29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DBCCF1B-EA24-4EF5-9254-869E7ADEEAE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DBCCF1B-EA24-4EF5-9254-869E7ADEEAE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DBCCF1B-EA24-4EF5-9254-869E7ADEEAE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DBCCF1B-EA24-4EF5-9254-869E7ADEEAE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
