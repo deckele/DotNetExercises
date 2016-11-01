@@ -1,0 +1,19 @@
+﻿<div class="ed-store-selection-list">
+    <ul>
+        <ed-store-selection-item ng-repeat="storeSelectionItem in $ctrl.storeSelectionList" class="repeated-item"
+                                 chains="$ctrl.chains"
+                                 store-selection-item="storeSelectionItem" index="$index" stores="$ctrl.availableStores"
+                                 on-store-select="$ctrl.updateAvailableStores()"
+                                 on-chain-select="$ctrl.onChainSelected(storeSelectionItem)"
+                                 on-remove="$ctrl.onStoreRemoveClicked(storeSelectionItem)"></ed-store-selection-item>
+    </ul>
+    <div class="row">
+        <div class="col-sm-2 col-sm-offset-7">
+            <button type="button" class="btn btn-link ed-add-store-button"
+                    ng-click="$ctrl.onAddStoreClicked()"
+                    ng-disabled="$ctrl.isAddButtonDisabled()">
+                הוסף חנות להשוואה
+            </button>
+        </div>
+    </div>
+</div>

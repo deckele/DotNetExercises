@@ -1,2 +1,97 @@
-﻿body {
+﻿@header-color: rgb(239, 243, 244);
+@line-color: #DEE5E7;
+@button-color: rgb(12, 182, 231);
+@button-shadow-color: rgb(0, 130, 181);
+@link-button-color: rgb(70, 199, 236);
+
+@product-item-height: 100px;
+@product-item-picture-height: 54px;
+@comparison-item-width: 310px; 
+
+@text-line-height: 15px;
+@text-color: Black;
+@header-text-color: white;
+@heb-text-font-family: open-sans;
+
+[ed-heb] {
+    text-align: right;
+    direction: rtl;
+    unicode-bidi: embed;
+    font-family: @heb-text-font-family;
 }
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+ul {
+    list-style-type: none;
+    -webkit-padding-start: 0;
+}
+
+.ed-header {
+    .header-item-number {
+        border-left: thin solid @line-color;
+        div {
+            padding-right: 15px;
+        }
+        
+    }
+    .brand-name {        
+        div {
+            padding-left: 15px;
+            transform: translateY(+75%);
+        }
+    }
+}
+
+.ed-stores-select {
+    background: @header-color;
+    min-height: 100px;
+    .content-wrapper {
+        margin-top: 20px;
+        .ed-header {
+            font-weight: bold;
+            color: @header-text-color
+        }
+        .remove-glyph-button {
+            margin-top: 8px;
+            &:hover {
+                color: #ab1010;
+            }
+        }
+        .store-items-wrapper {
+            background-color: white;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            .ed-store-selection-list {
+                padding-top: 20px;
+                .ed-store-selection-item {
+                    margin-bottom: 5px; 
+                    margin-right: 20px;
+                }
+                .ed-add-store-button {
+                    margin-right: 15px;
+                    margin-bottom: 15px;
+                    padding-right: 0;
+                    padding-left: 0;
+                    text-decoration: underline;
+                    outline: none;
+                    color: @link-button-color;
+                    &:hover {
+                        color: #3826a3;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.ed-vertical-center {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+

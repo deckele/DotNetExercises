@@ -1,30 +1,41 @@
 ﻿<!DOCTYPE html>
 <html ng-app="app">
 <head>
-    <title>Market Comparing App</title>
-    <meta charset="utf-8"/>
+    <title>Price Comparing App</title>
+    <meta charset="utf-8" />
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" />
+    <!--<link href="bower_components/bootstrap-rtl/dist/css/bootstrap-rtl.min.css" rel="stylesheet" />-->
     <link href="app.min.css" rel="stylesheet" />
 </head>
-<body ng-controller="mainCtrl as $ctrl">
-<div ng-controller="itemsCtrl as $ctrl">
-    <items all-items="$ctrl.itemsFromDb"></items>
-</div>
+<body>
+    <ed-app></ed-app>
 
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+
 
     <script src="app.js"></script>
-    <script src="controllers/main-ctrl.js"></script>
 
-    <script src="items/services/items-service.js"></script>
-    <script src="items/controllers/items-ctrl.js"></script>
-    <script src="items/components/items.js"></script>
+    <script src="src/components/ed-app/ed-app.component.js"></script>
+    <script src="src/shared/chains.service.js"></script>
 
-    <script src="items/controllers/item-ctrl.js"></script>
-    <script src="items/components/item.js"></script>
+    <script src="src/components/ed-app/ed-header/ed-header.component.js"></script>
+
+    <script src="src/shared/stores.service.js"></script>
+    <script src="src/components/ed-app/ed-stores-select/ed-store-selection-list/ed-store-selection-item/ed-store-selection-item.component.js"></script>
+    <script src="src/components/ed-app/ed-stores-select/ed-store-selection-list/ed-store-selection-list.component.js"></script>
+    <script src="src/components/ed-app/ed-stores-select/ed-stores-select.component.js"></script>
+
+    <script src="src/shared/items.service.js"></script>
+    <script src="src/components/ed-app/ed-products-select/ed-items/ed-items.component.js"></script>
+    <script src="src/components/ed-app/ed-products-select/ed-items/ed-item/ed-item.component.js"></script>
+    <script src="src/components/ed-app/ed-products-select/ed-products-select.component.js"></script>
 </body>
 </html>

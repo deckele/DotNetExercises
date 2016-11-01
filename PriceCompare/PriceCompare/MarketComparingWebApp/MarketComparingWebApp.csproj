@@ -128,23 +128,36 @@
       <DependentUpon>app.css</DependentUpon>
     </Content>
     <Content Include="index.html" />
-    <Content Include="items\templates\item.html" />
-    <Content Include="items\templates\items.html" />
+    <Content Include="src\components\ed-app\ed-app.component.html" />
+    <Content Include="src\components\ed-app\ed-header\ed-header.component.html" />
+    <Content Include="src\components\ed-app\ed-products-select\ed-items\ed-item\ed-item.component.html" />
+    <Content Include="src\components\ed-app\ed-products-select\ed-items\ed-items.component.html" />
+    <Content Include="src\components\ed-app\ed-products-select\ed-products-select.component.html" />
+    <Content Include="src\components\ed-app\ed-stores-select\ed-store-selection-list\ed-store-selection-item\ed-store-selection-item.component.html" />
+    <Content Include="src\components\ed-app\ed-stores-select\ed-stores-select.component.html" />
+    <Content Include="src\components\ed-app\ed-stores-select\ed-store-selection-list\ed-store-selection-list.component.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\ChainsController.cs" />
     <Compile Include="Api\ItemsController.cs" />
+    <Compile Include="Api\StoresController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
-    <TypeScriptCompile Include="controllers\main-ctrl.ts" />
-    <TypeScriptCompile Include="items\components\item.ts" />
-    <TypeScriptCompile Include="items\components\items.ts" />
-    <TypeScriptCompile Include="items\controllers\item-ctrl.ts" />
-    <TypeScriptCompile Include="items\controllers\items-ctrl.ts" />
-    <TypeScriptCompile Include="items\services\items-service.ts" />
+    <TypeScriptCompile Include="src\components\ed-app\ed-app.component.ts" />
+    <TypeScriptCompile Include="src\components\ed-app\ed-header\ed-header.component.ts" />
+    <TypeScriptCompile Include="src\components\ed-app\ed-products-select\ed-items\ed-item\ed-item.component.ts" />
+    <TypeScriptCompile Include="src\components\ed-app\ed-products-select\ed-items\ed-items.component.ts" />
+    <TypeScriptCompile Include="src\components\ed-app\ed-products-select\ed-products-select.component.ts" />
+    <TypeScriptCompile Include="src\components\ed-app\ed-stores-select\ed-store-selection-list\ed-store-selection-item\ed-store-selection-item.component.ts" />
+    <TypeScriptCompile Include="src\components\ed-app\ed-stores-select\ed-stores-select.component.ts" />
+    <TypeScriptCompile Include="src\components\ed-app\ed-stores-select\ed-store-selection-list\ed-store-selection-list.component.ts" />
+    <TypeScriptCompile Include="src\shared\chains.service.ts" />
+    <TypeScriptCompile Include="src\shared\items.service.ts" />
+    <TypeScriptCompile Include="src\shared\stores.service.ts" />
     <TypeScriptCompile Include="typings\globals\angular-route\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\angular\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\bootstrap\index.d.ts" />

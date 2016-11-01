@@ -1,0 +1,28 @@
+﻿<li class="ed-store-selection-item">
+    <div class="row">
+        <div class="col-sm-1 choose-store">
+            <span class="glyphicon glyphicon-remove remove-glyph-button" aria-hidden="true"
+                  ng-if="$ctrl.index > 1"
+                  ng-click="$ctrl.onRemoveClicked()"></span>
+        </div>
+        <div class="col-sm-4 choose-store">
+            <select class="form-control"
+                    ng-options="store as store.Name for store in $ctrl.selectedChain.Stores"
+                    ng-model="$ctrl.selectedStore"
+                    ng-change="$ctrl.onStoreSelected()">
+                <option value="">-- בחר/י חנות --</option>
+            </select>
+        </div>
+        <div class="col-sm-4 choose-chain">
+            <select class="form-control"
+                    ng-options="chain as chain.Name for chain in $ctrl.chains "
+                    ng-model="$ctrl.selectedChain"
+                    ng-change="$ctrl.onChainSelected()">
+                <option value="">-- בחר/י רשת --</option>
+            </select>
+        </div>
+        <div class="col-sm-3 store-choice-index">
+            <label>בחר חנות</label> <label>{{$ctrl.index + 1}}</label>
+        </div>
+    </div>
+</li>

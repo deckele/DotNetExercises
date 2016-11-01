@@ -1,0 +1,6 @@
+﻿<div class="ed-items">
+    <ul>
+        <ed-item ng-repeat="item in $ctrl.products | limitTo: 10" class="repeated-item"
+                 model="item" onRemove="$ctrl.onProductSelected(item)"></ed-item>
+    </ul>
+</div>

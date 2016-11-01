@@ -23,10 +23,15 @@ namespace Data
                                      .Include(i => i.Prices.Select(p => p.Item))
                                      .OrderBy(i => i.Name)
                                      .ToList();
+                //Chains = context.Chains.ToList()
+                //.Include(c => c.Stores
+                //.Select(s => s.Prices
+                //.Select(p => p.Item.Prices))).ToList();
             }
         }
 
         public List<Store> Stores { get; }
         public List<Item> Items { get; }
+        //public List<Chain> Chains { get; }
     }
 }

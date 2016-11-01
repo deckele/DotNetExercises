@@ -37,7 +37,8 @@ namespace MarketComparingWebApp.Api
                 {
                     p.StoreID,
                     p.ItemID,
-                    p.ChainID
+                    p.ChainID,
+                    p.ItemPrice
                 }),
                 i.ItemID,
                 i.Name
