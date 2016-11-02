@@ -47,7 +47,8 @@ namespace MarketComparingWebApp.Api
                             name = p.Item.Name,
                             id = p.ItemID,
                             units = p.Item.Units,
-                            unitsQuantity = p.Item.UnitsQuantity
+                            unitsQuantity = p.Item.UnitsQuantity,
+                            selectedQuantity = 1
                         }
                     })
                 })

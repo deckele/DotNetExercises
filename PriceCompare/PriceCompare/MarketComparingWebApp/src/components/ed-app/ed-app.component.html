@@ -1,5 +1,5 @@
 ﻿<div class="container ed-app">
-    <ed-header></ed-header>
+    <ed-header number-of-items="$ctrl.selectedProducts.length"></ed-header>
     <ed-stores-select chains="$ctrl.chains"
                       store-selection-list="$ctrl.storeSelectionList"
                       on-store-select="$ctrl.onStoreSelected()"></ed-stores-select>

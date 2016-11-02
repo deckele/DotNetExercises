@@ -23,3 +23,4 @@ var ChainsService = (function () {
     return ChainsService;
 }());
 app.service("chainsService", ChainsService);
+//# sourceMappingURL=chains.service.js.map

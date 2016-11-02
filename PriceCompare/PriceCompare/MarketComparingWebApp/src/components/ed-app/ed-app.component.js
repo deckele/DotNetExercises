@@ -14,17 +14,17 @@ var MainCtrl = (function () {
         this.products = [];
         var correlationList = [];
         var undefinedSelectedStores = 0;
-        var definedIndex = [];
         var pricesInStore;
         var foundProduct;
-        //Mapping which store-selection-items are defined, and how many are undefined.
+        //mapping which store-selection-items are defined, and how many are undefined.
         for (var i = 0; i < this.storeSelectionList.length; i++) {
             if (!this.storeSelectionList[i].selectedStore) {
                 undefinedSelectedStores++;
             }
-            else {
-                definedIndex.push(i);
-            }
+        }
+        //no stores selected
+        if (undefinedSelectedStores === this.storeSelectionList.length) {
+            return;
         }
         //in case there is only one defined store-selection-item.
         if ((this.storeSelectionList.length - undefinedSelectedStores) === 1) {
@@ -43,15 +43,12 @@ var MainCtrl = (function () {
             if (this.storeSelectionList[i].selectedStore) {
                 pricesInStore = this.storeSelectionList[i].selectedStore.prices;
                 for (var p = 0; p < pricesInStore.length; p++) {
-                    correlationList.push({ price: pricesInStore[p], counter: 1 });
+                    correlationList.push({ price: pricesInStore[p], counter: 0 });
                 }
-                definedIndex.splice(i, 1);
                 break;
             }
         }
-        //only iterrate the defined store-selection-items:
-        var index = 0;
-        for (var i = definedIndex[index]; index < definedIndex.length; index++) {
+        for (var i = 0; i < this.storeSelectionList.length; i++) {
             if (!this.storeSelectionList[i].selectedStore) {
                 continue;
             }
@@ -80,3 +77,4 @@ app.component("edApp", {
     templateUrl: "src/components/ed-app/ed-app.component.html",
     controller: MainCtrl
 });
+//# sourceMappingURL=ed-app.component.js.map

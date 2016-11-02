@@ -49,6 +49,23 @@ ul {
         }
     }
 }
+.ed-background {
+    position: absolute;
+    font-weight: bold;
+    color: @colored-background-text-color;
+    background: @header-color;
+    background-image: url("resources/images/fruitsBackground.jpg");
+    background-size: cover;
+    min-height: 100px;
+}
+.ed-tint {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
 
 .ed-Button {
     background-color: @button-color;
@@ -64,10 +81,10 @@ ul {
 }
 
 .ed-stores-select {
-    position: relative;
     background: @header-color;
     background-image: url("resources/images/fruitsBackground.jpg");
     background-size: cover;
+    position: relative;
     min-height: 100px;
     .content-wrapper {
         margin-top: 20px;
@@ -141,30 +158,55 @@ ul {
         padding: 10px 10px 10px 10px;
         border-bottom: 1.2px solid @line-color;
         .ed-product-description {
-            padding-right: 10px;            
+            margin-right: 10px;    
+            width: 50%;
+            transform: translateY(-5px);
         }
         .ed-product-img {
             height: @product-item-picture-height;
             border: 1px solid @line-color;
         }
+        .ed-select-quantity {
+            width: 85px;
+        }
     }
 }
 
-.ed-cart-selection-header {
-    background-color: @header-color;
-    margin: 15px 13px 0 15px;
-    padding: 15px 40px;
-    height: 50px;
-
-}
-
-.tint {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.6);
+.ed-cart-selection-list {
+    .ed-cart-selection-header {
+        background-color: @header-color;
+        margin: 15px 13px 0 15px;
+        padding: 15px 40px;
+        height: 50px;
+    }
+    .ed-message-no-products{
+        margin-top: 20px;
+        font-size: large;
+        font-weight: bold;
+        text-align: center;
+    }
+    .ed-product-selection-item {
+        margin: 5px 10px 5px 10px;
+        padding: 10px 10px 10px 10px;
+        border-bottom: 1.2px solid @line-color;
+    .ed-product-description {
+        padding-right: 10px;
+        .ed-product-name {
+            position: absolute;
+            display: inline;    
+        }
+        .ed-product-quantity {
+            direction: ltr;
+            display: inline;
+            position: relative;
+            right: 50%;
+        }
+    }
+    .ed-product-img {
+        height: @product-item-picture-height + 10px;
+        border: 1px solid @line-color;
+        }
+    }
 }
 
 .vcenter {

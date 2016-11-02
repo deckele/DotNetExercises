@@ -1,8 +1,10 @@
 ﻿class ProductSelectionItemCtrl {
     product: IProduct;
-    selectedQuantity: number;
-    constructor() {
-        this.selectedQuantity = 1;
+    onProductChanged: Function;
+    productButtonClicked() {
+        if (this.onProductChanged) {
+            this.onProductChanged();
+        }
     }
 }
 

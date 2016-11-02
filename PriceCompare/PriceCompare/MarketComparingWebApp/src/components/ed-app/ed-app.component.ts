@@ -18,18 +18,18 @@
         this.products = [];
         let correlationList: IProductCorrelation[] = [];
         let undefinedSelectedStores = 0;
-        let definedIndex: number[] = [];
         let pricesInStore: IPrice[];
         let foundProduct: Boolean;
 
-        //Mapping which store-selection-items are defined, and how many are undefined.
+        //mapping which store-selection-items are defined, and how many are undefined.
         for (let i = 0; i < this.storeSelectionList.length; i++) {
             if (!this.storeSelectionList[i].selectedStore) {
                 undefinedSelectedStores++;
             }
-            else {
-                definedIndex.push(i);
-            }
+        }
+        //no stores selected
+        if (undefinedSelectedStores === this.storeSelectionList.length) {
+            return;
         }
         //in case there is only one defined store-selection-item.
         if ((this.storeSelectionList.length - undefinedSelectedStores) === 1) {
@@ -48,15 +48,13 @@
             if (this.storeSelectionList[i].selectedStore) {
                 pricesInStore = this.storeSelectionList[i].selectedStore.prices;
                 for (let p = 0; p < pricesInStore.length; p++) {
-                    correlationList.push({ price: pricesInStore[p], counter: 1});
+                    correlationList.push({ price: pricesInStore[p], counter: 0});
                 }
-                definedIndex.splice(i, 1);
                 break;
             }
         }
-        //only iterrate the defined store-selection-items:
-        let index = 0;
-        for (let i = definedIndex[index]; index < definedIndex.length; index++) {
+
+        for (let i = 0; i < this.storeSelectionList.length; i++) {
             if (!this.storeSelectionList[i].selectedStore) {
                 continue;
             }

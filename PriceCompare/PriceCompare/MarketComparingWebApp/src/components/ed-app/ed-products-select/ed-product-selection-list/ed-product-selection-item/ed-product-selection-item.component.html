@@ -1,20 +1,20 @@
 ﻿<li class="ed-product-selection-item">
     <div class="row">
         <div class="col-sm-2 ed-add-remove-button">
-            <button class="ed-Button">{{$ctrl.isAddButton ? 'הוסף' : 'הסר'}}</button>
+            <button class="ed-Button" ng-click="$ctrl.productButtonClicked()">{{$ctrl.isAddButton ? 'הוסף' : 'הסר'}}</button>
         </div>
         <div class="col-sm-2 ed-select-quantity">
-            <input class="form-control" type="number" ng-model="$ctrl.selectedQuantity" />
+            <input class="form-control" type="number" ng-model="$ctrl.product.selectedQuantity" />
         </div>
-        <div class="col-sm-7">
-            <div class="ed-product-description">
+        <div class="col-sm-7 ed-product-description">
+            <div>
                 <div class="ed-product-name">
                     <label>{{$ctrl.product.name}}</label>
                 </div>
                 <div class="ed-product-quantity">
-                    יח': {{$ctrl.product.unitsQuantity}}
-                    <br />
-                    {{$ctrl.product.units}}
+                    <span class="ed-units-quantity">יח': {{$ctrl.product.unitsQuantity}}</span>
+                    <br/>
+                    <span class="ed-units">{{$ctrl.product.units}}</span>
                 </div>
             </div>
         </div>

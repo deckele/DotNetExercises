@@ -1,9 +1,15 @@
 ﻿class ProductSelectionListCtrl {
+    products: IProduct[];
+    selectedProducts: IProduct[];
     searchText: string;
-    productListChange: Function;
-
+    onAddProductClicked: Function;
     constructor() {
         this.searchText = "חיפוש מוצרים...";
+    }
+    addProductClicked(product: IProduct) {
+        const productIndex = this.products.indexOf(product);
+        this.products.splice(productIndex, 1);
+        this.selectedProducts.push(product);
     }
 }
 
@@ -12,8 +18,8 @@ app.component("edProductSelectionList",
         templateUrl: "src/components/ed-app/ed-products-select/ed-product-selection-list/ed-product-selection-list.component.html",
         bindings: {
             products: "=",
-            selectedProducts: "=",
-            onProductChanged: "&"
+            selectedProducts: "="
+            //onAddProductClicked: "&"
         },
         controller: ProductSelectionListCtrl
     });

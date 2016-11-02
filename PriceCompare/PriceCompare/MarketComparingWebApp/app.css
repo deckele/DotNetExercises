@@ -23,6 +23,23 @@ ul {
   padding-left: 15px;
   transform: translateY(75%);
 }
+.ed-background {
+  position: absolute;
+  font-weight: bold;
+  color: white;
+  background: #eff3f4;
+  background-image: url("resources/images/fruitsBackground.jpg");
+  background-size: cover;
+  min-height: 100px;
+}
+.ed-tint {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
 .ed-Button {
   background-color: #0cb6e7;
   color: white;
@@ -36,10 +53,10 @@ ul {
   text-align: center;
 }
 .ed-stores-select {
-  position: relative;
   background: #eff3f4;
   background-image: url("resources/images/fruitsBackground.jpg");
   background-size: cover;
+  position: relative;
   min-height: 100px;
 }
 .ed-stores-select .content-wrapper {
@@ -114,25 +131,50 @@ ul {
   border-bottom: 1.2px solid #DEE5E7;
 }
 .ed-product-selection-list .ed-product-selection-item .ed-product-description {
-  padding-right: 10px;
+  margin-right: 10px;
+  width: 50%;
+  transform: translateY(-5px);
 }
 .ed-product-selection-list .ed-product-selection-item .ed-product-img {
   height: 32px;
   border: 1px solid #DEE5E7;
 }
-.ed-cart-selection-header {
+.ed-product-selection-list .ed-product-selection-item .ed-select-quantity {
+  width: 85px;
+}
+.ed-cart-selection-list .ed-cart-selection-header {
   background-color: #eff3f4;
   margin: 15px 13px 0 15px;
   padding: 15px 40px;
   height: 50px;
 }
-.tint {
+.ed-cart-selection-list .ed-message-no-products {
+  margin-top: 20px;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+}
+.ed-cart-selection-list .ed-product-selection-item {
+  margin: 5px 10px 5px 10px;
+  padding: 10px 10px 10px 10px;
+  border-bottom: 1.2px solid #DEE5E7;
+}
+.ed-cart-selection-list .ed-product-selection-item .ed-product-description {
+  padding-right: 10px;
+}
+.ed-cart-selection-list .ed-product-selection-item .ed-product-description .ed-product-name {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  display: inline;
+}
+.ed-cart-selection-list .ed-product-selection-item .ed-product-description .ed-product-quantity {
+  direction: ltr;
+  display: inline;
+  position: relative;
+  right: 50%;
+}
+.ed-cart-selection-list .ed-product-selection-item .ed-product-img {
+  height: 42px;
+  border: 1px solid #DEE5E7;
 }
 .vcenter {
   display: inline-block;

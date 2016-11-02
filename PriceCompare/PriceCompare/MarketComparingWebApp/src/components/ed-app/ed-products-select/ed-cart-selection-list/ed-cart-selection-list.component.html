@@ -10,4 +10,14 @@
             <label>שם המוצר</label>
         </div>
     </div>
+    <div class="ed-message-no-products" ng-if="$ctrl.selectedProducts.length === 0">
+        <label>הסל שלך ריק, הוסף/י מוצרים לסל</label>
+    </div>
+    <div class="ed-cart-selection-wrapper">
+        <ul>
+            <ed-product-selection-item ng-repeat="product in $ctrl.selectedProducts | filter:$ctrl.searchText" class="repeated-item"
+                                       product="product" is-add-button="false"
+                                       on-product-changed="$ctrl.removeProductClicked(product)"></ed-product-selection-item>
+        </ul>
+    </div>
 </div>

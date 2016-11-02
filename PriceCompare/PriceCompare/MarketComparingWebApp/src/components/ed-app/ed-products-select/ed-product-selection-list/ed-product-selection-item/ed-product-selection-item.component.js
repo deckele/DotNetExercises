@@ -1,7 +1,11 @@
 var ProductSelectionItemCtrl = (function () {
     function ProductSelectionItemCtrl() {
-        this.selectedQuantity = 1;
     }
+    ProductSelectionItemCtrl.prototype.productButtonClicked = function () {
+        if (this.onProductChanged) {
+            this.onProductChanged();
+        }
+    };
     return ProductSelectionItemCtrl;
 }());
 app.component("edProductSelectionItem", {
@@ -13,3 +17,4 @@ app.component("edProductSelectionItem", {
     },
     controller: ProductSelectionItemCtrl
 });
+//# sourceMappingURL=ed-product-selection-item.component.js.map

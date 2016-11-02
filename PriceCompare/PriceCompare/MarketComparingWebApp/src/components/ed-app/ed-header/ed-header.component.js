@@ -6,5 +6,9 @@ var HeaderCtrl = (function () {
 }());
 app.component("edHeader", {
     templateUrl: "src/components/ed-app/ed-header/ed-header.component.html",
+    bindings: {
+        numberOfItems: "<"
+    },
     controller: HeaderCtrl
 });
+//# sourceMappingURL=ed-header.component.js.map
