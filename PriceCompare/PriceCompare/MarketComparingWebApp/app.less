@@ -1,16 +1,20 @@
 ﻿@header-color: rgb(239, 243, 244);
 @line-color: #DEE5E7;
+@strong-line-color: rgb(192, 192, 192);
 @button-color: rgb(12, 182, 231);
 @button-shadow-color: rgb(0, 130, 181);
 @link-button-color: rgb(70, 199, 236);
 
 @product-item-height: 100px;
-@product-item-picture-height: 54px;
+@product-item-picture-height: 32px;
 @comparison-item-width: 310px; 
 
+@content-height: 32px;
 @text-line-height: 15px;
 @text-color: Black;
-@header-text-color: white;
+@text-font-size: 15px;
+@label-font-size: 17px;
+@colored-background-text-color: white;
 @heb-text-font-family: open-sans;
 
 [ed-heb] {
@@ -18,6 +22,7 @@
     direction: rtl;
     unicode-bidi: embed;
     font-family: @heb-text-font-family;
+    font-size: @text-font-size;
 }
 
 .col-centered{
@@ -35,10 +40,9 @@ ul {
         border-left: thin solid @line-color;
         div {
             padding-right: 15px;
-        }
-        
+        }        
     }
-    .brand-name {        
+    .brand-name {
         div {
             padding-left: 15px;
             transform: translateY(+75%);
@@ -46,14 +50,30 @@ ul {
     }
 }
 
+.ed-Button {
+    background-color: @button-color;
+    color: @colored-background-text-color;
+    border-top-color: @button-color;
+    border-left-color: @button-color;
+    border-right-color: @button-color;
+    border-bottom-color: @button-shadow-color;
+    border-radius: 4px;
+    width: 100%;
+    height: @content-height;
+    text-align: center;
+}
+
 .ed-stores-select {
+    position: relative;
     background: @header-color;
+    background-image: url("resources/images/fruitsBackground.jpg");
+    background-size: cover;
     min-height: 100px;
     .content-wrapper {
         margin-top: 20px;
         .ed-header {
             font-weight: bold;
-            color: @header-text-color
+            color: @colored-background-text-color;
         }
         .remove-glyph-button {
             margin-top: 8px;
@@ -86,6 +106,76 @@ ul {
             }
         }
     }
+}
+
+.ed-product-selection-list {
+    margin-top: 15px;
+    padding-bottom: 0;
+    .ed-search-glyph {
+        color: @line-color;
+        position: absolute;
+        left: 25px;
+        top: 10px;
+    }
+    .ed-compare-button {
+        font-weight: bold;
+    }
+    .ed-search-label {
+        top: 5px;
+        font-size: @label-font-size;
+    }
+    .ed-product-floating-list{
+        z-index: 100;
+        border: 1px solid @strong-line-color;
+        background: white;
+        position: absolute;
+        top: @content-height + 5px;
+        left: 13px;
+        right: 17px;
+        height: 250px;
+        overflow-y: scroll;
+        box-shadow: rgba(0, 0, 0, 0.3) 3px 2px 4px;             
+    }
+    .ed-product-selection-item {
+        margin: 5px 10px 5px 10px;
+        padding: 10px 10px 10px 10px;
+        border-bottom: 1.2px solid @line-color;
+        .ed-product-description {
+            padding-right: 10px;            
+        }
+        .ed-product-img {
+            height: @product-item-picture-height;
+            border: 1px solid @line-color;
+        }
+    }
+}
+
+.ed-cart-selection-header {
+    background-color: @header-color;
+    margin: 15px 13px 0 15px;
+    padding: 15px 40px;
+    height: 50px;
+
+}
+
+.tint {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
 }
 
 .ed-vertical-center {

@@ -1,0 +1,25 @@
+﻿<li class="ed-product-selection-item">
+    <div class="row">
+        <div class="col-sm-2 ed-add-remove-button">
+            <button class="ed-Button">{{$ctrl.isAddButton ? 'הוסף' : 'הסר'}}</button>
+        </div>
+        <div class="col-sm-2 ed-select-quantity">
+            <input class="form-control" type="number" ng-model="$ctrl.selectedQuantity" />
+        </div>
+        <div class="col-sm-7">
+            <div class="ed-product-description">
+                <div class="ed-product-name">
+                    <label>{{$ctrl.product.name}}</label>
+                </div>
+                <div class="ed-product-quantity">
+                    יח': {{$ctrl.product.unitsQuantity}}
+                    <br />
+                    {{$ctrl.product.units}}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1">
+            <img src="/resources/images/placeholder.png" class="ed-product-img" />
+        </div>
+    </div>
+</li>

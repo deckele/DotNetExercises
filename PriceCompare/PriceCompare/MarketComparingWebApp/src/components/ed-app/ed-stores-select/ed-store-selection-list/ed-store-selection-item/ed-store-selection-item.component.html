@@ -7,17 +7,17 @@
         </div>
         <div class="col-sm-4 choose-store">
             <select class="form-control"
-                    ng-options="store as store.Name for store in $ctrl.selectedChain.Stores"
-                    ng-model="$ctrl.selectedStore"
+                    ng-options="store as store.name for store in $ctrl.storeSelectionItem.selectedChain.stores"
+                    ng-model="$ctrl.storeSelectionItem.selectedStore"
                     ng-change="$ctrl.onStoreSelected()">
                 <option value="">-- בחר/י חנות --</option>
             </select>
         </div>
         <div class="col-sm-4 choose-chain">
             <select class="form-control"
-                    ng-options="chain as chain.Name for chain in $ctrl.chains "
-                    ng-model="$ctrl.selectedChain"
-                    ng-change="$ctrl.onChainSelected()">
+                    ng-options="chain as chain.name for chain in $ctrl.chains "
+                    ng-model="$ctrl.storeSelectionItem.selectedChain">
+                    <!--ng-change="$ctrl.onChainSelected()"-->
                 <option value="">-- בחר/י רשת --</option>
             </select>
         </div>

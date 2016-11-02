@@ -107,6 +107,15 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="bower.json" />
+    <Content Include="resources\images\fruitsBackground.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\images\placeholder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="src\components\ed-app\ed-products-select\ed-cart-selection-list\ed-cart-selection-list.component.html" />
+    <Content Include="src\components\ed-app\ed-products-select\ed-product-selection-list\ed-product-selection-item\ed-product-selection-item.component.html" />
+    <Content Include="src\components\ed-app\ed-products-select\ed-product-selection-list\ed-product-selection-list.component.html" />
     <Content Include="typings.json" />
     <Content Include="app.less" />
     <None Include="compilerconfig.json" />
@@ -130,8 +139,6 @@
     <Content Include="index.html" />
     <Content Include="src\components\ed-app\ed-app.component.html" />
     <Content Include="src\components\ed-app\ed-header\ed-header.component.html" />
-    <Content Include="src\components\ed-app\ed-products-select\ed-items\ed-item\ed-item.component.html" />
-    <Content Include="src\components\ed-app\ed-products-select\ed-items\ed-items.component.html" />
     <Content Include="src\components\ed-app\ed-products-select\ed-products-select.component.html" />
     <Content Include="src\components\ed-app\ed-stores-select\ed-store-selection-list\ed-store-selection-item\ed-store-selection-item.component.html" />
     <Content Include="src\components\ed-app\ed-stores-select\ed-stores-select.component.html" />
@@ -149,14 +156,16 @@
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="src\components\ed-app\ed-app.component.ts" />
     <TypeScriptCompile Include="src\components\ed-app\ed-header\ed-header.component.ts" />
-    <TypeScriptCompile Include="src\components\ed-app\ed-products-select\ed-items\ed-item\ed-item.component.ts" />
-    <TypeScriptCompile Include="src\components\ed-app\ed-products-select\ed-items\ed-items.component.ts" />
+    <TypeScriptCompile Include="src\components\ed-app\ed-products-select\ed-cart-selection-list\ed-cart-selection-list.component.ts" />
+    <TypeScriptCompile Include="src\components\ed-app\ed-products-select\ed-product-selection-list\ed-product-selection-item\ed-product-selection-item.component.ts" />
+    <TypeScriptCompile Include="src\components\ed-app\ed-products-select\ed-product-selection-list\ed-product-selection-list.component.ts" />
     <TypeScriptCompile Include="src\components\ed-app\ed-products-select\ed-products-select.component.ts" />
     <TypeScriptCompile Include="src\components\ed-app\ed-stores-select\ed-store-selection-list\ed-store-selection-item\ed-store-selection-item.component.ts" />
     <TypeScriptCompile Include="src\components\ed-app\ed-stores-select\ed-stores-select.component.ts" />
     <TypeScriptCompile Include="src\components\ed-app\ed-stores-select\ed-store-selection-list\ed-store-selection-list.component.ts" />
+    <TypeScriptCompile Include="src\interfaces\app.interfaces.ts" />
     <TypeScriptCompile Include="src\shared\chains.service.ts" />
-    <TypeScriptCompile Include="src\shared\items.service.ts" />
+    <TypeScriptCompile Include="src\shared\products.service.ts" />
     <TypeScriptCompile Include="src\shared\stores.service.ts" />
     <TypeScriptCompile Include="typings\globals\angular-route\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\angular\index.d.ts" />

@@ -1,12 +1,4 @@
-﻿interface IChain {
-    
-}
-
-interface IChainService {
-    getChains(): ng.IPromise<IChain[]>;
-}
-
-class ChainsService {
+﻿class ChainsService {
     public chains: IChain[];
 
     constructor(private $http: ng.IHttpService, private $q: ng.IQService) {

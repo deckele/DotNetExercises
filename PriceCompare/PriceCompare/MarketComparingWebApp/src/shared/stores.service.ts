@@ -1,8 +1,4 @@
-﻿interface IStoreService {
-    getStores(): ng.IPromise<IStore[]>;
-}
-
-class StoresService {
+﻿class StoresService {
     constructor(private $http: ng.IHttpService) {
     }
 

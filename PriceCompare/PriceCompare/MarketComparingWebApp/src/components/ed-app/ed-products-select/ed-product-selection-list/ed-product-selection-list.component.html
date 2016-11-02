@@ -1,0 +1,25 @@
+﻿<div class="ed-product-selection-list">
+    <div class="row">
+        <div class="col-sm-3 ed-compare-button-wrapper">
+            <button class="ed-Button ed-compare-button">השווה סל קניות</button>
+        </div>
+        <div class="col-sm-8 ed-select-quantity">
+            <span class="glyphicon glyphicon-search ed-search-glyph"></span>
+            <input type="text" class="form-control"
+                   ng-focus="focused = true" ng-blur="focused = false"
+                   ng-model="$ctrl.searchText" ng-model-options="{ debounce: 300 }"
+                   ng-click="$ctrl.searchText=''"/>
+            <div class="ed-product-floating-list" ng-show="(focused || over) && $ctrl.products.length > 0"
+                 ng-mouseover="over= true" ng-mouseleave="over= false">
+                <ul>
+                    <ed-product-selection-item ng-repeat="product in $ctrl.products | filter:$ctrl.searchText" class="repeated-item"
+                                               product="product" is-add-button="true"
+                                               on-product-changed="$ctrl.productListChange(item)"></ed-product-selection-item>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-1 ed-search-label">
+            <label>חפש</label>
+        </div>
+    </div>
+</div>

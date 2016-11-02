@@ -8,4 +8,3 @@ app.component("edHeader", {
     templateUrl: "src/components/ed-app/ed-header/ed-header.component.html",
     controller: HeaderCtrl
 });
-//# sourceMappingURL=ed-header.component.js.map

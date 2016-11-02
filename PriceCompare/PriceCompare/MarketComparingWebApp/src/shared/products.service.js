@@ -1,8 +1,8 @@
-var ItemsService = (function () {
-    function ItemsService($http) {
+var ProductsService = (function () {
+    function ProductsService($http) {
         this.$http = $http;
     }
-    ItemsService.prototype.getItems = function () {
+    ProductsService.prototype.getItems = function () {
         return this.$http.get("api/items/getItems")
             .then(function (data) {
             return data.data;
@@ -10,6 +10,6 @@ var ItemsService = (function () {
             console.log(error);
         });
     };
-    return ItemsService;
+    return ProductsService;
 }());
-app.service("itemsService", ItemsService);
+app.service("itemsService", ProductsService);

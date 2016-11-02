@@ -30,22 +30,24 @@ namespace MarketComparingWebApp.Api
             var context = new MarketContext();
             var chains = context.Chains.Select(c => new
             {
-                c.Name,
-                c.ChainID,
-                Stores = c.Stores.Select(s => new
+                name = c.Name,
+                chainId = c.ChainID,
+                stores = c.Stores.Select(s => new
                 {
-                    s.StoreID,
-                    s.Name,
-                    s.Address,
-                    s.City,
-                    Prices = s.Prices.Select(p => new
+                    storeId = s.StoreID,
+                    name = s.Name,
+                    adress = s.Address,
+                    city = s.City,
+                    prices = s.Prices.Where(p => p.Item.Prices.Count > 8).Select(p => new
                     //Prices = s.Prices.Where(p => p.Item.Prices.Count > 8).Select(p => new
                     {
-                        p.ItemPrice,
-                        Item = new
+                        productPrice = p.ItemPrice,
+                        product = new
                         {
-                            p.Item.Name,
-                            p.ItemID,
+                            name = p.Item.Name,
+                            id = p.ItemID,
+                            units = p.Item.Units,
+                            unitsQuantity = p.Item.UnitsQuantity
                         }
                     })
                 })

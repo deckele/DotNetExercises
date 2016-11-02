@@ -1,12 +1,8 @@
-﻿interface IItemService {
-    getItems(): ng.IPromise<IItem[]>;
-}
-
-class ItemsService {
+﻿class ProductsService {
     constructor(private $http: ng.IHttpService) {
     }
 
-    getItems(): angular.IPromise<IItem[]> {
+    getItems(): angular.IPromise<IProduct[]> {
         return this.$http.get("api/items/getItems")
             .then(data => {
                 return data.data;
@@ -17,4 +13,4 @@ class ItemsService {
     }
 }
 
-app.service("itemsService", ItemsService);
+app.service("itemsService", ProductsService);

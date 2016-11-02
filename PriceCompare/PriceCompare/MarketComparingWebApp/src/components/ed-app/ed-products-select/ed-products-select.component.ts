@@ -1,11 +1,17 @@
 ﻿class ProductsSelectCtrl {
+    selectedProducts: IProduct[];
     constructor() {
+        this.selectedProducts = [];
     }
 }
 
 app.component("edProductsSelect",
     {
         templateUrl: "src/components/ed-app/ed-products-select/ed-products-select.component.html",
-        bindings: {},
+        bindings: {
+            products: "=",
+            selectedProducts: "=",
+            onProductChanged: "&"
+        },
         controller: ProductsSelectCtrl
     });

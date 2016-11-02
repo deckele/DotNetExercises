@@ -1,5 +1,8 @@
 ﻿<div class="container ed-app">
     <ed-header></ed-header>
-    <ed-stores-select chains="$ctrl.chains"></ed-stores-select>
-    <ed-products-select></ed-products-select>
+    <ed-stores-select chains="$ctrl.chains"
+                      store-selection-list="$ctrl.storeSelectionList"
+                      on-store-select="$ctrl.onStoreSelected()"></ed-stores-select>
+    <ed-products-select products="$ctrl.products"
+                        selected-products="$ctrl.selectedProducts"></ed-products-select>
 </div>
