@@ -4,7 +4,9 @@
             <button class="ed-Button" ng-click="$ctrl.productButtonClicked()">{{$ctrl.isAddButton ? 'הוסף' : 'הסר'}}</button>
         </div>
         <div class="col-sm-2 ed-select-quantity">
-            <input class="form-control" type="number" ng-model="$ctrl.product.selectedQuantity" />
+            <input class="form-control" type="number" min="0"
+                   ng-model="$ctrl.product.selectedQuantity"
+                   ng-change="$ctrl.productQuantityChanged()" />
         </div>
         <div class="col-sm-7 ed-product-description">
             <div>

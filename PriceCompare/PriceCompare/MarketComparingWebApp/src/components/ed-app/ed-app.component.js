@@ -66,9 +66,37 @@ var MainCtrl = (function () {
             }
         }
     };
+    MainCtrl.prototype.calculateCarts = function () {
+        this.carts = [];
+        for (var s = 0; s < this.storeSelectionList.length; s++) {
+            if (!this.storeSelectionList[s].selectedStore) {
+                continue;
+            }
+            var chain = this.storeSelectionList[s].selectedChain;
+            var store = this.storeSelectionList[s].selectedStore;
+            var storeCartPrices = [];
+            var totalPrice = 0;
+            for (var p = 0; p < this.selectedProducts.length; p++) {
+                var selectedProduct = this.selectedProducts[p];
+                for (var i = 0; i < store.prices.length; i++) {
+                    var price = store.prices[i];
+                    if (price.product === selectedProduct) {
+                        storeCartPrices.push(price);
+                        totalPrice += (price.productPrice * price.product.selectedQuantity);
+                    }
+                }
+            }
+            this.carts.push({ chain: chain, store: store, prices: storeCartPrices, totalPrice: totalPrice });
+        }
+    };
     MainCtrl.prototype.onStoreSelected = function () {
-        if (this.calculateProductsCorrelation()) {
+        if (this.calculateProductsCorrelation) {
             this.calculateProductsCorrelation();
+        }
+    };
+    MainCtrl.prototype.productChanged = function () {
+        if (this.calculateCarts) {
+            this.calculateCarts();
         }
     };
     return MainCtrl;

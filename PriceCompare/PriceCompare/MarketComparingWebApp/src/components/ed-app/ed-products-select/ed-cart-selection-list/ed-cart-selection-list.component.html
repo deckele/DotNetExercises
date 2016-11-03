@@ -17,7 +17,8 @@
         <ul>
             <ed-product-selection-item ng-repeat="product in $ctrl.selectedProducts | filter:$ctrl.searchText" class="repeated-item"
                                        product="product" is-add-button="false"
-                                       on-product-changed="$ctrl.removeProductClicked(product)"></ed-product-selection-item>
+                                       on-product-changed="$ctrl.removeProductClicked(product)"
+                                       on-product-quantity-changed="$ctrl.productQuantityChanged()"></ed-product-selection-item>
         </ul>
     </div>
 </div>

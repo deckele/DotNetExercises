@@ -25,6 +25,10 @@
     font-size: @text-font-size;
 }
 
+.ed-app {
+    position: relative;
+}
+
 .col-centered{
     float: none;
     margin: 0 auto;
@@ -35,7 +39,7 @@ ul {
     -webkit-padding-start: 0;
 }
 
-.ed-header {
+.ed-header-bar {
     .header-item-number {
         border-left: thin solid @line-color;
         div {
@@ -51,12 +55,16 @@ ul {
 }
 .ed-background {
     position: absolute;
-    font-weight: bold;
-    color: @colored-background-text-color;
     background: @header-color;
     background-image: url("resources/images/fruitsBackground.jpg");
     background-size: cover;
-    min-height: 100px;
+    min-height: 230px;
+    width: 100%;
+    .ed-header {
+        font-weight: bold;
+        color: @colored-background-text-color;
+        padding: 10px 15px;
+    }
 }
 .ed-tint {
     position: absolute;
@@ -64,8 +72,10 @@ ul {
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.5);
 }
+
+
 
 .ed-Button {
     background-color: @button-color;
@@ -100,7 +110,7 @@ ul {
         }
         .store-items-wrapper {
             background-color: white;
-            margin-top: 15px;
+            margin-top: 60px;
             margin-bottom: 20px;
             .ed-store-selection-list {
                 padding-top: 20px;

@@ -1,6 +1,6 @@
 ﻿interface IStoreSelectionItem {
     selectedStore: IStore;
-    selectedChain: IStore;
+    selectedChain: IChain;
 }
 
 interface IChain {
@@ -45,4 +45,11 @@ interface IProductService {
 interface IProductCorrelation {
     price: IPrice;
     counter: number;
+}
+
+interface ICart {
+    chain: IChain;
+    store: IStore;
+    prices: IPrice[];
+    totalPrice: number;
 }

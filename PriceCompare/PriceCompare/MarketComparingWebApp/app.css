@@ -5,6 +5,9 @@
   font-family: open-sans;
   font-size: 15px;
 }
+.ed-app {
+  position: relative;
+}
 .col-centered {
   float: none;
   margin: 0 auto;
@@ -13,24 +16,28 @@ ul {
   list-style-type: none;
   -webkit-padding-start: 0;
 }
-.ed-header .header-item-number {
+.ed-header-bar .header-item-number {
   border-left: thin solid #DEE5E7;
 }
-.ed-header .header-item-number div {
+.ed-header-bar .header-item-number div {
   padding-right: 15px;
 }
-.ed-header .brand-name div {
+.ed-header-bar .brand-name div {
   padding-left: 15px;
   transform: translateY(75%);
 }
 .ed-background {
   position: absolute;
-  font-weight: bold;
-  color: white;
   background: #eff3f4;
   background-image: url("resources/images/fruitsBackground.jpg");
   background-size: cover;
-  min-height: 100px;
+  min-height: 230px;
+  width: 100%;
+}
+.ed-background .ed-header {
+  font-weight: bold;
+  color: white;
+  padding: 10px 15px;
 }
 .ed-tint {
   position: absolute;
@@ -38,7 +45,7 @@ ul {
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
 }
 .ed-Button {
   background-color: #0cb6e7;
@@ -74,7 +81,7 @@ ul {
 }
 .ed-stores-select .content-wrapper .store-items-wrapper {
   background-color: white;
-  margin-top: 15px;
+  margin-top: 60px;
   margin-bottom: 20px;
 }
 .ed-stores-select .content-wrapper .store-items-wrapper .ed-store-selection-list {

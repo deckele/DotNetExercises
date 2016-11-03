@@ -2,14 +2,9 @@ var ProductsSelectCtrl = (function () {
     function ProductsSelectCtrl() {
         this.selectedProducts = [];
     }
-    ProductsSelectCtrl.prototype.addProductClicked = function () {
-        if (this.onAddProductClicked) {
-            this.onAddProductClicked();
-        }
-    };
-    ProductsSelectCtrl.prototype.removeProductClicked = function (product) {
-        if (this.onRemoveProductClicked) {
-            this.onRemoveProductClicked(product);
+    ProductsSelectCtrl.prototype.productChanged = function () {
+        if (this.onProductChange) {
+            this.onProductChange();
         }
     };
     return ProductsSelectCtrl;
@@ -18,7 +13,8 @@ app.component("edProductsSelect", {
     templateUrl: "src/components/ed-app/ed-products-select/ed-products-select.component.html",
     bindings: {
         products: "=",
-        selectedProducts: "="
+        selectedProducts: "=",
+        onProductChange: "&"
     },
     controller: ProductsSelectCtrl
 });

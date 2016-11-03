@@ -1,12 +1,18 @@
 ﻿class CartSelectionListCtrl {
     products: IProduct[];
     selectedProducts: IProduct[];
-    onRemoveProductClicked: Function;
+    onProductChange: Function;
 
     removeProductClicked(product: IProduct) {
         const productIndex = this.selectedProducts.indexOf(product);
         this.selectedProducts.splice(productIndex, 1);
         this.products.push(product);
+        this.onProductChange();
+    }
+    productQuantityChanged() {
+        if (this.onProductChange) {
+            this.onProductChange();
+        }
     }
 }
 
@@ -16,7 +22,7 @@ app.component("edCartSelectionList",
         bindings: {
             products: "=",
             selectedProducts: "=",
-            onRemoveProductClicked: "&"
+            onProductChange: "&"
         },
         controller: CartSelectionListCtrl
     });

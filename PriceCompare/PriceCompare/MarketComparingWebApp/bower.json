@@ -18,6 +18,7 @@
     "angular-route": "^1.5.8",
     "bootstrap-rtl": "^3.4.0",
     "angular-bootstrap": "^2.2.0",
-    "angular-filter": "^0.5.11"
+    "angular-filter": "^0.5.11",
+    "rxjs": "^4.1.0"
   }
 }

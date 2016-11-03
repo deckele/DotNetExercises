@@ -1,9 +1,15 @@
 ﻿class ProductSelectionItemCtrl {
     product: IProduct;
     onProductChanged: Function;
+    onProductQuantityChanged: Function;
     productButtonClicked() {
         if (this.onProductChanged) {
             this.onProductChanged();
+        }
+    }
+    productQuantityChanged() {
+        if (this.onProductQuantityChanged) {
+            this.onProductQuantityChanged();
         }
     }
 }
@@ -14,7 +20,8 @@ app.component("edProductSelectionItem",
         bindings: {
             product: "=",
             isAddButton: "<",
-            onProductChanged: "&"
+            onProductChanged: "&",
+            onProductQuantityChanged: "&"
         },
         controller: ProductSelectionItemCtrl
     });

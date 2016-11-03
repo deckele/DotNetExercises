@@ -3,6 +3,7 @@
     storeSelectionList: IStoreSelectionItem[];
     products: IProduct[];
     selectedProducts: IProduct[];
+    carts: ICart[];
 
     constructor(private chainsService: IChainService) {
         this.chainsService.getChains()
@@ -73,9 +74,39 @@
         }
     }
 
+    calculateCarts() {
+        this.carts = [];
+        for (let s = 0; s < this.storeSelectionList.length; s++) {
+            if (!this.storeSelectionList[s].selectedStore) {
+                continue;
+            }
+            const chain = this.storeSelectionList[s].selectedChain;
+            const store = this.storeSelectionList[s].selectedStore;
+            const storeCartPrices: IPrice[] = [];
+            let totalPrice = 0;
+            for (let p = 0; p < this.selectedProducts.length; p++) {
+                const selectedProduct = this.selectedProducts[p];
+                for (let i = 0; i < store.prices.length; i++) {
+                    const price = store.prices[i];
+                    if (price.product === selectedProduct) {
+                        storeCartPrices.push(price);
+                        totalPrice += (price.productPrice*price.product.selectedQuantity);
+                    }
+                }
+            }
+            this.carts.push({ chain: chain, store: store, prices: storeCartPrices, totalPrice: totalPrice});
+        }
+    }
+
     onStoreSelected() {
-        if (this.calculateProductsCorrelation()) {
+        if (this.calculateProductsCorrelation) {
             this.calculateProductsCorrelation();
+        }
+    }
+
+    productChanged() {
+        if (this.calculateCarts) {
+            this.calculateCarts();
         }
     }
 }

@@ -3,17 +3,13 @@
     selectedProducts: IProduct[];
     onAddProductClicked: Function;
     onRemoveProductClicked: Function;
+    onProductChange: Function;
     constructor() {
         this.selectedProducts = [];
     }
-    addProductClicked() {
-        if (this.onAddProductClicked) {
-            this.onAddProductClicked();
-        }
-    }
-    removeProductClicked(product: IProduct) {
-        if (this.onRemoveProductClicked) {
-            this.onRemoveProductClicked(product);
+    productChanged() {
+        if (this.onProductChange) {
+            this.onProductChange();
         }
     }
 }
@@ -23,9 +19,8 @@ app.component("edProductsSelect",
         templateUrl: "src/components/ed-app/ed-products-select/ed-products-select.component.html",
         bindings: {
             products: "=",
-            selectedProducts: "="
-            //onAddProductClicked: "&",
-            //onRemoveProductClicked: "&"
+            selectedProducts: "=",
+            onProductChange: "&"
         },
         controller: ProductsSelectCtrl
     });

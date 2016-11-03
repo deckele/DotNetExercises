@@ -5,6 +5,12 @@ var CartSelectionListCtrl = (function () {
         var productIndex = this.selectedProducts.indexOf(product);
         this.selectedProducts.splice(productIndex, 1);
         this.products.push(product);
+        this.onProductChange();
+    };
+    CartSelectionListCtrl.prototype.productQuantityChanged = function () {
+        if (this.onProductChange) {
+            this.onProductChange();
+        }
     };
     return CartSelectionListCtrl;
 }());
@@ -13,7 +19,7 @@ app.component("edCartSelectionList", {
     bindings: {
         products: "=",
         selectedProducts: "=",
-        onRemoveProductClicked: "&"
+        onProductChange: "&"
     },
     controller: CartSelectionListCtrl
 });

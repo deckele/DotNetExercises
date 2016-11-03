@@ -6,6 +6,11 @@ var ProductSelectionItemCtrl = (function () {
             this.onProductChanged();
         }
     };
+    ProductSelectionItemCtrl.prototype.productQuantityChanged = function () {
+        if (this.onProductQuantityChanged) {
+            this.onProductQuantityChanged();
+        }
+    };
     return ProductSelectionItemCtrl;
 }());
 app.component("edProductSelectionItem", {
@@ -13,7 +18,8 @@ app.component("edProductSelectionItem", {
     bindings: {
         product: "=",
         isAddButton: "<",
-        onProductChanged: "&"
+        onProductChanged: "&",
+        onProductQuantityChanged: "&"
     },
     controller: ProductSelectionItemCtrl
 });
