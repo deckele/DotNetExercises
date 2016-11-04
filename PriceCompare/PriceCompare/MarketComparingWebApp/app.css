@@ -193,13 +193,12 @@ ul {
 .ed-compare .ed-home-button {
   position: absolute;
   top: -20px;
+  left: -25%;
 }
 .ed-compare .ed-cart-wrapper {
   position: relative;
-  /*min-height: 450px;*/
   border: 2px solid #c0c0c0;
   width: 240px;
-  /*margin-top: 50px;*/
 }
 .ed-compare .ed-cart-wrapper .ed-store-select-item {
   position: relative;
@@ -212,8 +211,6 @@ ul {
   height: 50px;
   text-align: center;
   color: white;
-  /*background-color: @comparing-background-regular;*/
-  /*font-size: medium;*/
   margin-top: 25px;
   padding-top: 13px;
 }
@@ -260,8 +257,8 @@ ul {
   font-weight: normal;
 }
 .ed-winner-cart .ed-cart-wrapper {
-  min-height: 480px;
-  margin-top: 20px;
+  min-height: 475px;
+  margin-top: 50px;
 }
 .ed-winner-cart .ed-total-price {
   background-color: #68af3e;

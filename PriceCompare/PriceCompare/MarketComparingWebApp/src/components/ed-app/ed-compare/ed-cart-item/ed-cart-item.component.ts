@@ -1,9 +1,8 @@
-﻿class CartItemCtrl {
+﻿//class CartItemCtrl {
+//    cart: ICart;
+//    carts: ICart[];
 
-    constructor() {
-    }
-
-}
+//}
 
 app.component("edCartItem",
     {

@@ -13,3 +13,4 @@ var StoresService = (function () {
     return StoresService;
 }());
 app.service("storesService", StoresService);
+//# sourceMappingURL=stores.service.js.map

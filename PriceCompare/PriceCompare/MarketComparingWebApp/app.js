@@ -9,3 +9,4 @@ app.config(["$routeProvider", function ($routeProvider) {
         $routeProvider.otherwise("/home");
     }
 ]);
+//# sourceMappingURL=app.js.map

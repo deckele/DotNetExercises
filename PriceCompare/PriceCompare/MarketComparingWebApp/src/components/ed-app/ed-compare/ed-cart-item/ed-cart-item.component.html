@@ -1,6 +1,6 @@
 ﻿<div class="col-md-4 ed-cart-item" ed-heb>
     <div class="ed-cart-wrapper">
-        <div class="ed-winner-cart-crown" ng-show="edCartItem.hasClass('ed-winner-cart');">
+        <div class="ed-winner-cart-crown" ng-show="$ctrl.cartIsWinner($ctrl.cart.totalPrice)">
             <span>הזול ביותר</span>
             <div class="ed-top-right-triangle"></div>
             <div class="ed-top-left-triangle"></div>
