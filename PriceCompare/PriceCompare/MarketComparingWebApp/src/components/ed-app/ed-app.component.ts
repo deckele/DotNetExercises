@@ -139,7 +139,7 @@
             const priceIndex = this.carts[i].prices.map(x => x.product.id).indexOf(price.product.id);
             const comparedPrice = this.carts[i].prices[priceIndex];
             if ((i === 0) || (comparedPrice.productPrice > highestPrice)) {
-                highestPrice = comparedPrice.productPrice.valueOf();
+                highestPrice = comparedPrice.productPrice;
             }
         }
         return price.productPrice === highestPrice;

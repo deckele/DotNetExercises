@@ -127,7 +127,7 @@ var MainCtrl = (function () {
             var priceIndex = this.carts[i].prices.map(function (x) { return x.product.id; }).indexOf(price.product.id);
             var comparedPrice = this.carts[i].prices[priceIndex];
             if ((i === 0) || (comparedPrice.productPrice > highestPrice)) {
-                highestPrice = comparedPrice.productPrice.valueOf();
+                highestPrice = comparedPrice.productPrice;
             }
         }
         return price.productPrice === highestPrice;
