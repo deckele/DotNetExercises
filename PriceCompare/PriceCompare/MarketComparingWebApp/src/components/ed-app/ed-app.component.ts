@@ -15,6 +15,7 @@
             });
     }
 
+    //Calculates the list of products that are available in all selected stores, stored into: this.products
     calculateProductsCorrelation() {
         this.products = [];
         let correlationList: IProductCorrelation[] = [];
@@ -97,7 +98,7 @@
             this.carts.push({ chain: chain, store: store, prices: storeCartPrices, totalPrice: totalPrice});
         }
     }
-
+    
     onStoreSelected() {
         if (this.calculateProductsCorrelation) {
             this.calculateProductsCorrelation();
@@ -121,29 +122,24 @@
     }
 
     isPriceLowest(price: IPrice): Boolean {
-        let lowestPrice = this.carts[0].prices[0].productPrice;
-        for (let i = 1; i < (this.carts.length); i++) {
+        //let lowestPrice = this.carts[0].prices[0].productPrice.valueOf();
+        let lowestPrice: number;
+        for (let i = 0; i < (this.carts.length); i++) {
             const priceIndex = this.carts[i].prices.map(x => x.product.id).indexOf(price.product.id);
             const comparedPrice = this.carts[i].prices[priceIndex];
-            //find the compared product
-            if (comparedPrice.product.id === price.product.id) {
-                if (comparedPrice.productPrice < lowestPrice) {
-                    lowestPrice = comparedPrice.productPrice;
-                }
+            if ((i === 0) || (comparedPrice.productPrice < lowestPrice)) {
+                lowestPrice = comparedPrice.productPrice;
             }
         }
         return price.productPrice === lowestPrice;
     }
     isPriceHighest(price: IPrice): Boolean {
-        let highestPrice = this.carts[0].prices[0].productPrice;
-        for (let i = 1; i < (this.carts.length); i++) {
+        let highestPrice: number;
+        for (let i = 0; i < (this.carts.length); i++) {
             const priceIndex = this.carts[i].prices.map(x => x.product.id).indexOf(price.product.id);
             const comparedPrice = this.carts[i].prices[priceIndex];
-            //find the compared product
-            if (comparedPrice.product.id === price.product.id) {
-                if (comparedPrice.productPrice > highestPrice) {
-                    highestPrice = comparedPrice.productPrice;
-                }
+            if ((i === 0) || (comparedPrice.productPrice > highestPrice)) {
+                highestPrice = comparedPrice.productPrice.valueOf();
             }
         }
         return price.productPrice === highestPrice;

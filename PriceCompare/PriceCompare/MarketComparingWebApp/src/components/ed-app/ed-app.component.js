@@ -10,6 +10,7 @@ var MainCtrl = (function () {
             _this.storeSelectionList = [{ selectedStore: null, selectedChain: null }, { selectedStore: null, selectedChain: null }];
         });
     }
+    //Calculates the list of products that are available in all selected stores, stored into: this.products
     MainCtrl.prototype.calculateProductsCorrelation = function () {
         this.products = [];
         var correlationList = [];
@@ -109,29 +110,24 @@ var MainCtrl = (function () {
         return totalPrice <= lowestPrice;
     };
     MainCtrl.prototype.isPriceLowest = function (price) {
-        var lowestPrice = this.carts[0].prices[0].productPrice;
-        for (var i = 1; i < (this.carts.length); i++) {
+        //let lowestPrice = this.carts[0].prices[0].productPrice.valueOf();
+        var lowestPrice;
+        for (var i = 0; i < (this.carts.length); i++) {
             var priceIndex = this.carts[i].prices.map(function (x) { return x.product.id; }).indexOf(price.product.id);
             var comparedPrice = this.carts[i].prices[priceIndex];
-            //find the compared product
-            if (comparedPrice.product.id === price.product.id) {
-                if (comparedPrice.productPrice < lowestPrice) {
-                    lowestPrice = comparedPrice.productPrice;
-                }
+            if ((i === 0) || (comparedPrice.productPrice < lowestPrice)) {
+                lowestPrice = comparedPrice.productPrice;
             }
         }
         return price.productPrice === lowestPrice;
     };
     MainCtrl.prototype.isPriceHighest = function (price) {
-        var highestPrice = this.carts[0].prices[0].productPrice;
-        for (var i = 1; i < (this.carts.length); i++) {
+        var highestPrice;
+        for (var i = 0; i < (this.carts.length); i++) {
             var priceIndex = this.carts[i].prices.map(function (x) { return x.product.id; }).indexOf(price.product.id);
             var comparedPrice = this.carts[i].prices[priceIndex];
-            //find the compared product
-            if (comparedPrice.product.id === price.product.id) {
-                if (comparedPrice.productPrice > highestPrice) {
-                    highestPrice = comparedPrice.productPrice;
-                }
+            if ((i === 0) || (comparedPrice.productPrice > highestPrice)) {
+                highestPrice = comparedPrice.productPrice.valueOf();
             }
         }
         return price.productPrice === highestPrice;
@@ -143,3 +139,4 @@ app.component("edApp", {
     bindings: {},
     controller: MainCtrl
 });
+//# sourceMappingURL=ed-app.component.js.map
