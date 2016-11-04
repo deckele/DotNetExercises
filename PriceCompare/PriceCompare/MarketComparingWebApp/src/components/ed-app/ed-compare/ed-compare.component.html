@@ -1,0 +1,8 @@
+﻿<div class="container ed-compare">
+    <a href="#/home" class="ed-home-button">Home</a>
+    <div class="row">
+        <ed-cart-item ng-repeat="cart in $ctrl.carts" class="repeated-item ed-cart-repeated-item"
+                      cart="cart" carts="$ctrl.carts"
+                      ng-class="{ 'ed-winner-cart' : $ctrl.cartIsWinner(cart.totalPrice), 'ed-cart-regular' : !$ctrl.cartIsWinner(cart.totalPrice) }"></ed-cart-item>
+    </div>
+</div>

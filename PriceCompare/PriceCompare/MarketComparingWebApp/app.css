@@ -31,13 +31,14 @@ ul {
   background: #eff3f4;
   background-image: url("resources/images/fruitsBackground.jpg");
   background-size: cover;
-  min-height: 230px;
+  min-height: 170px;
   width: 100%;
 }
 .ed-background .ed-header {
+  text-align: center;
   font-weight: bold;
   color: white;
-  padding: 10px 15px;
+  padding: 45px 15px;
 }
 .ed-tint {
   position: absolute;
@@ -81,7 +82,7 @@ ul {
 }
 .ed-stores-select .content-wrapper .store-items-wrapper {
   background-color: white;
-  margin-top: 60px;
+  margin-top: 15px;
   margin-bottom: 20px;
 }
 .ed-stores-select .content-wrapper .store-items-wrapper .ed-store-selection-list {
@@ -182,6 +183,121 @@ ul {
 .ed-cart-selection-list .ed-product-selection-item .ed-product-img {
   height: 42px;
   border: 1px solid #DEE5E7;
+}
+.ed-compare {
+  position: relative;
+  margin: 200px 0 0 0;
+  width: 780px;
+  left: calc((100%-780px)/2);
+}
+.ed-compare .ed-home-button {
+  position: absolute;
+  top: -20px;
+}
+.ed-compare .ed-cart-wrapper {
+  position: relative;
+  /*min-height: 450px;*/
+  border: 2px solid #c0c0c0;
+  width: 240px;
+  /*margin-top: 50px;*/
+}
+.ed-compare .ed-cart-wrapper .ed-store-select-item {
+  position: relative;
+  width: 70%;
+  right: 15%;
+  margin-top: 15px;
+}
+.ed-compare .ed-cart-wrapper .ed-total-price {
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  color: white;
+  /*background-color: @comparing-background-regular;*/
+  /*font-size: medium;*/
+  margin-top: 25px;
+  padding-top: 13px;
+}
+.ed-compare .ed-cart-wrapper .ed-product-prices {
+  position: relative;
+  width: 70%;
+  right: 15%;
+  margin-top: 5px;
+  border-bottom: 1.5px solid #DEE5E7;
+}
+.ed-compare .ed-cart-wrapper .ed-product-prices .ed-repeated-item {
+  position: relative;
+  width: 100%;
+  height: 40px;
+}
+.ed-compare .ed-cart-wrapper .ed-product-prices .ed-repeated-item .ed-product-name {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  line-height: 16px;
+  font-weight: bold;
+}
+.ed-compare .ed-cart-wrapper .ed-product-prices .ed-repeated-item .ed-product-price {
+  display: inline;
+  width: 60%;
+  position: absolute;
+  left: -50px;
+}
+.ed-compare .ed-cart-wrapper .ed-product-prices .ed-repeated-item .ed-highest-price {
+  font-weight: bold;
+  color: #df4069;
+}
+.ed-compare .ed-cart-wrapper .ed-product-prices .ed-repeated-item .ed-lowest-price {
+  font-weight: bold;
+  color: #52ab43;
+}
+.ed-cart-regular .ed-cart-wrapper {
+  min-height: 450px;
+  margin-top: 50px;
+}
+.ed-cart-regular .ed-total-price {
+  background-color: #394244;
+  font-size: large;
+  font-weight: normal;
+}
+.ed-winner-cart .ed-cart-wrapper {
+  min-height: 480px;
+  margin-top: 20px;
+}
+.ed-winner-cart .ed-total-price {
+  background-color: #68af3e;
+  font-size: larger;
+  font-weight: bold;
+}
+.ed-winner-cart-crown {
+  background-color: #68af3e;
+  text-align: center;
+  color: white;
+  height: 30px;
+  width: 110%;
+  position: absolute;
+  top: -30px;
+  left: -12px;
+  padding-top: 4px;
+}
+.ed-winner-cart-crown .ed-top-right-triangle {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 11px 11px 0;
+  border-color: transparent #4f8c28 transparent transparent;
+}
+.ed-winner-cart-crown .ed-top-left-triangle {
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 11px 11px 0 0;
+  border-color: #4f8c28 transparent transparent transparent;
 }
 .vcenter {
   display: inline-block;

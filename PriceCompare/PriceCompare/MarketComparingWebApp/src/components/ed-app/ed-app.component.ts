@@ -88,7 +88,7 @@
                 const selectedProduct = this.selectedProducts[p];
                 for (let i = 0; i < store.prices.length; i++) {
                     const price = store.prices[i];
-                    if (price.product === selectedProduct) {
+                    if (price.product.id === selectedProduct.id) {
                         storeCartPrices.push(price);
                         totalPrice += (price.productPrice*price.product.selectedQuantity);
                     }
@@ -109,10 +109,51 @@
             this.calculateCarts();
         }
     }
+
+    cartIsWinner(totalPrice: number): Boolean {
+        let lowestPrice = this.carts[0].totalPrice;
+        for (let i = 1; i < (this.carts.length); i++) {
+            if (this.carts[i].totalPrice < lowestPrice) {
+                lowestPrice = this.carts[i].totalPrice;
+            }
+        }
+        return totalPrice <= lowestPrice;
+    }
+
+    isPriceLowest(price: IPrice): Boolean {
+        let lowestPrice = this.carts[0].prices[0].productPrice;
+        for (let i = 1; i < (this.carts.length); i++) {
+            const priceIndex = this.carts[i].prices.map(x => x.product.id).indexOf(price.product.id);
+            const comparedPrice = this.carts[i].prices[priceIndex];
+            //find the compared product
+            if (comparedPrice.product.id === price.product.id) {
+                if (comparedPrice.productPrice < lowestPrice) {
+                    lowestPrice = comparedPrice.productPrice;
+                }
+            }
+        }
+        return price.productPrice === lowestPrice;
+    }
+    isPriceHighest(price: IPrice): Boolean {
+        let highestPrice = this.carts[0].prices[0].productPrice;
+        for (let i = 1; i < (this.carts.length); i++) {
+            const priceIndex = this.carts[i].prices.map(x => x.product.id).indexOf(price.product.id);
+            const comparedPrice = this.carts[i].prices[priceIndex];
+            //find the compared product
+            if (comparedPrice.product.id === price.product.id) {
+                if (comparedPrice.productPrice > highestPrice) {
+                    highestPrice = comparedPrice.productPrice;
+                }
+            }
+        }
+        return price.productPrice === highestPrice;
+    }
 }
 
 app.component("edApp",
     {
         templateUrl: "src/components/ed-app/ed-app.component.html",
+        bindings: {
+        },
         controller: MainCtrl
     });

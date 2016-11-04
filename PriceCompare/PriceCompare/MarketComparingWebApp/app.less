@@ -5,9 +5,15 @@
 @button-shadow-color: rgb(0, 130, 181);
 @link-button-color: rgb(70, 199, 236);
 
+@comparing-background-regular: #394244;
+@comparing-background-win: #68af3e;
+@comparing-text-win: #52ab43;
+@comparing-text-lose: #df4069;
+
 @product-item-height: 100px;
 @product-item-picture-height: 32px;
-@comparison-item-width: 310px; 
+@comparison-item-width: 240px; 
+@comparison-wrapper-width: 780px;
 
 @content-height: 32px;
 @text-line-height: 15px;
@@ -58,12 +64,13 @@ ul {
     background: @header-color;
     background-image: url("resources/images/fruitsBackground.jpg");
     background-size: cover;
-    min-height: 230px;
+    min-height: 170px;
     width: 100%;
     .ed-header {
+        text-align: center;
         font-weight: bold;
         color: @colored-background-text-color;
-        padding: 10px 15px;
+        padding: 45px 15px;
     }
 }
 .ed-tint {
@@ -110,7 +117,7 @@ ul {
         }
         .store-items-wrapper {
             background-color: white;
-            margin-top: 60px;
+            margin-top: 15px;
             margin-bottom: 20px;
             .ed-store-selection-list {
                 padding-top: 20px;
@@ -216,6 +223,126 @@ ul {
         height: @product-item-picture-height + 10px;
         border: 1px solid @line-color;
         }
+    }
+}
+
+.ed-compare {
+    position: relative;
+    margin: 200px 0 0 0;
+    width: @comparison-wrapper-width;
+    left: ~"calc((100%-@{comparison-wrapper-width})/2)";
+    .ed-home-button {
+        position: absolute;
+        top: -20px;
+    }
+    .ed-cart-wrapper {
+        position: relative;
+        /*min-height: 450px;*/
+        border: 2px solid @strong-line-color;
+        width: @comparison-item-width;
+        /*margin-top: 50px;*/
+        .ed-store-select-item {
+            position: relative;
+            width: 70%;
+            right: 15%;
+            margin-top: 15px;
+        }
+        .ed-total-price {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            color: @colored-background-text-color;
+            /*background-color: @comparing-background-regular;*/
+            /*font-size: medium;*/
+            margin-top: 25px;
+            padding-top: 13px;
+        }
+        .ed-product-prices {
+            position: relative;
+            width: 70%;
+            right: 15%;
+            margin-top: 5px;
+            border-bottom: 1.5px solid @line-color;
+            .ed-repeated-item {
+                position: relative;
+                width: 100%;
+                height: 40px;
+                .ed-product-name {
+                    display: inline-block;
+                    position: relative;
+                    width: 50%;
+                    line-height: 16px;
+                    font-weight: bold;
+                }
+                .ed-product-price {
+                    display: inline;
+                    width: 60%;
+                    position: absolute;
+                    left: -50px;
+                }
+                .ed-highest-price {
+                    font-weight: bold;
+                    color: @comparing-text-lose;
+                }
+                .ed-lowest-price {
+                    font-weight: bold;
+                    color: @comparing-text-win;
+                }
+            }
+        }
+    }
+}
+.ed-cart-regular {
+    .ed-cart-wrapper{
+        min-height: 450px;
+        margin-top: 50px;
+    }
+    .ed-total-price {
+        background-color: @comparing-background-regular;
+        font-size: large;
+        font-weight: normal;
+    }
+}
+.ed-winner-cart {
+    .ed-cart-wrapper{
+        min-height: 480px;
+        margin-top: 20px;
+    }
+    .ed-total-price {
+        background-color: @comparing-background-win;
+        font-size: larger;
+        font-weight: bold;
+    }
+}
+.ed-winner-cart-crown {
+    background-color: @comparing-background-win;
+    text-align: center;
+    color: @colored-background-text-color;
+    height: 30px;
+    width: 110%;
+    position: absolute;
+    top: -30px;
+    left: -12px;
+    padding-top: 4px;
+    .ed-top-right-triangle {
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 11px 11px 0;
+        border-color: transparent #4f8c28 transparent transparent;
+    }
+    .ed-top-left-triangle {
+        position: absolute;
+        bottom: -10px;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 11px 11px 0 0;
+        border-color: #4f8c28 transparent transparent transparent;
     }
 }
 

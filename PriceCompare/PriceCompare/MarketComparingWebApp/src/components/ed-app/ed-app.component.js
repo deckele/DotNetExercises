@@ -80,7 +80,7 @@ var MainCtrl = (function () {
                 var selectedProduct = this.selectedProducts[p];
                 for (var i = 0; i < store.prices.length; i++) {
                     var price = store.prices[i];
-                    if (price.product === selectedProduct) {
+                    if (price.product.id === selectedProduct.id) {
                         storeCartPrices.push(price);
                         totalPrice += (price.productPrice * price.product.selectedQuantity);
                     }
@@ -99,10 +99,47 @@ var MainCtrl = (function () {
             this.calculateCarts();
         }
     };
+    MainCtrl.prototype.cartIsWinner = function (totalPrice) {
+        var lowestPrice = this.carts[0].totalPrice;
+        for (var i = 1; i < (this.carts.length); i++) {
+            if (this.carts[i].totalPrice < lowestPrice) {
+                lowestPrice = this.carts[i].totalPrice;
+            }
+        }
+        return totalPrice <= lowestPrice;
+    };
+    MainCtrl.prototype.isPriceLowest = function (price) {
+        var lowestPrice = this.carts[0].prices[0].productPrice;
+        for (var i = 1; i < (this.carts.length); i++) {
+            var priceIndex = this.carts[i].prices.map(function (x) { return x.product.id; }).indexOf(price.product.id);
+            var comparedPrice = this.carts[i].prices[priceIndex];
+            //find the compared product
+            if (comparedPrice.product.id === price.product.id) {
+                if (comparedPrice.productPrice < lowestPrice) {
+                    lowestPrice = comparedPrice.productPrice;
+                }
+            }
+        }
+        return price.productPrice === lowestPrice;
+    };
+    MainCtrl.prototype.isPriceHighest = function (price) {
+        var highestPrice = this.carts[0].prices[0].productPrice;
+        for (var i = 1; i < (this.carts.length); i++) {
+            var priceIndex = this.carts[i].prices.map(function (x) { return x.product.id; }).indexOf(price.product.id);
+            var comparedPrice = this.carts[i].prices[priceIndex];
+            //find the compared product
+            if (comparedPrice.product.id === price.product.id) {
+                if (comparedPrice.productPrice > highestPrice) {
+                    highestPrice = comparedPrice.productPrice;
+                }
+            }
+        }
+        return price.productPrice === highestPrice;
+    };
     return MainCtrl;
 }());
 app.component("edApp", {
     templateUrl: "src/components/ed-app/ed-app.component.html",
+    bindings: {},
     controller: MainCtrl
 });
-//# sourceMappingURL=ed-app.component.js.map

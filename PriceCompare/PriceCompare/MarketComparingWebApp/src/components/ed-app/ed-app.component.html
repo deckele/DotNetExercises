@@ -1,9 +1,4 @@
 ﻿<div class="container ed-app">
     <ed-header number-of-items="$ctrl.selectedProducts.length"></ed-header>
-    <ed-stores-select chains="$ctrl.chains"
-                      store-selection-list="$ctrl.storeSelectionList"
-                      on-store-select="$ctrl.onStoreSelected()"></ed-stores-select>
-    <ed-products-select products="$ctrl.products"
-                        selected-products="$ctrl.selectedProducts"
-                        on-product-change="$ctrl.productChanged()"></ed-products-select>
+    <ng-view></ng-view>
 </div>

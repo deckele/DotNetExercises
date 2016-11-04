@@ -113,6 +113,9 @@
     <Content Include="resources\images\placeholder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="src\components\ed-app\ed-compare\ed-cart-item\ed-cart-item.component.html" />
+    <Content Include="src\components\ed-app\ed-compare\ed-compare.component.html" />
+    <Content Include="src\components\ed-app\ed-home\ed-home.component.html" />
     <Content Include="src\components\ed-app\ed-products-select\ed-cart-selection-list\ed-cart-selection-list.component.html" />
     <Content Include="src\components\ed-app\ed-products-select\ed-product-selection-list\ed-product-selection-item\ed-product-selection-item.component.html" />
     <Content Include="src\components\ed-app\ed-products-select\ed-product-selection-list\ed-product-selection-list.component.html" />
@@ -155,6 +158,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="src\components\ed-app\ed-app.component.ts" />
+    <TypeScriptCompile Include="src\components\ed-app\ed-compare\ed-cart-item\ed-cart-item.component.ts" />
     <TypeScriptCompile Include="src\components\ed-app\ed-header\ed-header.component.ts" />
     <TypeScriptCompile Include="src\components\ed-app\ed-products-select\ed-cart-selection-list\ed-cart-selection-list.component.ts" />
     <TypeScriptCompile Include="src\components\ed-app\ed-products-select\ed-product-selection-list\ed-product-selection-item\ed-product-selection-item.component.ts" />

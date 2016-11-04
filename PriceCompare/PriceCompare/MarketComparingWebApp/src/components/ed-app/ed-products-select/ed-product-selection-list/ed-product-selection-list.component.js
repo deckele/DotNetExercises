@@ -1,5 +1,6 @@
 var ProductSelectionListCtrl = (function () {
-    function ProductSelectionListCtrl() {
+    function ProductSelectionListCtrl($location) {
+        this.$location = $location;
         this.searchText = "חיפוש מוצרים...";
     }
     ProductSelectionListCtrl.prototype.addProductClicked = function (product) {
@@ -7,6 +8,11 @@ var ProductSelectionListCtrl = (function () {
         this.products.splice(productIndex, 1);
         this.selectedProducts.push(product);
         this.onProductChange();
+    };
+    ProductSelectionListCtrl.prototype.compareButtonClicked = function () {
+        if (this.selectedProducts.length > 0) {
+            this.$location.path("/compare");
+        }
     };
     return ProductSelectionListCtrl;
 }());
@@ -19,4 +25,3 @@ app.component("edProductSelectionList", {
     },
     controller: ProductSelectionListCtrl
 });
-//# sourceMappingURL=ed-product-selection-list.component.js.map

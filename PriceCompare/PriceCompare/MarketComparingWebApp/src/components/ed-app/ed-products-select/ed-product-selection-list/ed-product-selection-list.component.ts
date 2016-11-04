@@ -4,7 +4,7 @@
     searchText: string;
     onAddProductClicked: Function;
     onProductChange: Function;
-    constructor() {
+    constructor(private $location) {
         this.searchText = "חיפוש מוצרים...";
     }
     addProductClicked(product: IProduct) {
@@ -12,6 +12,11 @@
         this.products.splice(productIndex, 1);
         this.selectedProducts.push(product);
         this.onProductChange();
+    }
+    compareButtonClicked() {
+        if (this.selectedProducts.length > 0) {
+            this.$location.path("/compare");
+        }
     }
 }
 

@@ -1,0 +1,40 @@
+﻿<div class="col-md-4 ed-cart-item" ed-heb>
+    <div class="ed-cart-wrapper">
+        <div class="ed-winner-cart-crown" ng-show="edCartItem.hasClass('ed-winner-cart');">
+            <span>הזול ביותר</span>
+            <div class="ed-top-right-triangle"></div>
+            <div class="ed-top-left-triangle"></div>
+        </div>
+        <div class="ed-store-select-item">
+            <div class="ed-select-chain">
+                <select class="form-control"
+                        ng-options="chain as chain.name for chain in $ctrl.chains "
+                        ng-model="$ctrl.cart.chain">
+                    <option value="">-- בחר/י רשת --</option>
+                </select>
+            </div>
+            <div class="ed-select-store">
+                <select class="form-control"
+                        ng-options="store as store.name for store in $ctrl.cart.chain.stores"
+                        ng-model="$ctrl.cart.store"
+                        ng-change="$ctrl.onStoreSelected()">
+                    <option value="">-- בחר/י חנות --</option>
+                </select>
+            </div>
+        </div>
+        <div class="ed-total-price">
+            {{$ctrl.cart.totalPrice | currency:"₪":2 }}
+        </div>
+        <div class="ed-product-prices">
+            <ul>
+                <li ng-repeat="price in $ctrl.cart.prices" class="ed-repeated-item">
+                    <div class="ed-product-name">{{price.product.name}}</div>
+                    <div class="ed-product-price"
+                         ng-class="{'ed-lowest-price': $ctrl.isPriceLowest(price), 'ed-highest-price': $ctrl.isPriceHighest(price)}">
+                        {{price.productPrice | currency:"₪":2}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
