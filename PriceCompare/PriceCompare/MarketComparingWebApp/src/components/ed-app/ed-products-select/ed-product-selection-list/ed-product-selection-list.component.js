@@ -25,4 +25,3 @@ app.component("edProductSelectionList", {
     },
     controller: ProductSelectionListCtrl
 });
-//# sourceMappingURL=ed-product-selection-list.component.js.map
