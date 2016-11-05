@@ -17,4 +17,3 @@ app.component("edStoresSelect", {
     },
     controller: StoresSelectCtrl
 });
-//# sourceMappingURL=ed-stores-select.component.js.map

@@ -1,5 +1,6 @@
 var HeaderCtrl = (function () {
-    function HeaderCtrl() {
+    function HeaderCtrl($location) {
+        this.$location = $location;
         this.numberOfItems = "0";
     }
     return HeaderCtrl;
@@ -11,4 +12,3 @@ app.component("edHeader", {
     },
     controller: HeaderCtrl
 });
-//# sourceMappingURL=ed-header.component.js.map

@@ -1,6 +1,6 @@
 ﻿class HeaderCtrl {
     numberOfItems: string;
-    constructor() {
+    constructor(private $location: ng.ILocationService) {
         this.numberOfItems = "0";
     }
 }

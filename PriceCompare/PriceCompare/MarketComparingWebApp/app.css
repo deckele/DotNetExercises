@@ -22,9 +22,13 @@ ul {
 .ed-header-bar .header-item-number div {
   padding-right: 15px;
 }
-.ed-header-bar .brand-name div {
+.ed-header-bar .ed-brand-name .ed-brand {
   padding-left: 15px;
   transform: translateY(75%);
+}
+.ed-header-bar .ed-alternate-brand {
+  font-size: large;
+  transform: translateY(45%);
 }
 .ed-background {
   position: absolute;
@@ -250,6 +254,7 @@ ul {
 .ed-cart-regular .ed-cart-wrapper {
   min-height: 450px;
   margin-top: 50px;
+  margin-bottom: 25px;
 }
 .ed-cart-regular .ed-total-price {
   background-color: #394244;

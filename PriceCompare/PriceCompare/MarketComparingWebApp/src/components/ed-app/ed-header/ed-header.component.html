@@ -1,6 +1,7 @@
 ﻿<div class="row ed-header-bar">
-    <div class="col-md-11 col-xs-2 brand-name">
-        <div>Brand</div>
+    <div class="col-md-11 col-xs-2 ed-brand-name">
+        <div class="ed-brand" ng-if="$ctrl.$location.path()==='/home'">Brand</div>
+        <div class="ed-alternate-brand" ng-if="$ctrl.$location.path()==='/compare'">CV Shooping</div>
     </div>
     <div class="col-md-1 header-item-number" ed-heb>
         <div>

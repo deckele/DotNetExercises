@@ -23,4 +23,3 @@ app.component("edProductSelectionItem", {
     },
     controller: ProductSelectionItemCtrl
 });
-//# sourceMappingURL=ed-product-selection-item.component.js.map
